@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&amp;family=Epilogue:wght@100;200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"primary-fixed": "#ffdad7", "on-background": "#1b1c1c", tertiary: "#444545", "surface-container-high": "#eae8e7", "outline-variant": "#e3bebb", outline: "#8e706d", "on-primary": "#ffffff", "surface-dim": "#dcd9d9", error: "#ba1a1a", "surface-bright": "#fbf9f8", "on-primary-container": "#ffc7c2", "secondary-fixed": "#e4e2e1", "on-error-container": "#93000a", "inverse-on-surface": "#f3f0f0", "on-tertiary-fixed": "#1b1c1c", "on-primary-fixed": "#410004", "on-error": "#ffffff", "tertiary-fixed-dim": "#c7c6c6", "on-surface": "#1b1c1c", "inverse-primary": "#ffb3ad", "surface-container-low": "#f6f3f2", "secondary-container": "#e4e2e1", "surface-container-highest": "#e4e2e1", primary: "#8e0012", "tertiary-container": "#5c5c5c", "on-tertiary-fixed-variant": "#464747", background: "#fbf9f8", "on-secondary-fixed": "#1b1c1c", "surface-tint": "#b72126", "on-primary-fixed-variant": "#930013", "on-secondary-fixed-variant": "#474747", "surface-container-lowest": "#ffffff", "inverse-surface": "#303030", "error-container": "#ffdad6", "primary-fixed-dim": "#ffb3ad", "on-secondary-container": "#656464", surface: "#fbf9f8", "surface-container": "#f0eded", secondary: "#5f5e5e", "on-tertiary-container": "#d6d5d4", "primary-container": "#b31e24", "on-secondary": "#ffffff", "secondary-fixed-dim": "#c8c6c6", "on-surface-variant": "#5a403e", "tertiary-fixed": "#e3e2e2", "on-tertiary": "#ffffff", "surface-variant": "#e4e2e1"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, fontFamily: {headline: ["Eb Garamond"], body: ["Epilogue"], label: ["Epilogue"], display: "Eb Garamond"}}}};</script>
+</head>
+<body class="bg-background text-on-background">
+<!-- TopAppBar -->
+<?php include 'header.php';?>
+<main class="max-w-screen-2xl mx-auto px-12 py-16">
+<!-- Editorial Header -->
+<section class="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+<div class="md:col-span-8">
+<h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4" style="">The Movie Catalog</h1>
+<p class="font-['Epilogue'] text-lg text-neutral-400 max-w-2xl leading-relaxed" style="">
+    A curated selection of cinematic masterpieces for the Alma Mater Studiorum community. From neorealism to contemporary experimentalism.
+</p>
+</div>
+<div class="md:col-span-4 flex justify-end gap-4">
+<div class="bg-surface-container-low px-4 py-2 border-l-2 border-[#B31E24]">
+<span class="block text-[10px] uppercase tracking-tighter text-neutral-500" style="">Current Semester</span>
+<span class="block font-bold text-sm" style="">FALL 2024 ARCHIVE</span>
+</div>
+</div>
+</section>
+<div class="flex flex-col lg:flex-row gap-16">
+<!-- Sidebar Filter -->
+<aside class="w-full lg:w-64 flex-shrink-0 space-y-12">
+<div>
+<h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Categories</h3>
+<ul class="space-y-4 font-['Epilogue'] text-sm">
+<li class="flex items-center justify-between group cursor-pointer" style="">
+<span class="text-on-surface group-hover:text-[#B31E24] transition-colors" style="">All Cinema</span>
+<span class="text-neutral-600 text-[10px] font-bold" style="">142</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer" style="">
+<span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Italian Classics</span>
+<span class="text-neutral-600 text-[10px]" style="">38</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer" style="">
+<span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Avant-Garde</span>
+<span class="text-neutral-600 text-[10px]" style="">12</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer" style="">
+<span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Documentaries</span>
+<span class="text-neutral-600 text-[10px]" style="">24</span>
+</li>
+</ul>
+</div>
+<div>
+<h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Period</h3>
+<div class="grid grid-cols-2 gap-2">
+<button class="bg-surface-container-high py-2 text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-700 transition-colors" style="">1920-1950</button>
+<button class="bg-surface-container-high py-2 text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-700 transition-colors" style="">1950-1980</button>
+<button class="bg-surface-container-high py-2 text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-700 transition-colors" style="">1980-2010</button>
+<button class="bg-surface-container-high py-2 text-[11px] font-bold uppercase tracking-wider border border-[#B31E24] text-[#B31E24]" style="">Recent</button>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low border border-neutral-800">
+<p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-neutral-300" style="">"Cinema is a matter of what's in the frame and what's out."</p>
+<span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]" style="">Martin Scorsese</span>
+</div>
+</aside>
+<!-- Grid Content -->
+<div class="flex-grow">
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
+<!-- Movie Card 1 -->
+<div class="group">
+<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="L'Avventura" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="atmospheric black and white cinematic still of an empty italian piazza at night with dramatic street lighting and long shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsqdAmF-GQ_-qprlD7jYOwLTj5S92YXNxV5WhF0nUYvHUQQX1QhKWZNxThATokAHOnGl5LJiCpQY19Ot0wFnyTVTKrtxKiXvHpTnRzEPM87-uK5LxdxzO7SiKkXO8BROT9_4lgRsvYLeBkbV9qVxGQB5AF1R4AkwyHjHUFRxNqPqz5KfYS4ratFYhJkTfR5utOpkInhag_jFzyWRrurF7G8QHayqznsCUo35OvNEnWotdq3l1_XwQLuMIMLt_SkusxEcfbrDwmiQI" style=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">L'Avventura</h2>
+<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1960</span>
+</div>
+<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Michelangelo Antonioni</p>
+<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
+<span class="" style="">Drama / Mystery</span>
+<span class="" style="">143 MIN</span>
+</div>
+</div>
+</div>
+<!-- Movie Card 2 -->
+<div class="group">
+<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="La Dolce Vita" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="dramatic close up of a vintage 35mm film projector in a dark room with a single beam of light illuminating dust particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAea91rCz4XKIKkqN78dbzWEUs_iR7ygJpC0qlW49CvtQNa4hiA3505mOK2yTy0Dj2KQAkDLw78kNGDFMM-Mp61dTe1wSDvuv6VK5dMQsrmRuMRDAecxm_eBJjEsyZsKM8fdx3WgO5sDoidTW95OHd0X9Rf1xBRXXtmfjbgkEk-7qJKGxMgjWlQME0eQD1xrnmPRdtL0x5JzG5hOnmD2Sjf1hF-ZROdlQRbyV2S6OC2SiPfWFBH2NosmG11qmIFS3MEMpTc-LdWGr8" style=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">La Dolce Vita</h2>
+<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1960</span>
+</div>
+<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Federico Fellini</p>
+<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
+<span class="" style="">Comedy / Drama</span>
+<span class="" style="">174 MIN</span>
+</div>
+</div>
+</div>
+<!-- Movie Card 3 -->
+<div class="group">
+<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="Suspiria" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="abstract composition of deep red and dark grey textures resembling vintage theatre curtains in low theatrical lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbRR1KZhOdL1DSYXiVdWToMwQBgeHfl2uBUbIogPdMaNMgt_u3v5zKHCXJurdNZE6uhGZTs3FzbDG9oaST89hn7F44-nC7Y_gCpyYT2jyH3n84ZgOx2z2s6wUA9U2DV2v5eIPerqE1vJ85IlaVs2A77OM1p3PamkIaMqN1KH_c-nVblZKmS2jcI9FVtbPyyu1b2n6wepSU4PKR-wrTQAd_dfuDEJ2E70PpX3W_nH53xrEC1RjyJbf-QaMAeEvT5c3OPbSJJ0xhrOY" style=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">Suspiria</h2>
+<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1977</span>
+</div>
+<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Dario Argento</p>
+<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
+<span class="" style="">Horror / Cult</span>
+<span class="" style="">92 MIN</span>
+</div>
+</div>
+</div>
+<!-- Movie Card 4 -->
+<div class="group">
+<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="Cinema Paradiso" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="wide shot of rows of empty velvet cinema seats in a grand historical theater with ornate architectural details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmxKeJnQtQ7NFv2iBaP0YKbIKbCAu_jRKiUfI4G1IVIYQLtDCiOxzKRDlUMdWZQDY8zOxIaUa8LjV3viCf5mq4D9lXn7UVHuqvxl3DzIH-HUwsxxGkXews-Bk2680fv-iWzfaziBeRb9pOYnC4wxhCgrY87dbazLNamzqRGrthnEklH3F1aYLvuElfrrxqFrikK6LxqiybA8Vr9hJi57wq1dng9THtehUOnocCnAXCErjoQxDwlyNt88Dxgnj6iCMll1yZZb9RI7Y" style=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">Cinema Paradiso</h2>
+<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1988</span>
+</div>
+<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Giuseppe Tornatore</p>
+<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
+<span class="" style="">Drama / Romance</span>
+<span class="" style="">155 MIN</span>
+</div>
+</div>
+</div>
+<!-- Movie Card 5 -->
+<div class="group">
+<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="The Great Beauty" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="moody architectural shot of modern geometric concrete building at dusk with single lit window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1fu_8p6UvRgR86LV88Wca0Z9yAjAqN_0UO_inTluQmsBR1zbWSfr4iQk9uHwciwZg0sRC9kvODpDgkXPSm6r9uYGny8gPXtDNxu1wIZywJ0597uTjdYvhPVuQ6UpREacebFfjkjbMLMrNOTShX1UNFgwIL4HK_rsijn7breba-eZIRR_ANR1B8nW00w8P9j257aIA-mL_3H69t86xBaYp0dmXVV6Vl_3dCMDIqYO8w4PLzSO3ds27etHf08r2fuDDFGMkK_2GAjM" style=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">The Great Beauty</h2>
+<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">2013</span>
+</div>
+<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Paolo Sorrentino</p>
+<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
+<span class="" style="">Drama / Art</span>
+<span class="" style="">142 MIN</span>
+</div>
+</div>
+</div>
+<!-- Movie Card 6 -->
+<div class="group">
+<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
+<img alt="8 1/2" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="silhouetted film crew behind a large professional camera rig on a foggy outdoor set at dawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAux9h-M9kOJQw5RzUgUIB3NUO9OhUOB5yBSh_3g4wWy3OiQlKxSeHwUNJ5eFKN6CI7bHNqfF8FG3wg5Pom6IfVzOLsU0vt74teIHEjBsI7qBjgGk2uY2Y15peXjLjIpo6enEMI5m87cLn5NOBVuo4m3fm7BR35gZ___zxrHWDjp4VeIHa63qTi2xGa9xBddqJ6r8hHG-xDn-5MqfMzSZroCjGQP6zq5UgsgprS_p0FpPeRrA9h5PrkLg4Z1IXlxs_Dt17nUFXpPaE" style=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-start">
+<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">8 1/2</h2>
+<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1963</span>
+</div>
+<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Federico Fellini</p>
+<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
+<span class="" style="">Surrealist / Drama</span>
+<span class="" style="">138 MIN</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-24 flex items-center justify-between border-t border-neutral-800 pt-10">
+<span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500" style="">Showing 6 of 142 results</span>
+<div class="flex gap-4">
+<button class="px-6 py-2 bg-surface-container-low text-xs font-bold uppercase tracking-widest opacity-50 cursor-not-allowed" style="">Previous</button>
+<button class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors" style="">Next Archive</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<?php include 'footer.php';?>
+</body></html>

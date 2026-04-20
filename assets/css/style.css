@@ -1,0 +1,16 @@
+body { 
+    font-family: 'Epilogue', sans-serif; 
+}
+
+h1, h2, h3, h4, .brand-font { 
+    font-family: 'EB Garamond', serif; 
+}
+
+.material-symbols-outlined { 
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; 
+}
+
+/* Anti-italics mandate */
+* { 
+    font-style: normal !important; 
+}
