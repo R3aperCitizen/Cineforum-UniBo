@@ -27,9 +27,7 @@ CREATE TABLE movies (
     rating REAL,
     description TEXT,
     poster_url TEXT,
-    trailer_url TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    trailer_url TEXT
 );
 
 -- Movie genres table (for better normalization)
@@ -118,15 +116,15 @@ INSERT INTO users (username, email, password_hash, first_name, last_name) VALUES
 ('moviebuff', 'moviebuff@example.com', '$2b$10$example_hash', 'Jane', 'Smith'),
 ('filmlover', 'filmlover@example.com', '$2b$10$example_hash', 'Bob', 'Johnson');
 
-INSERT INTO movies (title, release_date, director, duration, genre, rating, description) VALUES 
-('Inception', '2010-07-16', 'Christopher Nolan', 148, 'Sci-Fi', 8.8, 'A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.'),
-('The Shawshank Redemption', '1994-09-23', 'Frank Darabont', 142, 'Drama', 9.3, 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.'),
-('The Dark Knight', '2008-07-18', 'Christopher Nolan', 152, 'Action', 9.0, 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.');
+INSERT INTO movies (title, release_date, director, duration, genre, rating, description, poster_url) VALUES 
+('Inception', '2010-07-16', 'Christopher Nolan', 148, 'Sci-Fi', 8.8, 'A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.', 'assets/images/inception.jpg'),
+('The Shawshank Redemption', '1994-09-23', 'Frank Darabont', 142, 'Drama', 9.3, 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.', ''),
+('The Dark Knight', '2008-07-18', 'Christopher Nolan', 152, 'Action', 9.0, 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.', '');
 
-INSERT INTO events (event_name, event_description, event_date, location, capacity, ticket_price, created_by) VALUES 
-('Inception Screening', 'Special screening of Inception with director Q&A', '2023-12-15 19:00:00', 'Cinema Hall A', 150, 12.50, 1),
-('Classic Drama Night', 'Evening of classic dramas', '2023-12-20 20:00:00', 'Main Theater', 200, 8.00, 2),
-('Horror Movie Marathon', 'Night of horror films', '2023-12-25 18:00:00', 'Horror Room', 80, 15.00, 1);
+INSERT INTO "events" ("event_id", "event_name", "event_description", "event_date", "location", "capacity", "ticket_price", "event_status", "created_by", "event_poster", "is_special") VALUES (1, 'Inception Screening', 'Proiezione speciale di Inception con Q&A al regista', '2023-12-15 19:00:00', 'Cinema Eliseo', 150, 12.5, 'scheduled', 1, 'assets/images/inception-event.jpg', 0);
+INSERT INTO "events" ("event_id", "event_name", "event_description", "event_date", "location", "capacity", "ticket_price", "event_status", "created_by", "event_poster", "is_special") VALUES (2, 'Serata Felliniana', 'Maratona presso il Cinema Eliseo dei vari capolavori del regista Federico Fellini', '2023-12-20 20:00:00', 'Cinema Eliseo', 150, 8.0, 'scheduled', 2, 'assets/images/fellini-event.jpg', 0);
+INSERT INTO "events" ("event_id", "event_name", "event_description", "event_date", "location", "capacity", "ticket_price", "event_status", "created_by", "event_poster", "is_special") VALUES (3, 'Kubrik''s 2001', 'Riproiezione del capolavoro di Kubrik, 2001 - Odissea nello spazio con rinfresco', '2023-12-25 18:00:00', 'Cinema Astra', 80, 15.0, 'scheduled', 1, 'assets/images/2001-event.jpg', 0);
+INSERT INTO "events" ("event_id", "event_name", "event_description", "event_date", "location", "capacity", "ticket_price", "event_status", "created_by", "event_poster", "is_special") VALUES (4, 'Talk Christopher Nolan', 'Talk con il famoso regista Christopher Nolan presso Università di Cesena', '2026-04-21 16:00:00', 'Dipartimento di Informatica - Aula Magna', 200, 10.0, 'scheduled', 1, NULL, 1);
 
 INSERT INTO event_movies (event_id, movie_id) VALUES 
 (1, 1), (2, 2), (3, 3);
