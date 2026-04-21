@@ -113,15 +113,15 @@
         <section class="py-32 bg-background border-t border-neutral-800/50">
             <div class="max-w-screen-2xl mx-auto px-12 flex flex-col md:flex-row gap-20 items-center">
                 <div class="flex-1">
-                    <img class="w-full h-[500px] object-cover grayscale opacity-60" data-alt="close up of ancient stone carved emblem of university of bologna with dramatic side lighting and texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdAxTGR1PkUOm4AqhUURJ1RCOHCVW7Y3dibMcEzexq6i73H00MPf3SAIihGTncEJtp7WmLhX4FfZVHCG40sl5iGYcB0pFNjrPBmITN0VbNnISpJV0oxF9x-PEphcVFMNoOVkboXPlZHtn_Dr6s_oML6OLzFODOWgCOm62AMg8G8ReIYUlcZ4udG0H4-ps9FCnylQ7aX3Oe3t2E5QtsoHc2klIB4QIeMxZYv1pYYNb9fnTPldOcCDKcfBh01uwx8rbb7X3TmUJQ0BQ">
+                    <img class="w-full h-[520px] object-cover grayscale opacity-80" data-alt="Università di Bologna sede di ingegneria e architettura di Cesena" src="assets/images/uni.jpg">
                 </div>
                 <div class="flex-1 space-y-8">
-                    <h2 class="text-6xl font-medium leading-tight">Preserving the <span class="text-primary-container">Legacy</span> of Cinema in the Heart of Bologna.</h2>
+                    <h2 class="text-6xl font-medium leading-tight">Preservare l'<span class="text-primary-container">eredità</span> del cinema nel cuore di Bologna.</h2>
                     <p class="font-body text-lg text-secondary leading-relaxed">
-                        Since 1088, the Alma Mater Studiorum has been a beacon of culture. Our Cineforum continues this tradition by curating a diverse selection of films that challenge, inspire, and educate the academic community.
+                        Dal 1088, l'Alma Mater Studiorum è un faro di cultura. Il nostro Cineforum porta avanti questa tradizione proponendo una selezione variegata di film che stimolano, ispirano e formano la comunità accademica.
                     </p>
                     <div class="pt-6">
-                        <button class="bg-primary-container text-white px-12 py-5 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Join the Cineforum Society</button>
+                        <button class="bg-primary-container text-white px-12 py-5 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Unisciti al Cineforum</button>
                     </div>
                 </div>
             </div>

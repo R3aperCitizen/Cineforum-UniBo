@@ -2,7 +2,7 @@
 
 <header class="bg-neutral-900 sticky top-0 z-50">
     <nav class="flex justify-between items-center w-full px-12 py-6 max-w-screen-2xl mx-auto">
-        <div class="font-['EB_Garamond'] text-2xl font-bold text-[#B31E24]">Cineforum di Ateneo</div>
+        <div class="font-['EB_Garamond'] text-2xl font-bold text-white">Cineforum di Ateneo</div>
         <div class="hidden md:flex items-center gap-10">
             <a class="font-['Epilogue'] text-base uppercase tracking-widest hover:text-white transition-colors duration-300 <?= $current === 'index.php'   ? 'text-[#B31E24] border-b-2 border-[#B31E24] pb-1' : 'text-neutral-400' ?>" href="index.php">Home</a>
             <a class="font-['Epilogue'] text-base uppercase tracking-widest hover:text-white transition-colors duration-300 <?= $current === 'catalog.php' ? 'text-[#B31E24] border-b-2 border-[#B31E24] pb-1' : 'text-neutral-400' ?>" href="catalog.php">Movies</a>
