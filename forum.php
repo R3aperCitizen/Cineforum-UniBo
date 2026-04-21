@@ -12,7 +12,7 @@
 </head>
 <body class="bg-surface selection:bg-primary-container selection:text-white">
 <!-- TopAppBar -->
-<?php include 'templates/header.php';?>
+<?php require 'templates/header.php';?>
 <main class="max-w-screen-2xl mx-auto px-12 py-12">
 <!-- Hero Section: Movie Identity -->
 <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
@@ -177,5 +177,5 @@
 </div>
 </main>
 <!-- Footer -->
-<?php include 'templates/footer.php';?>
+<?php require 'templates/footer.php';?>
 </body></html>

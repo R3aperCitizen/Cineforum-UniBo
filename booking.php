@@ -12,7 +12,7 @@
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
 <!-- TopAppBar -->
-<?php include 'templates/header.php';?>
+<?php require 'templates/header.php';?>
 <main class="flex-grow w-full max-w-screen-2xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row gap-12">
 <!-- Left Section: Transactional Login & Event Details -->
 <section class="w-full md:w-5/12 flex flex-col justify-center">
@@ -162,5 +162,5 @@
 </section>
 </main>
 <!-- Footer -->
-<?php include 'templates/footer.php';?>
+<?php require 'templates/footer.php';?>
 </body></html>
