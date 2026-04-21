@@ -54,13 +54,12 @@ CREATE TABLE events (
     event_description TEXT,
     event_date DATETIME NOT NULL,
     location TEXT,
+    event_poster TEXT,
     capacity INTEGER,
     ticket_price REAL DEFAULT 0.00,
-    is_online BOOLEAN DEFAULT 0,
+    is_special INTEGER DEFAULT 0,
     event_status TEXT DEFAULT 'scheduled',
     created_by INTEGER,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE SET NULL
 );
 

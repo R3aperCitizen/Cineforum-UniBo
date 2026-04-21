@@ -3,6 +3,12 @@
     include 'src/functions.php';
 
     $event = getMostRecentEvent();
+    $events = getLastThreeEvents();
+    $special = getMostRecentSpecialEvent();
+
+    $firstEvent = $events[0];
+    $secondEvent = $events[1];
+    $thirdEvent = $events[2];
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8">
@@ -22,13 +28,12 @@
         <!-- Hero Section: Featured Screening -->
         <section class="relative w-full min-h-[870px] flex items-center overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img class="w-full h-full object-cover opacity-40" data-alt="cinematic wide shot of a classic black and white film still projected on a large screen in a dark historic theater with red velvet seats" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYUYFgAkeV7v2gESPbTP-1v9G-ToLJRJOwMybCAe-Nus5m5_AuQdODnTSPoPh0XMnBpYj65pQEogV6vwQNISNpR3WlNFiEz2aOS_ls-F8n8Hy2IZFsGGaZnpSUIymEtPxMEjUhJzCg8uZR_wY-C57qS_I1s0yyqFkcPu_L3TfMfp5loo6fAqYLlW3VfDLxo49DJQlWxptHgZ3x_9gnZuYd1COzIUQzfiImd6biKGxUynIqvArAIx8X9oVDI4Ep_hu7p2LHOmI7geM">
                 <div class="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
             </div>
             <div class="relative z-10 max-w-screen-2xl mx-auto px-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-7">
                     <div class="flex items-center gap-4 mb-6">
-                        <span class="bg-primary-container text-white px-3 py-1 font-body text-xs tracking-widest uppercase"><?= $event['event_date']; ?></span>
+                        <span class="bg-primary-container text-white px-3 py-1 font-body text-xs tracking-widest uppercase"><?= formatDate($event['event_date']); ?></span>
                         <span class="text-tertiary font-body text-xs tracking-widest uppercase"><?= $event['location']; ?></span>
                     </div>
                     <h1 class="text-7xl md:text-9xl font-medium tracking-tight mb-8 leading-none"><?= $event['event_name']; ?></h1>
@@ -36,13 +41,13 @@
                         <?= $event['event_description']; ?>
                     </p>
                     <div class="flex items-center gap-6">
-                        <button class="bg-primary-container text-white px-10 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Reserve Seat</button>
-                        <button class="border border-outline-variant text-on-background px-10 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:bg-surface-container-low transition-colors">View Details</button>
+                        <button class="bg-primary-container text-white px-10 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Riserva Posto</button>
+                        <button class="border border-outline-variant text-on-background px-10 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:bg-surface-container-low transition-colors">Vedi Dettagli</button>
                     </div>
                 </div>
                 <div class="hidden md:block md:col-span-5 relative">
                     <div class="aspect-[2/3] w-full bg-surface-container-low overflow-hidden shadow-2xl">
-                        <img class="w-full h-full object-cover" data-alt="high contrast minimalist film poster for the seventh seal featuring a knight and death on a desolate beach monochromatic style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo0ZZc1JQ4_s7_nQQIh_ugeh4zizd0sRwDjUd-KA-W_8S61cfdM7jWe8whO0TCjKs7qawoOAkt_jvNUVKUxvY0FivSL09fyi7KN5xLozfuicw2cYTfrqaHV9tStBTiV4w-rOyIq4i6jOoMd7owPydzPYoiIjL_2uBOJwKdyA9wmjcapty2IRNoYE5pB79u3db180N_cF4Fba3VmmBsDaxK1Nvw8eR_CZubp2FVTiOElbYd6peg2oafNexhwdiZAVNEqjCkGE2XFV0">
+                        <img class="w-full h-full object-cover" data-alt="high contrast minimalist film poster for the seventh seal featuring a knight and death on a desolate beach monochromatic style" src="<?= $event['poster_url']; ?>">
                     </div>
                 </div>
             </div>
@@ -52,50 +57,50 @@
             <div class="max-w-screen-2xl mx-auto px-12">
                 <div class="flex justify-between items-end mb-16">
                     <div>
-                        <h2 class="text-5xl font-medium tracking-tight text-black mb-4">Autumn Schedule</h2>
-                        <p class="font-body text-tertiary uppercase tracking-widest text-sm">Season 2023/24 • International Cinema</p>
+                        <h2 class="text-5xl font-medium tracking-tight text-black mb-4">Programmazione Primaverile</h2>
+                        <p class="font-body text-tertiary uppercase tracking-widest text-sm">Stagione 2025/26 • Cesena</p>
                     </div>
-                    <a class="font-body text-primary-container font-bold text-sm uppercase tracking-widest border-b-2 border-primary-container pb-1 hover:text-white hover:border-white transition-all" href="#">Full Calendar</a>
+                    <a class="font-body text-primary-container font-bold text-sm uppercase tracking-widest border-b-2 border-primary-container pb-1 hover:opacity-90 transition-opacity" href="#">Calendario Completo</a>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <!-- Event 1: Large -->
                     <div class="md:col-span-2 md:row-span-2 bg-surface-container-lowest group cursor-pointer">
                         <div class="h-80 overflow-hidden">
-                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="vibrant neon lit urban street at night from a contemporary cinema scene rich saturated colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLq9525GBl_xBBQUqAQ3CNYWfP1tBqgPGh7OkPJv1K55mGb6uB24zq_RqFd4pozvVrjFaQobuVn8-rqHglwBm6Vv2QGpwMmYEOm2-xJPiZS0A6iEhW92Xbbqe-8ldwywr8L_FSdIpeHUf1tIzV_tbnyT4WV0MaZxFknxWnQBN64D2KPr2SbAAa1aTGYGkZfcZc0Ew0bUvh-FkZlTBwot1JWuMY2ZzUujPxpcKZYxZHAmMB4TH3qHNJXA0aHypzsPT3KOneRMfts6s">
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="vibrant neon lit urban street at night from a contemporary cinema scene rich saturated colors" src="<?= $firstEvent['event_poster']; ?>">
                         </div>
                         <div class="p-8">
-                            <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block">Wednesday • 15 Nov</span>
-                            <h3 class="text-3xl font-medium mb-4">In the Mood for Love</h3>
-                            <p class="text-tertiary font-body text-sm leading-relaxed line-clamp-2">Wong Kar-wai's visually stunning exploration of unrequited love in 1960s Hong Kong. Part of the 'Atmospheres' retrospective.</p>
+                            <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= formatDate($firstEvent['event_date']); ?></span>
+                            <h3 class="text-3xl font-medium mb-4"><?= $firstEvent['event_name']; ?></h3>
+                            <p class="text-tertiary font-body text-sm leading-relaxed line-clamp-2"><?= $firstEvent['event_description']; ?></p>
                         </div>
                     </div>
                     <!-- Event 2: Tall -->
                     <div class="md:row-span-2 bg-surface-container-lowest group cursor-pointer border-l border-neutral-800">
                         <div class="h-[450px] overflow-hidden">
-                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="cinematic close up of architectural brutalist concrete lines and shadows artistic photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvDsldC4rhgdDf1ce_X0yt9MP6jTtlRaKExzZYUZXv76HN61i3lpMdb0ccdB0FrbmqTP_DsRt7GOO19qoyXsffvgESadB2DFoS4HuhvlazEsM3cC6Ntg5OnRpxttJK5gXFpm3O2Gd6ZwdhMiHAdSoIbFQrPOzKPCcaS9L4jy-QVJ3HFpwtURug8aMEtzlZAMUZfrcwPhdp0gFVbWZOEGVHX1zi79j0EFir_C6gv1zOh4ptfzqRK174TG8QC5yq0TDXXHj7EWmwv_I">
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="cinematic close up of architectural brutalist concrete lines and shadows artistic photography" src="<?= $secondEvent['event_poster']; ?>">
                         </div>
                         <div class="p-8">
-                            <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block">Monday • 20 Nov</span>
-                            <h3 class="text-2xl font-medium mb-4">Metropolis (1927)</h3>
-                            <p class="text-tertiary font-body text-sm leading-relaxed">Fritz Lang's silent masterpiece with live orchestra accompaniment.</p>
+                            <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= formatDate($secondEvent['event_date']); ?></span>
+                            <h3 class="text-2xl font-medium mb-4"><?= $secondEvent['event_name']; ?></h3>
+                            <p class="text-tertiary font-body text-sm leading-relaxed"><?= $secondEvent['event_description']; ?></p>
                         </div>
                     </div>
                     <!-- Event 3: Square -->
                     <div class="bg-surface-container-lowest p-8 flex flex-col justify-between group cursor-pointer">
                         <div>
-                            <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block">Friday • 24 Nov</span>
-                            <h3 class="text-2xl font-medium">Breathless</h3>
+                            <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= formatDate($thirdEvent['event_date']); ?></span>
+                            <h3 class="text-2xl font-medium"><?= $thirdEvent['event_name']; ?></h3>
                         </div>
                         <div class="mt-4 flex items-center gap-2 text-tertiary group-hover:text-white transition-colors">
                             <span class="material-symbols-outlined text-sm">location_on</span>
-                            <span class="font-body text-xs uppercase tracking-widest">Cinema Lumiere</span>
+                            <span class="font-body text-xs uppercase tracking-widest"><?= $thirdEvent['location']; ?></span>
                         </div>
                     </div>
                     <!-- Event 4: Square -->
                     <div class="bg-primary-container p-8 flex flex-col justify-between group cursor-pointer">
                         <div>
                             <span class="text-white/80 font-body text-xs font-bold uppercase tracking-tighter mb-2 block">Special Event</span>
-                            <h3 class="text-2xl font-medium text-white">Guest Talk: Paolo Sorrentino</h3>
+                            <h3 class="text-2xl font-medium text-white"><?= $special['event_name']; ?></h3>
                         </div>
                         <div class="mt-4">
                             <span class="material-symbols-outlined text-white">arrow_forward</span>
