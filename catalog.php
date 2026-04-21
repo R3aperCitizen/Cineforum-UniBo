@@ -12,7 +12,7 @@
 </head>
 <body class="bg-background text-on-background">
 <!-- TopAppBar -->
-<?php include 'header.php';?>
+<?php include 'templates/header.php';?>
 <main class="max-w-screen-2xl mx-auto px-12 py-16">
 <!-- Editorial Header -->
 <section class="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
@@ -203,5 +203,5 @@
 </div>
 </main>
 <!-- Footer -->
-<?php include 'footer.php';?>
+<?php include 'templates/footer.php';?>
 </body></html>
