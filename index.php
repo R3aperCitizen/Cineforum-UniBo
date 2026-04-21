@@ -13,7 +13,7 @@
 </head>
 <body class="bg-background text-on-background selection:bg-primary-container selection:text-white">
 <!-- TopAppBar -->
-<?php include 'header.php';?>
+<?php include 'templates/header.php';?>
 <main>
 <!-- Hero Section: Featured Screening -->
 <section class="relative w-full min-h-[870px] flex items-center overflow-hidden">
@@ -153,5 +153,5 @@
 </section>
 </main>
 <!-- Footer -->
-<?php include 'footer.php';?>
+<?php include 'templates/footer.php';?>
 </body></html>
