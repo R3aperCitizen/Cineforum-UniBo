@@ -30,7 +30,7 @@
 
     function getMoviesCatalog($page_number, $number_of_movies, $genre_id, $director) {
         global $db;
-        if (empty($genre_id) || empty($director)) {
+        if (empty($genre_id) && empty($director)) {
             $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id LIMIT ? OFFSET ?;";
             $stmt = $db->prepare($query);
             $stmt->bindValue(1, $number_of_movies, SQLITE3_INTEGER);
