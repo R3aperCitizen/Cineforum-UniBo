@@ -1,5 +1,21 @@
 <!DOCTYPE html>
-<?php include 'src/functions.php'; ?>
+<?php 
+    include 'src/functions.php';
+
+    function renderGenres()
+    {
+        foreach (getMoviesGenreWithCount() as $genre):
+            $filter_name = $genre["genre_name"];
+            $filter_count = $genre["movie_count"];
+            include "templates/filter.php";
+        endforeach;
+    }
+
+    function renderDirectors()
+    {
+
+    }
+?>
 <html class="" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -35,25 +51,13 @@
     <div>
         <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Genres</h3>
         <ul class="space-y-4 font-['Epilogue'] text-sm">
-            <?php
-                foreach (getMoviesGenreWithCount() as $genre):
-                    $filter_name = $genre["genre_name"];
-                    $filter_count = $genre["movie_count"];
-                    include "templates/filter.php";
-                endforeach;
-            ?>
+            <?php renderGenres(); ?>
         </ul>
     </div>
     <div>
         <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Directors</h3>
         <ul class="space-y-4 font-['Epilogue'] text-sm">
-            <?php
-                foreach (getMoviesGenreWithCount() as $genre):
-                    $filter_name = $genre["genre_name"];
-                    $filter_count = $genre["movie_count"];
-                    include "templates/filter.php";
-                endforeach;
-            ?>
+            <?php renderDirectors(); ?>
         </ul>
     </div>
     <div class="p-6 bg-surface-container-low border border-neutral-800">
