@@ -71,7 +71,7 @@
                     </ul>
                 </div>
                 <div class="p-6 bg-surface-container-low border border-neutral-800">
-                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-neutral-300" style="">"Cinema is a matter of what's in the frame and what's out."</p>
+                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-text-neutral-500" style="">"Cinema is a matter of what's in the frame and what's out."</p>
                     <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]" style="">Martin Scorsese</span>
                 </div>
             </aside>
