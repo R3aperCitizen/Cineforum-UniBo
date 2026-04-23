@@ -30,18 +30,18 @@
 
     function getMoviesCatalog($page_number, $number_of_movies, $genre_id, $director) {
         global $db;
-        if ($genre_id == 0 || $director == "All") {
+        if (empty($genre_id) || empty($director)) {
             $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id LIMIT ? OFFSET ?;";
             $stmt = $db->prepare($query);
             $stmt->bindValue(1, $number_of_movies, SQLITE3_INTEGER);
             $stmt->bindValue(2, ($page_number * $number_of_movies) - $number_of_movies, SQLITE3_INTEGER);
-        } elseif($genre_id > 0 && $director == "All") {
+        } elseif($genre_id > 0 && !empty($genre_id) && empty($director)) {
             $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id AND genres.genre_id=? LIMIT ? OFFSET ?;";
             $stmt = $db->prepare($query);
             $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
             $stmt->bindValue(2, $number_of_movies, SQLITE3_INTEGER);
             $stmt->bindValue(3, ($page_number * $number_of_movies) - $number_of_movies, SQLITE3_INTEGER);
-        } elseif($genre_id == 0 && $director != "All") {
+        } elseif(empty($genre_id) && !empty($director)) {
             $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id AND movies.director=? LIMIT ? OFFSET ?;";
             $stmt = $db->prepare($query);
             $stmt->bindValue(1, $director, SQLITE3_INTEGER);
