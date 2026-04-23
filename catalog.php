@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php 
+    include 'src/functions.php';
+
+    $movie_genres = getMoviesGenreWithCount();
+?>
 <html class="" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
