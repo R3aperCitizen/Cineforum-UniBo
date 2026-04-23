@@ -75,8 +75,8 @@
             <div class="flex-grow">
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
                     <?php
-                        $movies = getMoviesCatalog(1, 6) ?? [];
-                        $count = getMoviesCount() ?? 0;
+                        $movies = getMoviesCatalog(1, 6, 0, "All") ?? [];
+                        $count = getMoviesCount()["movie_count"] ?? 0;
                         foreach ($movies as $movie):
                             $card_image = $movie["poster_url"];
                             $card_name = $movie["title"];
