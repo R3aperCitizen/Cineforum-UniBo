@@ -34,22 +34,22 @@
 <div>
 <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Categories</h3>
 <ul class="space-y-4 font-['Epilogue'] text-sm">
-<li class="flex items-center justify-between group cursor-pointer" style="">
-<span class="text-on-surface group-hover:text-[#B31E24] transition-colors" style="">All Cinema</span>
-<span class="text-neutral-600 text-[10px] font-bold" style="">142</span>
-</li>
-<li class="flex items-center justify-between group cursor-pointer" style="">
-<span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Italian Classics</span>
-<span class="text-neutral-600 text-[10px]" style="">38</span>
-</li>
-<li class="flex items-center justify-between group cursor-pointer" style="">
-<span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Avant-Garde</span>
-<span class="text-neutral-600 text-[10px]" style="">12</span>
-</li>
-<li class="flex items-center justify-between group cursor-pointer" style="">
-<span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Documentaries</span>
-<span class="text-neutral-600 text-[10px]" style="">24</span>
-</li>
+    <li class="flex items-center justify-between group cursor-pointer" style="">
+        <span class="text-on-surface group-hover:text-[#B31E24] transition-colors" style="">All Cinema</span>
+        <span class="text-neutral-600 text-[10px] font-bold" style="">142</span>
+    </li>
+    <li class="flex items-center justify-between group cursor-pointer" style="">
+        <span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Italian Classics</span>
+        <span class="text-neutral-600 text-[10px]" style="">38</span>
+    </li>
+    <li class="flex items-center justify-between group cursor-pointer" style="">
+        <span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Avant-Garde</span>
+        <span class="text-neutral-600 text-[10px]" style="">12</span>
+    </li>
+    <li class="flex items-center justify-between group cursor-pointer" style="">
+        <span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Documentaries</span>
+        <span class="text-neutral-600 text-[10px]" style="">24</span>
+    </li>
 </ul>
 </div>
 <div>
