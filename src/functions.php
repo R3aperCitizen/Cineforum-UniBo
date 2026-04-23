@@ -28,6 +28,26 @@
         return $results->fetchArray();
     }
 
+    function getMoviesGenreWithCount() {
+        global $db;
+        $query = "SELECT * FROM (
+                SELECT g.genre_id, g.genre_name, COUNT(m.movie_id) as movie_count
+                FROM genres g
+                LEFT JOIN movies m ON g.genre_id = m.genre_id
+                GROUP BY g.genre_id, g.genre_name
+                ORDER BY movie_count DESC)
+                WHERE movie_count > 0;";
+        $results = $db->query($query);
+
+        $movies_genres = [];
+        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+            $movies_genres[] = $row;
+        }
+
+        return $movies_genres;
+        
+    }
+
     function formatDate($dateString) {
         $date = new DateTime($dateString);
         return $date->format('l • d M'); // l = full weekday, d = day, M = short month
