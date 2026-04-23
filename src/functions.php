@@ -66,9 +66,9 @@
     function getMoviesDirectorWithCount() {
         global $db;
         $query = "SELECT * FROM (
-                SELECT *, COUNT(movie_id) as movie_count
+                SELECT movie_id, director, COUNT(movie_id) as movie_count
                 FROM movies
-                GROUP BY movie_id, director
+                GROUP BY director
                 ORDER BY movie_count DESC)
                 WHERE movie_count > 0;";
         $results = $db->query($query);
