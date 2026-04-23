@@ -12,41 +12,42 @@
 
     function renderGenres()
     {
-        global $genres;
+        global $genres, $requested_genre;
         foreach ($genres as $genre):
             $filter_uri = "genreId";
             $filter_id = $genre["genre_id"];
             $filter_name = $genre["genre_name"];
             $filter_count = $genre["movie_count"];
+            $filter_isSelected = $filter_id == $requested_genre;
             include "templates/filter.php";
         endforeach;
     }
 
     function renderDirectors()
     {
-        global $directors;
+        global $directors, $requested_director;
         foreach ($directors as $director):
             $filter_uri = "directorName";
             $filter_id = $director["director"];
             $filter_name = $director["director"];
             $filter_count = $director["movie_count"];
+            $filter_isSelected = $filter_name == $requested_director;
             include "templates/filter.php";
         endforeach;
     }
 
     function renderEverything()
     {
-        global $count;
-        $filter_isSelected = 
+        global $count, $requested_director, $requested_genre;
         $filter_name = "Everything";
         $filter_count = $count;
+        $filter_isSelected = is_null($requested_genre) && is_null($requested_director);
         include "templates/filter.php";
     }
 
     function renderResults()
     {
-        global $count;
-        global $movies;
+        global $count, $movies;
         echo "Showing " . count($movies) . " of " . $count . " results";
     }
 ?>
