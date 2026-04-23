@@ -3,9 +3,10 @@
 <?php 
     include 'src/functions.php';
 
+    $page = $_GET["page"] ?? 1;
     $requested_genre = $_GET["genreId"] ?? null;
     $requested_director = $_GET["directorName"] ?? null;
-    $movies = getMoviesCatalog(1, 6, $requested_genre, $requested_director) ?? [];
+    $movies = getMoviesCatalog($page, 6, $requested_genre, $requested_director) ?? [];
     $count = getMoviesCount()["movie_count"] ?? 0;
     $genres = getMoviesGenreWithCount() ?? [];
     $directors = getMoviesDirectorWithCount() ?? [];
@@ -69,15 +70,15 @@
         <!-- Editorial Header -->
         <section class="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
             <div class="md:col-span-8">
-                <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4" style="">The Movie Catalog</h1>
-                <p class="font-['Epilogue'] text-lg text-neutral-400 max-w-2xl leading-relaxed" style="">
+                <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4">The Movie Catalog</h1>
+                <p class="font-['Epilogue'] text-lg text-neutral-400 max-w-2xl leading-relaxed">
                     A curated selection of cinematic masterpieces for the Alma Mater Studiorum community. From neorealism to contemporary experimentalism.
                 </p>
             </div>
             <div class="md:col-span-4 flex justify-end gap-4">
                 <div class="bg-surface-container-low px-4 py-2 border-l-2 border-[#B31E24]">
-                    <span class="block text-[10px] uppercase tracking-tighter text-neutral-500" style="">Current Semester</span>
-                    <span class="block font-bold text-sm" style="">FALL 2024 ARCHIVE</span>
+                    <span class="block text-[10px] uppercase tracking-tighter text-neutral-500">Current Semester</span>
+                    <span class="block font-bold text-sm">FALL 2024 ARCHIVE</span>
                 </div>
             </div>
         </section>
@@ -90,20 +91,20 @@
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Genres</h3>
+                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6">Genres</h3>
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
                         <?php renderGenres(); ?>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Directors</h3>
+                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6">Directors</h3>
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
                         <?php renderDirectors(); ?>
                     </ul>
                 </div>
                 <div class="p-6 bg-surface-container-low border border-neutral-800">
-                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-text-neutral-500" style="">"Cinema is a matter of what's in the frame and what's out."</p>
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]" style="">Martin Scorsese</span>
+                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-text-neutral-500">"Cinema is a matter of what's in the frame and what's out."</p>
+                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]">Martin Scorsese</span>
                 </div>
             </aside>
             <!-- Grid Content -->
@@ -122,10 +123,20 @@
                     ?>
                 </div>
                 <div class="mt-24 flex items-center justify-between border-t border-neutral-800 pt-10">
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500" style=""><?= renderResults(); ?></span>
+                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500"><?= renderResults(); ?></span>
                     <div class="flex gap-4">
-                        <button class="px-6 py-2 bg-surface-container-low text-xs font-bold uppercase tracking-widest opacity-50 cursor-not-allowed" style="">Previous</button>
-                        <button class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors" style="">Next</button>
+                        <form action="">
+                            <input type="hidden" name="page" value="<?= $page - 1 ?>">
+                            <?php echo is_null($requested_genre) ? null : '<input type="hidden" name="genreId" value="' . $requested_genre . '">'; ?>
+                            <?php echo is_null($requested_director) ? null : '<input type="hidden" name="directorName" value="' . $requested_director . '">'; ?>
+                            <input type="submit" value="previous" class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors">
+                        </form>
+                        <form action="">
+                            <input type="hidden" name="page" value="<?= $page + 1 ?>">
+                            <?php echo is_null($requested_genre) ? null : '<input type="hidden" name="genreId" value="' . $requested_genre . '">'; ?>
+                            <?php echo is_null($requested_director) ? null : '<input type="hidden" name="directorName" value="' . $requested_director . '">'; ?>
+                            <input type="submit" value="next" class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors">
+                        </form>
                     </div>
                 </div>
             </div>
