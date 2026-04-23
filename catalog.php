@@ -24,6 +24,19 @@
             include "templates/filter.php";
         endforeach;
     }
+
+    function renderEverything()
+    {
+        global $count;
+        $filter_name = "Everything";
+        $filter_count = $count;
+        include "templates/filter.php";
+    }
+
+    $requested_genre = $_GET["genreId"] ?? null;
+    $requested_director = $_GET["directorName"] ?? null;
+    $movies = getMoviesCatalog(1, 6, $requested_genre, $requested_director) ?? [];
+    $count = getMoviesCount()["movie_count"] ?? 0;
 ?>
 
 <html class="" lang="en"><head>
@@ -59,6 +72,11 @@
             <!-- Sidebar Filter -->
             <aside class="w-full lg:w-64 flex-shrink-0 space-y-12">
                 <div>
+                    <ul class="space-y-4 font-['Epilogue'] text-sm">
+                        <?php renderEverything(); ?>
+                    </ul>
+                </div>
+                <div>
                     <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Genres</h3>
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
                         <?php renderGenres(); ?>
@@ -67,7 +85,7 @@
                 <div>
                     <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Directors</h3>
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
-                        <?php renderDirectors(); ?>
+                        <?php renderDirectors($count); ?>
                     </ul>
                 </div>
                 <div class="p-6 bg-surface-container-low border border-neutral-800">
@@ -79,10 +97,6 @@
             <div class="flex-grow">
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
                     <?php
-                        $requested_genre = $_GET["genreId"] ?? null;
-                        $requested_director = $_GET["directorName"] ?? null;
-                        $movies = getMoviesCatalog(1, 6, $requested_genre, $requested_director) ?? [];
-                        $count = getMoviesCount()["movie_count"] ?? 0;
                         foreach ($movies as $movie):
                             $card_image = $movie["poster_url"];
                             $card_name = $movie["title"];
