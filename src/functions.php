@@ -28,6 +28,22 @@
         return $results->fetchArray();
     }
 
+    function getMoviesCatalog($page_number, $number_of_movies) {
+        global $db;
+        $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id LIMIT ? OFFSET ?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $number_of_movies, SQLITE3_INTEGER);
+        $stmt->bindValue(2, ($page_number * $number_of_movies) - $number_of_movies, SQLITE3_INTEGER);
+        $results = $stmt->execute();
+
+        $movies = [];
+        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+            $movies[] = $row;
+        }
+
+        return $movies;
+    }
+
     function getMoviesGenreWithCount() {
         global $db;
         $query = "SELECT * FROM (
@@ -45,7 +61,24 @@
         }
 
         return $movies_genres;
-        
+    }
+
+    function getMoviesDirectorWithCount() {
+        global $db;
+        $query = "SELECT * FROM (
+                SELECT *, COUNT(movie_id) as movie_count
+                FROM movies
+                GROUP BY movie_id, director
+                ORDER BY movie_count DESC)
+                WHERE movie_count > 0;";
+        $results = $db->query($query);
+
+        $movies_directors = [];
+        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+            $movies_directors[] = $row;
+        }
+
+        return $movies_directors;
     }
 
     function formatDate($dateString) {
