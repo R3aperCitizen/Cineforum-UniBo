@@ -3,9 +3,17 @@
 <?php 
     include 'src/functions.php';
 
+    $requested_genre = $_GET["genreId"] ?? null;
+    $requested_director = $_GET["directorName"] ?? null;
+    $movies = getMoviesCatalog(1, 6, $requested_genre, $requested_director) ?? [];
+    $count = getMoviesCount()["movie_count"] ?? 0;
+    $genres = getMoviesGenreWithCount() ?? [];
+    $directors = getMoviesDirectorWithCount() ?? [];
+
     function renderGenres()
     {
-        foreach (getMoviesGenreWithCount() as $genre):
+        global $genres;
+        foreach ($genres as $genre):
             $filter_uri = "genreId";
             $filter_id = $genre["genre_id"];
             $filter_name = $genre["genre_name"];
@@ -16,7 +24,8 @@
 
     function renderDirectors()
     {
-        foreach (getMoviesDirectorWithCount() as $director):
+        global $directors;
+        foreach ($directors as $director):
             $filter_uri = "directorName";
             $filter_id = $director["director"];
             $filter_name = $director["director"];
@@ -28,15 +37,18 @@
     function renderEverything()
     {
         global $count;
+        $filter_isSelected = 
         $filter_name = "Everything";
         $filter_count = $count;
         include "templates/filter.php";
     }
 
-    $requested_genre = $_GET["genreId"] ?? null;
-    $requested_director = $_GET["directorName"] ?? null;
-    $movies = getMoviesCatalog(1, 6, $requested_genre, $requested_director) ?? [];
-    $count = getMoviesCount()["movie_count"] ?? 0;
+    function renderResults()
+    {
+        global $count;
+        global $movies;
+        echo "Showing " . count($movies) . " of " . $count . " results";
+    }
 ?>
 
 <html class="" lang="en"><head>
@@ -85,7 +97,7 @@
                 <div>
                     <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Directors</h3>
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
-                        <?php renderDirectors($count); ?>
+                        <?php renderDirectors(); ?>
                     </ul>
                 </div>
                 <div class="p-6 bg-surface-container-low border border-neutral-800">
@@ -109,10 +121,10 @@
                     ?>
                 </div>
                 <div class="mt-24 flex items-center justify-between border-t border-neutral-800 pt-10">
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500" style="">Showing <?= count($movies) ?> of <?= $count ?> results</span>
+                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500" style=""><?= renderResults(); ?></span>
                     <div class="flex gap-4">
                         <button class="px-6 py-2 bg-surface-container-low text-xs font-bold uppercase tracking-widest opacity-50 cursor-not-allowed" style="">Previous</button>
-                        <button class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors" style="">Next Archive</button>
+                        <button class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors" style="">Next</button>
                     </div>
                 </div>
             </div>
