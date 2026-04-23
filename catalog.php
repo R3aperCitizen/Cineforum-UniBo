@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<?php 
-    include 'src/functions.php';
-
-    $movie_genres = getMoviesGenreWithCount();
-?>
+<?php include 'src/functions.php'; ?>
 <html class="" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -36,40 +32,34 @@
 <div class="flex flex-col lg:flex-row gap-16">
 <!-- Sidebar Filter -->
 <aside class="w-full lg:w-64 flex-shrink-0 space-y-12">
-<div>
-<h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Categories</h3>
-<ul class="space-y-4 font-['Epilogue'] text-sm">
-<li class="flex items-center justify-between group cursor-pointer" style="">
-<span class="text-on-surface group-hover:text-[#B31E24] transition-colors" style="">All Cinema</span>
-<span class="text-neutral-600 text-[10px] font-bold" style="">142</span>
-</li>
-<li class="flex items-center justify-between group cursor-pointer" style="">
-<span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Italian Classics</span>
-<span class="text-neutral-600 text-[10px]" style="">38</span>
-</li>
-<li class="flex items-center justify-between group cursor-pointer" style="">
-<span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Avant-Garde</span>
-<span class="text-neutral-600 text-[10px]" style="">12</span>
-</li>
-<li class="flex items-center justify-between group cursor-pointer" style="">
-<span class="text-neutral-500 group-hover:text-on-surface transition-colors" style="">Documentaries</span>
-<span class="text-neutral-600 text-[10px]" style="">24</span>
-</li>
-</ul>
-</div>
-<div>
-<h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Period</h3>
-<div class="grid grid-cols-2 gap-2">
-<button class="bg-surface-container-high py-2 text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-700 transition-colors" style="">1920-1950</button>
-<button class="bg-surface-container-high py-2 text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-700 transition-colors" style="">1950-1980</button>
-<button class="bg-surface-container-high py-2 text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-700 transition-colors" style="">1980-2010</button>
-<button class="bg-surface-container-high py-2 text-[11px] font-bold uppercase tracking-wider border border-[#B31E24] text-[#B31E24]" style="">Recent</button>
-</div>
-</div>
-<div class="p-6 bg-surface-container-low border border-neutral-800">
-<p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-neutral-300" style="">"Cinema is a matter of what's in the frame and what's out."</p>
-<span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]" style="">Martin Scorsese</span>
-</div>
+    <div>
+        <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Genres</h3>
+        <ul class="space-y-4 font-['Epilogue'] text-sm">
+            <?php
+                foreach (getMoviesGenreWithCount() as $genre):
+                    $filter_name = $genre["genre_name"];
+                    $filter_count = $genre["movie_count"];
+                    include "templates/filter.php";
+                endforeach;
+            ?>
+        </ul>
+    </div>
+    <div>
+        <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6" style="">Directors</h3>
+        <ul class="space-y-4 font-['Epilogue'] text-sm">
+            <?php
+                foreach (getMoviesGenreWithCount() as $genre):
+                    $filter_name = $genre["genre_name"];
+                    $filter_count = $genre["movie_count"];
+                    include "templates/filter.php";
+                endforeach;
+            ?>
+        </ul>
+    </div>
+    <div class="p-6 bg-surface-container-low border border-neutral-800">
+        <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-neutral-300" style="">"Cinema is a matter of what's in the frame and what's out."</p>
+        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]" style="">Martin Scorsese</span>
+    </div>
 </aside>
 <!-- Grid Content -->
 <div class="flex-grow">
