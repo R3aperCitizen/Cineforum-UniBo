@@ -12,7 +12,7 @@
 </head>
 <body class="bg-background text-on-background">
 <!-- TopAppBar -->
-<?php require 'templates/header.php';?>
+<?php require "templates/header.php"; ?>
 <main class="max-w-screen-2xl mx-auto px-12 py-16">
 <!-- Editorial Header -->
 <section class="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
@@ -71,127 +71,19 @@
 <div class="flex-grow">
 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
 <!-- Movie Card 1 -->
-<div class="group">
-<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
-<img alt="L'Avventura" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="atmospheric black and white cinematic still of an empty italian piazza at night with dramatic street lighting and long shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsqdAmF-GQ_-qprlD7jYOwLTj5S92YXNxV5WhF0nUYvHUQQX1QhKWZNxThATokAHOnGl5LJiCpQY19Ot0wFnyTVTKrtxKiXvHpTnRzEPM87-uK5LxdxzO7SiKkXO8BROT9_4lgRsvYLeBkbV9qVxGQB5AF1R4AkwyHjHUFRxNqPqz5KfYS4ratFYhJkTfR5utOpkInhag_jFzyWRrurF7G8QHayqznsCUo35OvNEnWotdq3l1_XwQLuMIMLt_SkusxEcfbrDwmiQI" style=""/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
-</div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">L'Avventura</h2>
-<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1960</span>
-</div>
-<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Michelangelo Antonioni</p>
-<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
-<span class="" style="">Drama / Mystery</span>
-<span class="" style="">143 MIN</span>
-</div>
-</div>
-</div>
+<?php include "templates/card.php"; ?>
 <!-- Movie Card 2 -->
-<div class="group">
-<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
-<img alt="La Dolce Vita" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="dramatic close up of a vintage 35mm film projector in a dark room with a single beam of light illuminating dust particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAea91rCz4XKIKkqN78dbzWEUs_iR7ygJpC0qlW49CvtQNa4hiA3505mOK2yTy0Dj2KQAkDLw78kNGDFMM-Mp61dTe1wSDvuv6VK5dMQsrmRuMRDAecxm_eBJjEsyZsKM8fdx3WgO5sDoidTW95OHd0X9Rf1xBRXXtmfjbgkEk-7qJKGxMgjWlQME0eQD1xrnmPRdtL0x5JzG5hOnmD2Sjf1hF-ZROdlQRbyV2S6OC2SiPfWFBH2NosmG11qmIFS3MEMpTc-LdWGr8" style=""/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
-</div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">La Dolce Vita</h2>
-<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1960</span>
-</div>
-<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Federico Fellini</p>
-<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
-<span class="" style="">Comedy / Drama</span>
-<span class="" style="">174 MIN</span>
-</div>
-</div>
-</div>
+<?php include "templates/card.php"; ?>
 <!-- Movie Card 3 -->
-<div class="group">
-<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
-<img alt="Suspiria" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="abstract composition of deep red and dark grey textures resembling vintage theatre curtains in low theatrical lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbRR1KZhOdL1DSYXiVdWToMwQBgeHfl2uBUbIogPdMaNMgt_u3v5zKHCXJurdNZE6uhGZTs3FzbDG9oaST89hn7F44-nC7Y_gCpyYT2jyH3n84ZgOx2z2s6wUA9U2DV2v5eIPerqE1vJ85IlaVs2A77OM1p3PamkIaMqN1KH_c-nVblZKmS2jcI9FVtbPyyu1b2n6wepSU4PKR-wrTQAd_dfuDEJ2E70PpX3W_nH53xrEC1RjyJbf-QaMAeEvT5c3OPbSJJ0xhrOY" style=""/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
-</div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">Suspiria</h2>
-<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1977</span>
-</div>
-<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Dario Argento</p>
-<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
-<span class="" style="">Horror / Cult</span>
-<span class="" style="">92 MIN</span>
-</div>
-</div>
-</div>
+<?php include "templates/card.php"; ?>
 <!-- Movie Card 4 -->
-<div class="group">
-<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
-<img alt="Cinema Paradiso" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="wide shot of rows of empty velvet cinema seats in a grand historical theater with ornate architectural details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmxKeJnQtQ7NFv2iBaP0YKbIKbCAu_jRKiUfI4G1IVIYQLtDCiOxzKRDlUMdWZQDY8zOxIaUa8LjV3viCf5mq4D9lXn7UVHuqvxl3DzIH-HUwsxxGkXews-Bk2680fv-iWzfaziBeRb9pOYnC4wxhCgrY87dbazLNamzqRGrthnEklH3F1aYLvuElfrrxqFrikK6LxqiybA8Vr9hJi57wq1dng9THtehUOnocCnAXCErjoQxDwlyNt88Dxgnj6iCMll1yZZb9RI7Y" style=""/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
-</div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">Cinema Paradiso</h2>
-<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1988</span>
-</div>
-<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Giuseppe Tornatore</p>
-<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
-<span class="" style="">Drama / Romance</span>
-<span class="" style="">155 MIN</span>
-</div>
-</div>
-</div>
+<?php include "templates/card.php"; ?>
 <!-- Movie Card 5 -->
-<div class="group">
-<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
-<img alt="The Great Beauty" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="moody architectural shot of modern geometric concrete building at dusk with single lit window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1fu_8p6UvRgR86LV88Wca0Z9yAjAqN_0UO_inTluQmsBR1zbWSfr4iQk9uHwciwZg0sRC9kvODpDgkXPSm6r9uYGny8gPXtDNxu1wIZywJ0597uTjdYvhPVuQ6UpREacebFfjkjbMLMrNOTShX1UNFgwIL4HK_rsijn7breba-eZIRR_ANR1B8nW00w8P9j257aIA-mL_3H69t86xBaYp0dmXVV6Vl_3dCMDIqYO8w4PLzSO3ds27etHf08r2fuDDFGMkK_2GAjM" style=""/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
-</div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">The Great Beauty</h2>
-<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">2013</span>
-</div>
-<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Paolo Sorrentino</p>
-<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
-<span class="" style="">Drama / Art</span>
-<span class="" style="">142 MIN</span>
-</div>
-</div>
-</div>
+<?php include "templates/card.php"; ?>
 <!-- Movie Card 6 -->
-<div class="group">
-<div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
-<img alt="8 1/2" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" data-alt="silhouetted film crew behind a large professional camera rig on a foggy outdoor set at dawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAux9h-M9kOJQw5RzUgUIB3NUO9OhUOB5yBSh_3g4wWy3OiQlKxSeHwUNJ5eFKN6CI7bHNqfF8FG3wg5Pom6IfVzOLsU0vt74teIHEjBsI7qBjgGk2uY2Y15peXjLjIpo6enEMI5m87cLn5NOBVuo4m3fm7BR35gZ___zxrHWDjp4VeIHa63qTi2xGa9xBddqJ6r8hHG-xDn-5MqfMzSZroCjGQP6zq5UgsgprS_p0FpPeRrA9h5PrkLg4Z1IXlxs_Dt17nUFXpPaE" style=""/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-<button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" style="">View Details</button>
-</div>
-</div>
-<div class="space-y-2">
-<div class="flex justify-between items-start">
-<h2 class="font-['EB_Garamond'] text-2xl font-medium text-on-surface" style="">8 1/2</h2>
-<span class="font-['Epilogue'] text-[10px] font-bold border border-neutral-700 px-2 py-0.5 text-neutral-500" style="">1963</span>
-</div>
-<p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold" style="">Federico Fellini</p>
-<div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
-<span class="" style="">Surrealist / Drama</span>
-<span class="" style="">138 MIN</span>
-</div>
-</div>
-</div>
-</div>
+<?php include "templates/card.php"; ?>
 <!-- Pagination -->
+</div>
 <div class="mt-24 flex items-center justify-between border-t border-neutral-800 pt-10">
 <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500" style="">Showing 6 of 142 results</span>
 <div class="flex gap-4">
@@ -200,8 +92,7 @@
 </div>
 </div>
 </div>
-</div>
 </main>
 <!-- Footer -->
-<?php require 'templates/footer.php';?>
+<?php require "templates/footer.php"; ?>
 </body></html>
