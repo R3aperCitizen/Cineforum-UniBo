@@ -6,6 +6,8 @@
     function renderGenres()
     {
         foreach (getMoviesGenreWithCount() as $genre):
+            $filter_uri = "genreId";
+            $filter_id = $genre["genre_id"];
             $filter_name = $genre["genre_name"];
             $filter_count = $genre["movie_count"];
             include "templates/filter.php";
@@ -15,6 +17,8 @@
     function renderDirectors()
     {
         foreach (getMoviesDirectorWithCount() as $director):
+            $filter_uri = "directorName";
+            $filter_id = $director["director"];
             $filter_name = $director["director"];
             $filter_count = $director["movie_count"];
             include "templates/filter.php";
@@ -75,7 +79,7 @@
             <div class="flex-grow">
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
                     <?php
-                        $movies = getMoviesCatalog(1, 6, 0, "All") ?? [];
+                        $movies = getMoviesCatalog(1, 6, null, null) ?? [];
                         $count = getMoviesCount()["movie_count"] ?? 0;
                         foreach ($movies as $movie):
                             $card_image = $movie["poster_url"];
