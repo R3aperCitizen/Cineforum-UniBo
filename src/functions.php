@@ -3,14 +3,14 @@
     
     function getMostRecentEvent() {
         global $db;
-        $query = "SELECT * FROM events, event_movies, movies WHERE events.event_id=event_movies.event_id AND movies.movie_id=event_movies.movie_id ORDER BY event_date ASC LIMIT 1;";
+        $query = "SELECT * FROM events ORDER BY event_date ASC LIMIT 1;";
         $results = $db->query($query);
         return $results->fetchArray();
     }
 
     function getLastThreeEvents() {
         global $db;
-        $query = "SELECT * FROM events, event_movies, movies WHERE events.event_id=event_movies.event_id AND movies.movie_id=event_movies.movie_id ORDER BY event_date ASC LIMIT 3;";
+        $query = "SELECT * FROM events WHERE is_special=0 ORDER BY event_date ASC LIMIT 3 OFFSET 1;";
         $results = $db->query($query);
 
         $events = [];

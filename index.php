@@ -47,7 +47,7 @@
                 </div>
                 <div class="hidden md:block md:col-span-5 relative">
                     <div class="aspect-[2/3] w-full bg-surface-container-low overflow-hidden shadow-2xl">
-                        <img class="w-full h-full object-cover" data-alt="high contrast minimalist film poster for the seventh seal featuring a knight and death on a desolate beach monochromatic style" src="<?= $event['poster_url']; ?>">
+                        <img class="w-full h-full object-cover" data-alt="high contrast minimalist film poster for the seventh seal featuring a knight and death on a desolate beach monochromatic style" src="<?= $event['event_poster']; ?>">
                     </div>
                 </div>
             </div>
@@ -130,22 +130,7 @@
         <section class="pb-32">
             <div class="max-w-screen-2xl mx-auto px-12">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-                    <div class="md:col-span-4 border-t-4 border-primary-container pt-8">
-                        <h3 class="font-body font-bold text-xs uppercase tracking-[0.3em] text-primary-container mb-8">Announcements</h3>
-                        <div class="space-y-12">
-                            <div class="group cursor-pointer">
-                                <span class="text-tertiary font-body text-[10px] uppercase tracking-widest block mb-2">02 Oct 2023</span>
-                                <h4 class="text-xl font-medium mb-3 group-hover:text-primary-container transition-colors">Call for Student Volunteers: Winter Festival</h4>
-                                <p class="text-tertiary font-body text-xs">Applications open for the organizing committee of the upcoming international shorts showcase.</p>
-                            </div>
-                            <div class="group cursor-pointer">
-                                <span class="text-tertiary font-body text-[10px] uppercase tracking-widest block mb-2">28 Sep 2023</span>
-                                <h4 class="text-xl font-medium mb-3 group-hover:text-primary-container transition-colors">Digital Archive Now Accessible to Researchers</h4>
-                                <p class="text-tertiary font-body text-xs">Over 500 restored prints are now available for viewing via the university network.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:col-span-8">
+                    <div class="md:col-span-12">
                         <div class="relative h-[600px] overflow-hidden group">
                             <img class="w-full h-full object-cover" data-alt="interior of a classic library or film archive with high shelves and soft warm atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0E3VnVm6SNJsr7OoMHgh-xNU_gzKXVDvX59ip9EnKsPZj0aI7Oso8dfrFreRQUL7yVUCeQWQ_ToQVGr7PJC10spmJLEXr5H0N_nBaTWVQlNNiUy0NS5JXGj0tqBZoqBKnO_7r-9H0ttYTcK2OXUO_s1Wx5Jltq31Vk8oP1ACvY30b7LnnSB_sAjlCsdpY4lcAdRDw9Nf0DyPKHC1bRc3lwoz67s_-RJDpZmx6ax5OLwcW3T_8GiXaOJXiKYiFIz835omJDAJHTgk">
                             <div class="absolute inset-0 bg-neutral-900/40 group-hover:bg-neutral-900/20 transition-all duration-500"></div>
