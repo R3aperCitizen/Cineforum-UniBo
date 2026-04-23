@@ -132,12 +132,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
                     <div class="md:col-span-12">
                         <div class="relative h-[600px] overflow-hidden group">
-                            <img class="w-full h-full object-cover" data-alt="interior of a classic library or film archive with high shelves and soft warm atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0E3VnVm6SNJsr7OoMHgh-xNU_gzKXVDvX59ip9EnKsPZj0aI7Oso8dfrFreRQUL7yVUCeQWQ_ToQVGr7PJC10spmJLEXr5H0N_nBaTWVQlNNiUy0NS5JXGj0tqBZoqBKnO_7r-9H0ttYTcK2OXUO_s1Wx5Jltq31Vk8oP1ACvY30b7LnnSB_sAjlCsdpY4lcAdRDw9Nf0DyPKHC1bRc3lwoz67s_-RJDpZmx6ax5OLwcW3T_8GiXaOJXiKYiFIz835omJDAJHTgk">
+                            <img class="w-full h-full object-cover" data-alt="interior of a classic library or film archive with high shelves and soft warm atmospheric lighting" src="assets/images/archive.jpg">
                             <div class="absolute inset-0 bg-neutral-900/40 group-hover:bg-neutral-900/20 transition-all duration-500"></div>
                             <div class="absolute bottom-0 left-0 p-12 max-w-lg">
-                                <h3 class="text-5xl text-white font-medium mb-6">Explore our curated collections</h3>
+                                <h3 class="text-5xl text-white font-medium mb-6">Esplora la nostra collezione</h3>
                                 <button class="text-white font-body text-xs font-bold uppercase tracking-widest border-b border-white pb-1 flex items-center gap-3">
-                                    Browse Archive <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                                    Naviga archivio <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </button>
                             </div>
                         </div>
