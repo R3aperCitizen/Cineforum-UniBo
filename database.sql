@@ -23,26 +23,18 @@ CREATE TABLE movies (
     release_date DATE,
     director TEXT,
     duration INTEGER,
-    genre TEXT,
     rating REAL,
     description TEXT,
     poster_url TEXT,
-    trailer_url TEXT
+    trailer_url TEXT,
+    genre_id INTEGER,
+    FOREIGN KEY (genre_id) REFERENCES genres(genre_id) ON DELETE SET NULL
 );
 
 -- Movie genres table (for better normalization)
 CREATE TABLE genres (
     genre_id INTEGER PRIMARY KEY AUTOINCREMENT,
     genre_name TEXT UNIQUE NOT NULL
-);
-
--- Junction table for movie-genre relationships
-CREATE TABLE movie_genres (
-    movie_id INTEGER,
-    genre_id INTEGER,
-    PRIMARY KEY (movie_id, genre_id),
-    FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
-    FOREIGN KEY (genre_id) REFERENCES genres(genre_id) ON DELETE CASCADE
 );
 
 -- Events table
@@ -82,20 +74,6 @@ CREATE TABLE event_subscriptions (
     UNIQUE (user_id, event_id)
 );
 
--- User ratings for movies
-CREATE TABLE movie_ratings (
-    rating_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    movie_id INTEGER,
-    rating INTEGER CHECK (rating >= 1 AND rating <= 10),
-    review TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE,
-    UNIQUE (user_id, movie_id)
-);
-
 -- Indexes for better performance
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_movies_title ON movies(title);
@@ -131,3 +109,32 @@ INSERT INTO event_movies (event_id, movie_id) VALUES
 
 INSERT INTO event_subscriptions (user_id, event_id) VALUES 
 (1, 1), (1, 2), (2, 1), (3, 3);
+
+-- --------------------------------------------------------
+-- Host:                         C:\Users\Matteo\Desktop\Cineforum UniBo\database.db
+-- Versione server:              3.44.0
+-- S.O. server:                  
+-- HeidiSQL Versione:            12.6.0.6765
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES  */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+-- Dump dei dati della tabella database.movies: 3 rows
+/*!40000 ALTER TABLE "movies" DISABLE KEYS */;
+INSERT INTO "movies" ("movie_id", "title", "release_date", "director", "duration", "rating", "description", "poster_url", "trailer_url", "genre_id") VALUES
+	(1, 'Inception', '2010-07-16', 'Christopher Nolan', 148, 8.8, 'A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.', 'assets/images/inception.jpg', NULL, NULL),
+	(2, 'The Shawshank Redemption', '1994-09-23', 'Frank Darabont', 142, 9.3, 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.', NULL, NULL, NULL),
+	(3, 'The Dark Knight', '2008-07-18', 'Christopher Nolan', 152, 9.0, 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.', NULL, NULL, NULL);
+/*!40000 ALTER TABLE "movies" ENABLE KEYS */;
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
