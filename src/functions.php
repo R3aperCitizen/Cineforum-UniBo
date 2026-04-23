@@ -44,7 +44,7 @@
         } elseif(empty($genre_id) && !empty($director)) {
             $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id AND movies.director=? LIMIT ? OFFSET ?;";
             $stmt = $db->prepare($query);
-            $stmt->bindValue(1, $director, SQLITE3_INTEGER);
+            $stmt->bindValue(1, $director, SQLITE3_TEXT);
             $stmt->bindValue(2, $number_of_movies, SQLITE3_INTEGER);
             $stmt->bindValue(3, ($page_number * $number_of_movies) - $number_of_movies, SQLITE3_INTEGER);
         } else {
