@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <?php 
     include 'src/functions.php';
 
@@ -13,9 +14,14 @@
 
     function renderDirectors()
     {
-
+        foreach (getMoviesDirectorWithCount() as $director):
+            $filter_name = $director["director"];
+            $filter_count = $director["movie_count"];
+            include "templates/filter.php";
+        endforeach;
     }
 ?>
+
 <html class="" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
