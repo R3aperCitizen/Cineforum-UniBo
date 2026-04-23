@@ -6,6 +6,8 @@
     function renderGenres()
     {
         foreach (getMoviesGenreWithCount() as $genre):
+            $filter_uri = "genreId";
+            $filter_id = $genre["genre_id"];
             $filter_name = $genre["genre_name"];
             $filter_count = $genre["movie_count"];
             include "templates/filter.php";
@@ -15,6 +17,8 @@
     function renderDirectors()
     {
         foreach (getMoviesDirectorWithCount() as $director):
+            $filter_uri = "directorName";
+            $filter_id = $director["director"];
             $filter_name = $director["director"];
             $filter_count = $director["movie_count"];
             include "templates/filter.php";
@@ -67,7 +71,7 @@
                     </ul>
                 </div>
                 <div class="p-6 bg-surface-container-low border border-neutral-800">
-                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-neutral-300" style="">"Cinema is a matter of what's in the frame and what's out."</p>
+                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-text-neutral-500" style="">"Cinema is a matter of what's in the frame and what's out."</p>
                     <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]" style="">Martin Scorsese</span>
                 </div>
             </aside>
@@ -75,7 +79,9 @@
             <div class="flex-grow">
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
                     <?php
-                        $movies = getMoviesCatalog(1, 6, 0, "All") ?? [];
+                        $requested_genre = $_GET["genreId"] ?? null;
+                        $requested_director = $_GET["directorName"] ?? null;
+                        $movies = getMoviesCatalog(1, 6, $requested_genre, $requested_director) ?? [];
                         $count = getMoviesCount()["movie_count"] ?? 0;
                         foreach ($movies as $movie):
                             $card_image = $movie["poster_url"];
