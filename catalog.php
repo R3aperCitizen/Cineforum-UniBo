@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -70,22 +69,18 @@
 <!-- Grid Content -->
 <div class="flex-grow">
 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
-<!-- Movie Card 1 -->
-<?php include "templates/card.php"; ?>
-<!-- Movie Card 2 -->
-<?php include "templates/card.php"; ?>
-<!-- Movie Card 3 -->
-<?php include "templates/card.php"; ?>
-<!-- Movie Card 4 -->
-<?php include "templates/card.php"; ?>
-<!-- Movie Card 5 -->
-<?php include "templates/card.php"; ?>
-<!-- Movie Card 6 -->
-<?php include "templates/card.php"; ?>
-<!-- Pagination -->
+
+<?php
+    $movies = [];
+    $count = 0;
+    foreach ($movies as $movie):
+        include "templates/card.php";
+    endforeach;
+?>
+
 </div>
 <div class="mt-24 flex items-center justify-between border-t border-neutral-800 pt-10">
-<span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500" style="">Showing 6 of 142 results</span>
+<span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500" style="">Showing <?= count($movies) ?> of <?= $count ?> results</span>
 <div class="flex gap-4">
 <button class="px-6 py-2 bg-surface-container-low text-xs font-bold uppercase tracking-widest opacity-50 cursor-not-allowed" style="">Previous</button>
 <button class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors" style="">Next Archive</button>
