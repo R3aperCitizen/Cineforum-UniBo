@@ -104,6 +104,15 @@
         return $results->fetchArray();
     }
 
+    function getMovieFromId($movie_id) {
+        global $db;
+        $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id AND movies.movie_id=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $movie_id, SQLITE3_INTEGER);
+        $results = $stmt->execute();
+        return $results->fetchArray();
+    }
+
     function formatDate($dateString) {
         $date = new DateTime($dateString);
         return $date->format('l • d M'); // l = full weekday, d = day, M = short month
