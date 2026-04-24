@@ -15,9 +15,10 @@
     $movies = getMoviesCatalog($page, CARDS_PER_PAGE, $requested_genre, $requested_director) ?? [];
     $genres = getMoviesGenreWithCount() ?? [];
     $directors = getMoviesDirectorWithCount() ?? [];
-    $count = getMoviesCount($requested_genre, $requested_director)["movie_count"] ?? 0;
+    $total = getMoviesCount()["movie_count"] ?? 0;
     
     // Calcolo pagine totali
+    $count = getMoviesCount($requested_genre, $requested_director)["movie_count"] ?? 0;
     $pages = $count / CARDS_PER_PAGE;
 
     // Renderizza la lista dei filtri per genere
@@ -53,10 +54,10 @@
     // Renderizza il non-filtro "Tutto" per tornare alla visione predefinita
     function renderEverything()
     {
-        global $count, $requested_director, $requested_genre;
+        global $total, $requested_director, $requested_genre;
 
         $filter_name = "Tutto";
-        $filter_count = $count;
+        $filter_count = $total;
         $filter_isSelected = is_null($requested_genre) && is_null($requested_director);
         include "templates/filter.php";
     }

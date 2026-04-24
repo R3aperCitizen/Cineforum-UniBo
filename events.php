@@ -27,63 +27,7 @@
             </div>
         </section>
         <div class="flex flex-col lg:flex-row gap-16">
-            <!-- Filtri -->
-            <aside class="w-full lg:w-64 flex-shrink-0 space-y-12">
-                <div>
-                    <ul class="space-y-4 font-['Epilogue'] text-sm">
-                        <?php renderEverything(); ?>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6">Generi</h3>
-                    <ul class="space-y-4 font-['Epilogue'] text-sm">
-                        <?php renderGenres(); ?>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6">Registi</h3>
-                    <ul class="space-y-4 font-['Epilogue'] text-sm">
-                        <?php renderDirectors(); ?>
-                    </ul>
-                </div>
-                <div class="p-6 bg-surface-container-low border border-neutral-800">
-                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-text-neutral-500">"Non voglio dimostrare niente, voglio mostrare."</p>
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]">Federico Fellini</span>
-                </div>
-            </aside>
-            <!-- Catalogo -->
-            <div class="flex-grow">
-                <div class="mb-8 flex items-center justify-between">
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500"><?= renderPageInfo(); ?></span>
-                    <div class="flex gap-4">
-                        <form action="">
-                            <input type="hidden" name="page" value="<?= $page > 1 ? $page - 1 : $page ?>">
-                            <?php echo is_null($requested_genre) ? null : '<input type="hidden" name="genreId" value="' . $requested_genre . '">'; ?>
-                            <?php echo is_null($requested_director) ? null : '<input type="hidden" name="directorName" value="' . $requested_director . '">'; ?>
-                            <input type="submit" value="previous" class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors">
-                        </form>
-                        <form action="">
-                            <input type="hidden" name="page" value="<?= $page < $pages ? $page + 1 : $page ?>">
-                            <?php echo is_null($requested_genre) ? null : '<input type="hidden" name="genreId" value="' . $requested_genre . '">'; ?>
-                            <?php echo is_null($requested_director) ? null : '<input type="hidden" name="directorName" value="' . $requested_director . '">'; ?>
-                            <input type="submit" value="next" class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors">
-                        </form>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
-                    <?php
-                        foreach ($movies as $movie):
-                            $card_image = $movie["poster_url"];
-                            $card_name = $movie["title"];
-                            $card_year = date("Y", strtotime($movie["release_date"]));
-                            $card_director = $movie["director"];
-                            $card_genre = $movie["genre_name"];
-                            $card_minutes = $movie["duration"];
-                            include "templates/card.php";
-                        endforeach;
-                    ?>
-                </div>
-            </div>
+
         </div>
     </main>
     <!-- Footer -->
