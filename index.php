@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <!-- Evento 2: Tall -->
-                    <div class="md:row-span-2 bg-surface-container-lowest group cursor-pointer border-l border-neutral-800">
+                    <div class="md:row-span-2 bg-surface-container-lowest group cursor-pointer">
                         <div class="h-[450px] overflow-hidden">
                             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="cinematic close up of architectural brutalist concrete lines and shadows artistic photography" src="<?= $secondEvent['event_poster']; ?>">
                         </div>
