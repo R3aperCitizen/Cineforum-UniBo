@@ -4,12 +4,22 @@
     include 'src/functions.php';
 
     $movie = getMovieFromId($_GET["movie_id"]);
-    $events = getEventsFromMovieId($_GET["movie_id"]);
+    $movie_id = $movie["movie_id"] ?? null;
+    $movie_title = $movie["title"] ?? "Non trovato";
+    $movie_description = $movie["description"] ?? "Non trovato";
+    $movie_release = date("Y", strtotime(!isset($movie["release_date"]) ? "2000-01-01" : $movie["release_date"]));
+    $movie_director = $movie["director"] ?? "Non trovato";
+    $movie_duration = $movie["duration"] ?? 0;
+    $movie_genre = $movie["genre_name"] ?? "Non trovato";
+    $movie_rating = $movie["rating"] ?? "Non trovato";
+    $movie_poster = $movie["poster_url"] ?? "";
+
+    $events = is_null($movie_id) ? null : getEventsFromMovieId($movie_id);
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>UniBo Cineforum | <?= $movie["title"] ?></title>
+    <title>UniBo Cineforum | <?= $movie_title ?></title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&amp;family=Epilogue:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -27,38 +37,38 @@
                 <nav class="flex items-center space-x-2 text-xs font-['Epilogue'] uppercase tracking-[0.2em] text-[#000000] mb-8">
                     <span class="">Pellicole</span>
                     <span class="material-symbols-outlined text-[10px]">chevron_right</span>
-                    <span class="text-[#B31E24]"><?= $movie["title"] ?></span>
+                    <span class="text-[#B31E24]"><?= $movie_title ?></span>
                 </nav>
-                <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-[#000000]"><?= $movie["title"] ?></h1>
+                <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-[#000000]"><?= $movie_title ?></h1>
                 <p class="font-['Epilogue'] text-lg leading-relaxed text-[#000000] max-w-2xl mb-12">
-                    <?= $movie["description"] ?>
+                    <?= $movie_description ?>
                 </p>
                 <div class="flex items-center space-x-12">
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Release</span>
-                        <span class="font-['EB_Garamond'] text-xl"><?= date("Y", strtotime($movie["release_date"])) ?></span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $movie_release ?></span>
                     </div>
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Regista</span>
-                        <span class="font-['EB_Garamond'] text-xl"><?= $movie["director"] ?></span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $movie_director ?></span>
                     </div>
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Durata</span>
-                        <span class="font-['EB_Garamond'] text-xl"><?= $movie["duration"] ?>min</span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $movie_duration ?> min</span>
                     </div>
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Genere</span>
-                        <span class="font-['EB_Garamond'] text-xl"><?= $movie["genre_name"] ?></span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $movie_genre ?></span>
                     </div>
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Rating</span>
-                        <span class="font-['EB_Garamond'] text-xl text-primary-container"><?= $movie["rating"] ?></span>
+                        <span class="font-['EB_Garamond'] text-xl text-primary-container"><?= $movie_rating ?></span>
                     </div>
                 </div>
             </div>
             <div class="lg:col-span-5">
                 <div class="bg-surface-container-low overflow-hidden">
-                    <img class="w-full h-full object-cover" data-alt="stark black and white cinematic still showing dramatic shadows on a geometric concrete staircase in post-war architectural style" src="<?= $movie["poster_url"] ?>"/>
+                    <img class="w-full h-full object-cover" data-alt="stark black and white cinematic still showing dramatic shadows on a geometric concrete staircase in post-war architectural style" src="<?= $movie_poster ?>"/>
                 </div>
             </div>
         </section>
@@ -67,7 +77,7 @@
             <h2 class="text-4xl font-medium mb-12 text-[#000000]">Eventi</h2>
             <div class="space-y-0">
                 <?php
-                    if (!$events) {
+                    if (!$events || is_null($events)) {
                         echo "NESSUN EVENTO IN ARRIVO";
                     } else {
                         foreach($events as $event):
