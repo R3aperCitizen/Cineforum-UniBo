@@ -6,7 +6,7 @@
         <div class="hidden md:flex items-center gap-10">
             <a class="<?= $current === 'index.php' ? 'text-[#B31E24] border-b-2 border-[#B31E24] pb-1' : 'text-neutral-400' ?> font-['Epilogue'] text-base uppercase tracking-widest hover:text-white transition-colors duration-300" href="index.php">Home</a>
             <a class="<?= $current === 'movies.php' ? 'text-[#B31E24] border-b-2 border-[#B31E24] pb-1' : 'text-neutral-400' ?> font-['Epilogue'] text-base uppercase tracking-widest hover:text-white transition-colors duration-300" href="movies.php">Pellicole</a>
-            <a class="<?= $current === 'events.php' ? 'text-[#B31E24] border-b-2 border-[#B31E24] pb-1' : 'text-neutral-400' ?> font-['Epilogue'] text-base uppercase tracking-widest hover:text-white transition-colors duration-300" href="forum.php">Eventi</a>
+            <a class="<?= $current === 'events.php' ? 'text-[#B31E24] border-b-2 border-[#B31E24] pb-1' : 'text-neutral-400' ?> font-['Epilogue'] text-base uppercase tracking-widest hover:text-white transition-colors duration-300" href="events.php">Eventi</a>
         </div>
         <div class="flex items-center gap-6">
             <button class="bg-primary-container text-white px-6 py-2 font-['Epilogue'] text-sm uppercase tracking-widest hover:opacity-80 transition-opacity">Student Login</button>
