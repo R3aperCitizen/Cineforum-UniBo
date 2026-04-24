@@ -57,7 +57,7 @@
             <div class="max-w-screen-2xl mx-auto px-12">
                 <div class="flex justify-between items-end mb-16">
                     <div>
-                        <h2 class="text-5xl font-medium tracking-tight text-black mb-4">Programmazione Primaverile</h2>
+                        <h2 class="text-5xl font-medium tracking-tight text-black mb-4">Programmazione</h2>
                         <p class="font-body text-tertiary uppercase tracking-widest text-sm">Stagione 2025/26 • Cesena</p>
                     </div>
                     <a class="font-body text-primary-container font-bold text-sm uppercase tracking-widest border-b-2 border-primary-container pb-1 hover:opacity-90 transition-opacity" href="#">Calendario Completo</a>
@@ -91,7 +91,7 @@
                             <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= formatDate($thirdEvent['event_date']); ?></span>
                             <h3 class="text-2xl font-medium"><?= $thirdEvent['event_name']; ?></h3>
                         </div>
-                        <div class="mt-4 flex items-center gap-2 text-tertiary group-hover:text-white transition-colors">
+                        <div class="mt-4 flex items-center gap-2 text-tertiary group-hover:opacity-60 transition-opacity">
                             <span class="material-symbols-outlined text-sm">location_on</span>
                             <span class="font-body text-xs uppercase tracking-widest"><?= $thirdEvent['location']; ?></span>
                         </div>

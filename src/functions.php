@@ -135,6 +135,21 @@
         return $results->fetchArray();
     }
 
+    function getEventsFromMovieId($movie_id) {
+        global $db;
+        $query = "SELECT events.event_id, events.event_name, events.event_description, events.event_date FROM events, event_movies, movies WHERE events.event_id=event_movies.event_id AND event_movies.movie_id=movies.movie_id AND movies.movie_id=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $movie_id, SQLITE3_INTEGER);
+        $results = $stmt->execute();
+
+        $events = [];
+        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+            $events[] = $row;
+        }
+
+        return $events;
+    }
+
     function formatDate($dateString) {
         $days = [
             'Monday'    => 'Lunedì',
@@ -153,18 +168,33 @@
         return $italianDay . ' • ' . $date->format('d M');
     }
 
-    function formatDate2($dataSql) {
+    function formatDate2($dateString) {
         $mesi = [
             1 => 'Gennaio', 2 => 'Febbraio', 3 => 'Marzo', 4 => 'Aprile',
             5 => 'Maggio', 6 => 'Giugno', 7 => 'Luglio', 8 => 'Agosto',
             9 => 'Settembre', 10 => 'Ottobre', 11 => 'Novembre', 12 => 'Dicembre'
         ];
         
-        $time = strtotime($dataSql);
+        $time = strtotime($dateString);
         $giorno = date('j', $time);
         $mese = $mesi[(int)date('n', $time)];
         $anno = date('Y', $time);
         
         return "$giorno $mese $anno";
+    }
+
+    function formatDate3($dateString) {
+        $mesi = [
+            1 => 'Gennaio', 2 => 'Febbraio', 3 => 'Marzo', 4 => 'Aprile',
+            5 => 'Maggio', 6 => 'Giugno', 7 => 'Luglio', 8 => 'Agosto',
+            9 => 'Settembre', 10 => 'Ottobre', 11 => 'Novembre', 12 => 'Dicembre'
+        ];
+        
+        $time = strtotime($dateString);
+        $giorno = date('j', $time);
+        $mese = $mesi[(int)date('n', $time)];
+        $orario = date('H:i', $time);
+        
+        return "$giorno $mese - $orario";
     }
 ?>

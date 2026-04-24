@@ -141,6 +141,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
                     <?php
                         foreach ($movies as $movie):
+                            $movie_card_id = $movie["movie_id"];
                             $movie_card_image = $movie["poster_url"];
                             $movie_card_name = $movie["title"];
                             $movie_card_year = date("Y", strtotime($movie["release_date"]));

@@ -4,6 +4,7 @@
     include 'src/functions.php';
 
     $movie = getMovieFromId($_GET["movie_id"]);
+    $events = getEventsFromMovieId($_GET["movie_id"]);
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8"/>
@@ -63,29 +64,18 @@
         </section>
         <!-- Discussion Schedule -->
         <section class="bg-surface-container-low p-12">
-            <h2 class="text-4xl font-medium mb-12 text-[#000000]">Discussion Schedule</h2>
+            <h2 class="text-4xl font-medium mb-12 text-[#000000]">Eventi</h2>
             <div class="space-y-0">
-                <div class="grid grid-cols-1 md:grid-cols-4 py-8 border-b border-neutral-800">
-                    <span class="font-['Epilogue'] text-sm font-bold text-primary-container uppercase tracking-widest py-1">18:00 — 18:30</span>
-                    <div class="md:col-span-3">
-                        <h4 class="text-2xl mb-2 text-[#000000]">Introduction: The Void in the Frame</h4>
-                        <p class="text-neutral-400 text-sm font-['Epilogue']">Opening remarks on the historical context of the selected films and the evolution of the UniBo film archive.</p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-4 py-8 border-b border-neutral-800">
-                    <span class="font-['Epilogue'] text-sm font-bold text-primary-container uppercase tracking-widest py-1">18:30 — 20:15</span>
-                    <div class="md:col-span-3">
-                        <h4 class="text-2xl mb-2 text-[#000000]">Screening: Selected Fragments</h4>
-                        <p class="text-neutral-400 text-sm font-['Epilogue']">A continuous loop of digital restorations from the Cineteca di Bologna, focusing on key sequences of shadow-play.</p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-4 py-8">
-                    <span class="font-['Epilogue'] text-sm font-bold text-primary-container uppercase tracking-widest py-1">20:15 — 21:30</span>
-                    <div class="md:col-span-3">
-                        <h4 class="text-2xl mb-2 text-[#000000]">Panel Debate &amp; Q&amp;A</h4>
-                        <p class="text-neutral-400 text-sm font-['Epilogue']">An open forum for students and faculty to debate the intersection of aesthetics and political subtext.</p>
-                    </div>
-                </div>
+                <?php
+                    foreach($events as $event):
+                        $event_id = $event["event_id"];
+                        $event_name = $event["event_name"];
+                        $event_description = $event["event_description"];
+                        $event_date = formatDate3($event["event_date"]);
+
+                        include 'templates/movie_event_item.php';
+                    endforeach;
+                ?>
             </div>
         </section>
     </main>
