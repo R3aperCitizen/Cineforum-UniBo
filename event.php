@@ -4,11 +4,18 @@
     include 'src/functions.php';
 
     $event = getEventFromId($_GET["event_id"]);
+    $event_name = $event["event_name"] ?? "Non trovato";
+    $event_description = $event["event_description"] ?? "Non trovato";
+    $event_date = isset($event["event_date"]) ? formatDate2($event["event_date"]) : "Non trovato";
+    $event_location = $event["location"] ?? "Non trovato";
+    $event_price = $event["ticket_price"] ?? "Non trovato";
+    $event_poster = $event["event_poster"] ?? "";
+    $event_special = $event["is_special"] ?? 0;
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>UniBo Cineforum | <?= $event["event_name"] ?></title>
+    <title>UniBo Cineforum | <?= $event_name ?></title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&amp;family=Epilogue:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -26,28 +33,28 @@
                 <nav class="flex items-center space-x-2 text-xs font-['Epilogue'] uppercase tracking-[0.2em] text-[#000000] mb-8">
                     <span class="">Eventi</span>
                     <span class="material-symbols-outlined text-[10px]">chevron_right</span>
-                    <span class="text-[#B31E24]"><?= $event["event_name"] ?></span>
+                    <span class="text-[#B31E24]"><?= $event_name ?></span>
                 </nav>
-                <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-[#000000]"><?= $event["event_name"] ?></h1>
+                <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-[#000000]"><?= $event_name ?></h1>
                 <div class="flex items-center space-x-12">
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Data</span>
-                        <span class="font-['EB_Garamond'] text-xl"><?= formatDate2($event["event_date"]) ?></span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $event_date ?></span>
                     </div>
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Località</span>
-                        <span class="font-['EB_Garamond'] text-xl"><?= $event["location"] ?></span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $event_location ?></span>
                     </div>
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Costo</span>
-                        <span class="font-['EB_Garamond'] text-xl"><?= $event["ticket_price"] ?>€</span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $event_price ?>€</span>
                     </div>
-                    <?php if ($event["is_special"] == 1) include 'templates/special_event.php'; ?>
+                    <?php if ($event_special == 1) include 'templates/special_event.php'; ?>
                 </div>
             </div>
             <div class="lg:col-span-5">
                 <div class="aspect-[4/5] bg-surface-container-low overflow-hidden">
-                    <img class="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity duration-700" src="<?= $event["event_poster"] ?>"/>
+                    <img class="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity duration-700" src="<?= $event_poster ?>"/>
                 </div>
             </div>
         </section>
@@ -58,7 +65,7 @@
                 <h2 class="text-4xl font-medium mb-10 border-l-4 border-primary-container pl-6 text-[#000000]">Sintesi Curatoriale</h2>
                 <div class="space-y-6 font-['Epilogue'] leading-[1.8] text-lg max-w-3xl text-[#000000]">
                     <p>
-                        <?= $event["event_description"] ?>
+                        <?= $event_description ?>
                     </p>
                 </div>
             </div>
@@ -76,10 +83,6 @@
                             Book Seminar Seat
                         </button>
                     </form>
-                    <div class="mt-6 pt-6 border-t border-white/20 flex justify-between items-center">
-                        <span class="font-['Epilogue'] text-[10px] uppercase text-white/60 tracking-tighter">Academic Credits</span>
-                        <span class="font-['EB_Garamond'] text-white text-lg">2 CFU</span>
-                    </div>
                 </div>
             </div>
         </div>
