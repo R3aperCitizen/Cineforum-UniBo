@@ -125,7 +125,7 @@
                             <div class="absolute inset-0 bg-neutral-900/40 group-hover:bg-neutral-900/20 transition-all duration-500"></div>
                             <div class="absolute bottom-0 left-0 p-12 max-w-lg">
                                 <h3 class="text-5xl text-white font-medium mb-6">Esplora la nostra collezione</h3>
-                                <button class="text-white font-body text-xs font-bold uppercase tracking-widest border-b border-white pb-1 flex items-center gap-3" onclick="location.href='catalog.php'">
+                                <button class="text-white font-body text-xs font-bold uppercase tracking-widest border-b border-white pb-1 flex items-center gap-3" onclick="location.href='movies.php'">
                                     Naviga archivio <span class="material-symbols-outlined text-xs">arrow_forward</span>
                                 </button>
                             </div>
