@@ -24,6 +24,7 @@
     function renderGenres()
     {
         global $genres, $requested_genre;
+
         foreach ($genres as $genre):
             $filter_uri = "genreId";
             $filter_id = $genre["genre_id"];
@@ -38,6 +39,7 @@
     function renderDirectors()
     {
         global $directors, $requested_director;
+
         foreach ($directors as $director):
             $filter_uri = "directorName";
             $filter_id = $director["director"];
@@ -48,18 +50,19 @@
         endforeach;
     }
     
-    // Renderizza il non-filtro "tutto" per tornare alla visione predefinita
+    // Renderizza il non-filtro "Tutto" per tornare alla visione predefinita
     function renderEverything()
     {
         global $count, $requested_director, $requested_genre;
-        $filter_name = "Everything";
+
+        $filter_name = "Tutto";
         $filter_count = $count;
         $filter_isSelected = is_null($requested_genre) && is_null($requested_director);
         include "templates/filter.php";
     }
     
     // Renderizza la scritta che notifica il numero di film visualizzati e quelli totali
-    function renderResults()
+    function renderPageInfo()
     {
         global $page;
         echo "Pagina " . $page;
@@ -83,54 +86,41 @@
         <!-- Titolo -->
         <section class="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
             <div class="md:col-span-8">
-                <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4">The Movie Catalog</h1>
+                <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4">Il Catalogo</h1>
                 <p class="font-['Epilogue'] text-lg text-neutral-400 max-w-2xl leading-relaxed">
-                    A curated selection of cinematic masterpieces for the Alma Mater Studiorum community. From neorealism to contemporary experimentalism.
+                    Una selezione curata di capolavori cinematografici per l'Università di Bologna. Dal neorealismo allo sperimentalismo contemporaneo.
                 </p>
             </div>
         </section>
         <div class="flex flex-col lg:flex-row gap-16">
-            <!-- Sidebar Filter -->
+            <!-- Filtri -->
             <aside class="w-full lg:w-64 flex-shrink-0 space-y-12">
+                <div class="p-6 bg-surface-container-low border border-neutral-800">
+                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-text-neutral-500">"Non voglio dimostrare niente, voglio mostrare."</p>
+                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]">Federico Fellini</span>
+                </div>
                 <div>
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
                         <?php renderEverything(); ?>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6">Genres</h3>
+                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6">Generi</h3>
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
                         <?php renderGenres(); ?>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6">Directors</h3>
+                    <h3 class="font-['Epilogue'] text-xs font-bold uppercase tracking-[0.2em] text-[#B31E24] mb-6">Registi</h3>
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
                         <?php renderDirectors(); ?>
                     </ul>
                 </div>
-                <div class="p-6 bg-surface-container-low border border-neutral-800">
-                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-text-neutral-500">"Cinema is a matter of what's in the frame and what's out."</p>
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]">Martin Scorsese</span>
-                </div>
             </aside>
-            <!-- Grid Content -->
+            <!-- Catalogo -->
             <div class="flex-grow">
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
-                    <?php
-                        foreach ($movies as $movie):
-                            $card_image = $movie["poster_url"];
-                            $card_name = $movie["title"];
-                            $card_year = date("Y", strtotime($movie["release_date"]));
-                            $card_director = $movie["director"];
-                            $card_genre = $movie["genre_name"];
-                            $card_minutes = $movie["duration"];
-                            include "templates/card.php";
-                        endforeach;
-                    ?>
-                </div>
-                <div class="mt-24 flex items-center justify-between border-t border-neutral-800 pt-10">
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500"><?= renderResults(); ?></span>
+                <div class="mb-8 flex items-center justify-between">
+                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500"><?= renderPageInfo(); ?></span>
                     <div class="flex gap-4">
                         <form action="">
                             <input type="hidden" name="page" value="<?= $page > 1 ? $page - 1 : $page ?>">
@@ -145,6 +135,19 @@
                             <input type="submit" value="next" class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors">
                         </form>
                     </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
+                    <?php
+                        foreach ($movies as $movie):
+                            $card_image = $movie["poster_url"];
+                            $card_name = $movie["title"];
+                            $card_year = date("Y", strtotime($movie["release_date"]));
+                            $card_director = $movie["director"];
+                            $card_genre = $movie["genre_name"];
+                            $card_minutes = $movie["duration"];
+                            include "templates/card.php";
+                        endforeach;
+                    ?>
                 </div>
             </div>
         </div>
