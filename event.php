@@ -35,7 +35,7 @@
                 <div class="flex items-center space-x-12">
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Data</span>
-                        <span class="font-['EB_Garamond'] text-xl"><?= $event["event_date"] ?></span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= formatDate2($event["event_date"]) ?></span>
                     </div>
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Località</span>
@@ -45,9 +45,7 @@
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Costo</span>
                         <span class="font-['EB_Garamond'] text-xl"><?= $event["ticket_price"] ?>€</span>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="font-['Epilogue'] text-xs font-bold text-primary-container uppercase tracking-widest">Registration Open</span>
-                    </div>
+                    <?php if ($event["is_special"] == 1) include 'templates/special_event.php'; ?>
                 </div>
             </div>
             <div class="lg:col-span-5">
