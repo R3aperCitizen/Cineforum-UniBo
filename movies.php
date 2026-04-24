@@ -15,9 +15,10 @@
     $movies = getMoviesCatalog($page, CARDS_PER_PAGE, $requested_genre, $requested_director) ?? [];
     $genres = getMoviesGenreWithCount() ?? [];
     $directors = getMoviesDirectorWithCount() ?? [];
-    $count = getMoviesCount($requested_genre, $requested_director)["movie_count"] ?? 0;
+    $total = getMoviesCount()["movie_count"] ?? 0;
     
     // Calcolo pagine totali
+    $count = getMoviesCount($requested_genre, $requested_director)["movie_count"] ?? 0;
     $pages = $count / CARDS_PER_PAGE;
 
     // Renderizza la lista dei filtri per genere
@@ -31,7 +32,7 @@
             $filter_name = $genre["genre_name"];
             $filter_count = $genre["movie_count"];
             $filter_isSelected = $filter_id == $requested_genre;
-            include "templates/filter.php";
+            include "templates/movies_filter.php";
         endforeach;
     }
 
@@ -46,19 +47,19 @@
             $filter_name = $director["director"];
             $filter_count = $director["movie_count"];
             $filter_isSelected = $filter_name == $requested_director;
-            include "templates/filter.php";
+            include "templates/movies_filter.php";
         endforeach;
     }
     
     // Renderizza il non-filtro "Tutto" per tornare alla visione predefinita
     function renderEverything()
     {
-        global $count, $requested_director, $requested_genre;
+        global $total, $requested_director, $requested_genre;
 
         $filter_name = "Tutto";
-        $filter_count = $count;
+        $filter_count = $total;
         $filter_isSelected = is_null($requested_genre) && is_null($requested_director);
-        include "templates/filter.php";
+        include "templates/movies_filter.php";
     }
     
     // Renderizza la scritta che notifica il numero di film visualizzati e quelli totali
@@ -146,7 +147,7 @@
                             $card_director = $movie["director"];
                             $card_genre = $movie["genre_name"];
                             $card_minutes = $movie["duration"];
-                            include "templates/card.php";
+                            include "templates/movies_card.php";
                         endforeach;
                     ?>
                 </div>
