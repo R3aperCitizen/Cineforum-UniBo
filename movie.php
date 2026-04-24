@@ -68,7 +68,7 @@
             </div>
             <div class="lg:col-span-5">
                 <div class="bg-surface-container-low overflow-hidden">
-                    <img class="w-full h-full object-cover" data-alt="stark black and white cinematic still showing dramatic shadows on a geometric concrete staircase in post-war architectural style" src="<?= $movie_poster ?>"/>
+                    <img class="w-full h-full object-cover" src="<?= $movie_poster ?>"/>
                 </div>
             </div>
         </section>

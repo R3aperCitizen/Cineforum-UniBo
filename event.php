@@ -47,7 +47,7 @@
             </div>
             <div class="lg:col-span-5">
                 <div class="aspect-[4/5] bg-surface-container-low overflow-hidden">
-                    <img class="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity duration-700" data-alt="stark black and white cinematic still showing dramatic shadows on a geometric concrete staircase in post-war architectural style" src="<?= $event["event_poster"] ?>"/>
+                    <img class="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity duration-700" src="<?= $event["event_poster"] ?>"/>
                 </div>
             </div>
         </section>
