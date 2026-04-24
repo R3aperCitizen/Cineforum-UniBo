@@ -3,76 +3,12 @@
 <?php 
     include 'src/functions.php';
 
-    // Cards mostrate per pagina
-    const CARDS_PER_PAGE = 6;
-
-    // Assegnazione variabili dai valori del GET
-    $page = $_GET["page"] ?? 1;
-    $requested_genre = $_GET["genreId"] ?? null;
-    $requested_director = $_GET["directorName"] ?? null;
-
-    // Richiesta dei dati necessari al database
-    $movies = getMoviesCatalog($page, CARDS_PER_PAGE, $requested_genre, $requested_director) ?? [];
-    $genres = getMoviesGenreWithCount() ?? [];
-    $directors = getMoviesDirectorWithCount() ?? [];
-    $count = getMoviesCount($requested_genre, $requested_director)["movie_count"] ?? 0;
-    
-    // Calcolo pagine totali
-    $pages = $count / CARDS_PER_PAGE;
-
-    // Renderizza la lista dei filtri per genere
-    function renderGenres()
-    {
-        global $genres, $requested_genre;
-
-        foreach ($genres as $genre):
-            $filter_uri = "genreId";
-            $filter_id = $genre["genre_id"];
-            $filter_name = $genre["genre_name"];
-            $filter_count = $genre["movie_count"];
-            $filter_isSelected = $filter_id == $requested_genre;
-            include "templates/filter.php";
-        endforeach;
-    }
-
-    // Renderizza la lista dei filtri per regista
-    function renderDirectors()
-    {
-        global $directors, $requested_director;
-
-        foreach ($directors as $director):
-            $filter_uri = "directorName";
-            $filter_id = $director["director"];
-            $filter_name = $director["director"];
-            $filter_count = $director["movie_count"];
-            $filter_isSelected = $filter_name == $requested_director;
-            include "templates/filter.php";
-        endforeach;
-    }
-    
-    // Renderizza il non-filtro "Tutto" per tornare alla visione predefinita
-    function renderEverything()
-    {
-        global $count, $requested_director, $requested_genre;
-
-        $filter_name = "Tutto";
-        $filter_count = $count;
-        $filter_isSelected = is_null($requested_genre) && is_null($requested_director);
-        include "templates/filter.php";
-    }
-    
-    // Renderizza la scritta che notifica il numero di film visualizzati e quelli totali
-    function renderPageInfo()
-    {
-        global $page;
-        echo "Pagina " . $page;
-    }
 ?>
 
 <html class="" lang="en"><head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>UniBo Cineforum | Pellicole</title>
+    <title>UniBo Cineforum | Eventi</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&amp;family=Epilogue:wght@100;200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -87,10 +23,7 @@
         <!-- Titolo -->
         <section class="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
             <div class="md:col-span-8">
-                <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4">Le Pellicole</h1>
-                <p class="font-['Epilogue'] text-lg text-neutral-400 max-w-2xl leading-relaxed">
-                    Una selezione curata di capolavori cinematografici per l'Università di Bologna. Dal neorealismo allo sperimentalismo contemporaneo.
-                </p>
+                <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4">Gli Eventi</h1>
             </div>
         </section>
         <div class="flex flex-col lg:flex-row gap-16">
