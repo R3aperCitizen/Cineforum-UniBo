@@ -26,9 +26,52 @@
                 <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4">Gli Eventi</h1>
             </div>
         </section>
-        <div class="flex flex-col lg:flex-row gap-16">
-
-        </div>
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <!-- Evento 1: Large -->
+            <div class="md:col-span-2 md:row-span-2 bg-surface-container-lowest group cursor-pointer">
+                <div class="h-80 overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="">
+                </div>
+                <div class="p-8">
+                    <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"></span>
+                    <h3 class="text-3xl font-medium mb-4"></h3>
+                    <p class="text-tertiary font-body text-sm leading-relaxed line-clamp-2"></p>
+                </div>
+            </div>
+            <!-- Evento 2: Tall -->
+            <div class="md:row-span-2 bg-surface-container-lowest group cursor-pointer">
+                <div class="h-[450px] overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="">
+                </div>
+                <div class="p-8">
+                    <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"></span>
+                    <h3 class="text-2xl font-medium mb-4"></h3>
+                    <p class="text-tertiary font-body text-sm leading-relaxed"></p>
+                </div>
+            </div>
+            <!-- Evento 3: Square -->
+            <div class="bg-surface-container-lowest p-8 flex flex-col justify-between group cursor-pointer">
+                <div>
+                    <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"></span>
+                    <h3 class="text-2xl font-medium"></h3>
+                </div>
+                <div class="mt-4 flex items-center gap-2 text-tertiary group-hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-sm">location_on</span>
+                    <span class="font-body text-xs uppercase tracking-widest"></span>
+                </div>
+            </div>
+            <!-- Evento 4: Square -->
+            <div class="bg-surface-container-lowest p-8 flex flex-col justify-between group cursor-pointer">
+                <div>
+                    <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"></span>
+                    <h3 class="text-2xl font-medium"></h3>
+                </div>
+                <div class="mt-4 flex items-center gap-2 text-tertiary group-hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-sm">location_on</span>
+                    <span class="font-body text-xs uppercase tracking-widest"></span>
+                </div>
+            </div>
+        </section>
     </main>
     <!-- Footer -->
     <?php require "templates/footer.php"; ?>
