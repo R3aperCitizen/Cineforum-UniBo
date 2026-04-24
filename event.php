@@ -8,7 +8,7 @@
 <html class="" lang="en"><head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>UniBo Cineforum | <?= $event["title"] ?></title>
+    <title>UniBo Cineforum | <?= $event["event_name"] ?></title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&amp;family=Epilogue:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -29,9 +29,6 @@
                     <span class="text-[#B31E24]"><?= $event["event_name"] ?></span>
                 </nav>
                 <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-[#000000]"><?= $event["event_name"] ?></h1>
-                <p class="font-['Epilogue'] text-lg leading-relaxed text-[#000000] max-w-2xl mb-12">
-                    <?= $event["event_description"] ?>
-                </p>
                 <div class="flex items-center space-x-12">
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Data</span>
@@ -57,19 +54,16 @@
         <!-- Asymmetric Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <!-- Synopsis -->
-            <div class="lg:col-span-7">
-                <h2 class="text-4xl font-medium mb-10 border-l-4 border-primary-container pl-6 text-[#000000]">Curatorial Synopsis</h2>
+            <div class="lg:col-span-8">
+                <h2 class="text-4xl font-medium mb-10 border-l-4 border-primary-container pl-6 text-[#000000]">Sintesi Curatoriale</h2>
                 <div class="space-y-6 font-['Epilogue'] leading-[1.8] text-lg max-w-3xl text-[#000000]">
                     <p>
-                        This curated screening brings together three pivotal works of the 1950s that challenged the traditional boundaries of narrative structure. By examining these films through the lens of institutional critique, we aim to uncover how cinematic language adapted to the rapid urbanization of the Italian landscape.
-                    </p>
-                    <p>
-                        The discussion will focus specifically on the "unseen" elements of the frame—how negative space serves as a psychological anchor for the audience. We will traverse the shift from neorealism to high-contrast psychological drama, emphasizing the technical innovations in celluloid processing that enabled these visual metaphors.
+                        <?= $event["event_description"] ?>
                     </p>
                 </div>
             </div>
             <!-- Right Column: Meta Info & Actions -->
-            <div class="sticky top-32 space-y-12 lg:col-span-5">
+            <div class="sticky top-32 space-y-12 lg:col-span-4">
                 <!-- Registration Card -->
                 <div class="bg-primary-container p-8">
                     <h3 class="text-white text-3xl mb-6 text-[#000000]">Reserve Attendance</h3>
@@ -86,21 +80,6 @@
                         <span class="font-['Epilogue'] text-[10px] uppercase text-white/60 tracking-tighter">Academic Credits</span>
                         <span class="font-['EB_Garamond'] text-white text-lg">2 CFU</span>
                     </div>
-                </div>
-                <!-- Location Insight -->
-                <div class="bg-surface-container-high p-8">
-                    <h3 class="text-2xl mb-4 text-[#000000]">Venue Details</h3>
-                    <div class="aspect-video bg-neutral-800 mb-6 overflow-hidden">
-                        <img class="w-full h-full object-cover grayscale opacity-50" data-alt="interior of a classic university lecture hall with dark wood benches and large historical arched windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-UyzGOyZdKIrqU8C1NYnQrw4d2DwzGTi-f5blljE6WnuDuKuUbIOOH3PNwrNMVBcDdWsfzURvTdq_GU0Oa5MObOMtHAca0lh_XGasb9mECmQwMK-NzPXMNTVbGcm4RYo5wwm5q19qdSODUdXHrTAxgzPULpvjmU-CHMDK55lgWE9AbiwNJQOpyp-3LxTcthcutobijC57KPjhzZCw0_FtnE6UPOQ-tkoEEILydcYT66LCAh3yY34es8kHm2Ld29J7VpGOYDYBkqI"/>
-                    </div>
-                    <p class="font-['Epilogue'] text-neutral-400 text-sm mb-4">
-                        Aula Magna, Department of Arts<br/>
-                        Via Zamboni 33, 40126 Bologna (BO)
-                    </p>
-                    <a class="text-primary-container font-['Epilogue'] text-xs font-bold uppercase tracking-widest inline-flex items-center group" href="#">
-                        View on Campus Map
-                        <span class="material-symbols-outlined ml-2 text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
-                    </a>
                 </div>
             </div>
         </div>
