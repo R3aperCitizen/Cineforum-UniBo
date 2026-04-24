@@ -35,13 +35,13 @@
             $stmt = $db->prepare($query);
             $stmt->bindValue(1, $number_of_movies, SQLITE3_INTEGER);
             $stmt->bindValue(2, ($page_number * $number_of_movies) - $number_of_movies, SQLITE3_INTEGER);
-        } elseif($genre_id > 0 && !empty($genre_id) && empty($director)) {
+        } elseif ($genre_id > 0 && !empty($genre_id) && empty($director)) {
             $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id AND genres.genre_id=? LIMIT ? OFFSET ?;";
             $stmt = $db->prepare($query);
             $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
             $stmt->bindValue(2, $number_of_movies, SQLITE3_INTEGER);
             $stmt->bindValue(3, ($page_number * $number_of_movies) - $number_of_movies, SQLITE3_INTEGER);
-        } elseif(empty($genre_id) && !empty($director)) {
+        } elseif (empty($genre_id) && !empty($director)) {
             $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id AND movies.director=? LIMIT ? OFFSET ?;";
             $stmt = $db->prepare($query);
             $stmt->bindValue(1, $director, SQLITE3_TEXT);
@@ -97,10 +97,23 @@
         return $movies_directors;
     }
 
-    function getMoviesCount() {
+    function getMoviesCount($genre_id, $director) {
         global $db;
-        $query = "SELECT COUNT(*) AS movie_count FROM movies;";
-        $results = $db->query($query);
+        if (empty($genre_id) && empty($director)) {
+            $query = "SELECT COUNT(*) AS movie_count FROM movies;";
+            $stmt = $db->prepare($query);
+        } elseif (!empty($genre_id) && $genre_id > 0 && empty($director)) {
+            $query = "SELECT COUNT(*) AS movie_count FROM movies WHERE genre_id=?;";
+            $stmt = $db->prepare($query);
+            $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
+        } elseif (empty($genre_id) && !empty($director)) {
+            $query = "SELECT COUNT(*) AS movie_count FROM movies WHERE director=?;";
+            $stmt = $db->prepare($query);
+            $stmt->bindValue(1, $director, SQLITE3_TEXT);
+        } else {
+            return null;
+        }
+        $results = $stmt->execute();
         return $results->fetchArray();
     }
 
@@ -109,6 +122,15 @@
         $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id AND movies.movie_id=?;";
         $stmt = $db->prepare($query);
         $stmt->bindValue(1, $movie_id, SQLITE3_INTEGER);
+        $results = $stmt->execute();
+        return $results->fetchArray();
+    }
+
+    function getEventFromId($event_id) {
+        global $db;
+        $query = "SELECT * FROM events WHERE event_id=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $event_id, SQLITE3_INTEGER);
         $results = $stmt->execute();
         return $results->fetchArray();
     }
