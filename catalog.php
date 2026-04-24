@@ -96,10 +96,6 @@
         <div class="flex flex-col lg:flex-row gap-16">
             <!-- Filtri -->
             <aside class="w-full lg:w-64 flex-shrink-0 space-y-12">
-                <div class="p-6 bg-surface-container-low border border-neutral-800">
-                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-text-neutral-500">"Non voglio dimostrare niente, voglio mostrare."</p>
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]">Federico Fellini</span>
-                </div>
                 <div>
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
                         <?php renderEverything(); ?>
@@ -116,6 +112,10 @@
                     <ul class="space-y-4 font-['Epilogue'] text-sm">
                         <?php renderDirectors(); ?>
                     </ul>
+                </div>
+                <div class="p-6 bg-surface-container-low border border-neutral-800">
+                    <p class="font-['EB_Garamond'] text-lg leading-tight mb-4 text-text-neutral-500">"Non voglio dimostrare niente, voglio mostrare."</p>
+                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-[#B31E24]">Federico Fellini</span>
                 </div>
             </aside>
             <!-- Catalogo -->
