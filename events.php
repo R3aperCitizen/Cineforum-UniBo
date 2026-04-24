@@ -26,7 +26,7 @@
                 <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4">Gli Eventi</h1>
             </div>
         </section>
-        <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <section class="grid grid-cols-1 md:grid-cols-6 gap-6">
             <!-- Evento 1: Large -->
             <div class="md:col-span-2 md:row-span-2 bg-surface-container-lowest group cursor-pointer">
                 <div class="h-80 overflow-hidden">
