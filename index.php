@@ -64,48 +64,37 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <!-- Evento 1: Large -->
-                    <div class="md:col-span-2 md:row-span-2 bg-surface-container-lowest group cursor-pointer">
-                        <div class="h-80 overflow-hidden">
-                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="vibrant neon lit urban street at night from a contemporary cinema scene rich saturated colors" src="<?= $firstEvent['event_poster']; ?>">
-                        </div>
-                        <div class="p-8">
-                            <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= formatDate($firstEvent['event_date']); ?></span>
-                            <h3 class="text-3xl font-medium mb-4"><?= $firstEvent['event_name']; ?></h3>
-                            <p class="text-tertiary font-body text-sm leading-relaxed line-clamp-2"><?= $firstEvent['event_description']; ?></p>
-                        </div>
-                    </div>
+                    <?php
+                        $event_large_id = $firstEvent['event_id'];
+                        $event_large_image = $firstEvent['event_poster'];
+                        $event_large_date = formatDate($firstEvent['event_date']);
+                        $event_large_name = $firstEvent['event_name'];
+                        $event_large_description = $firstEvent['event_description'];
+                        include "templates/event_large.php";
+                    ?>
                     <!-- Evento 2: Tall -->
-                    <div class="md:row-span-2 bg-surface-container-lowest group cursor-pointer">
-                        <div class="h-[450px] overflow-hidden">
-                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="cinematic close up of architectural brutalist concrete lines and shadows artistic photography" src="<?= $secondEvent['event_poster']; ?>">
-                        </div>
-                        <div class="p-8">
-                            <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= formatDate($secondEvent['event_date']); ?></span>
-                            <h3 class="text-2xl font-medium mb-4"><?= $secondEvent['event_name']; ?></h3>
-                            <p class="text-tertiary font-body text-sm leading-relaxed"><?= $secondEvent['event_description']; ?></p>
-                        </div>
-                    </div>
-                    <!-- Evento 3: Square -->
-                    <div class="bg-surface-container-lowest p-8 flex flex-col justify-between group cursor-pointer">
-                        <div>
-                            <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= formatDate($thirdEvent['event_date']); ?></span>
-                            <h3 class="text-2xl font-medium"><?= $thirdEvent['event_name']; ?></h3>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2 text-tertiary group-hover:opacity-60 transition-opacity">
-                            <span class="material-symbols-outlined text-sm">location_on</span>
-                            <span class="font-body text-xs uppercase tracking-widest"><?= $thirdEvent['location']; ?></span>
-                        </div>
-                    </div>
-                    <!-- Evento 4: Square -->
-                    <div class="bg-primary-container p-8 flex flex-col justify-between group cursor-pointer">
-                        <div>
-                            <span class="text-white/80 font-body text-xs font-bold uppercase tracking-tighter mb-2 block">Special Event</span>
-                            <h3 class="text-2xl font-medium text-white"><?= $special['event_name']; ?></h3>
-                        </div>
-                        <div class="mt-4">
-                            <span class="material-symbols-outlined text-white">arrow_forward</span>
-                        </div>
-                    </div>
+                    <?php
+                        $event_tall_id = $secondEvent['event_id'];
+                        $event_tall_image = $secondEvent['event_poster'];
+                        $event_tall_date = formatDate($secondEvent['event_date']);
+                        $event_tall_name = $secondEvent['event_name'];
+                        $event_tall_description = $secondEvent['event_description'];
+                        include "templates/event_tall.php";
+                    ?>
+                    <!-- Evento 3: Small -->
+                    <?php
+                        $event_small_id = $thirdEvent['event_id'];
+                        $event_small_date = formatDate($thirdEvent['event_date']);
+                        $event_small_name = $thirdEvent['event_name'];
+                        $event_small_location = $thirdEvent['location'];
+                        include "templates/event_small.php";
+                    ?>
+                    <!-- Evento 4: Special -->
+                    <?php
+                        $event_special_id = $special['event_id'];
+                        $event_special_name = $special['event_name'];
+                        include "templates/event_special.php";
+                    ?>
                 </div>
             </div>
         </section>

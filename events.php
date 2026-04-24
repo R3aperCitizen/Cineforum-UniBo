@@ -26,7 +26,9 @@
                 <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4">Gli Eventi</h1>
             </div>
         </section>
-        <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            
+
             <!-- Evento 1: Large -->
             <?php include "templates/event_large.php"; ?>
             <!-- Evento 2: Tall -->
@@ -35,7 +37,7 @@
             <?php include "templates/event_small.php"; ?>
             <!-- Evento 4: Special -->
             <?php include "templates/event_special.php"; ?>
-        </section>
+        </div>
     </main>
     <!-- Footer -->
     <?php require "templates/footer.php"; ?>
