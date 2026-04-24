@@ -1,4 +1,5 @@
 <?php
+    $event_large_id = $event_large_id ?? -1;
     $event_large_image = $event_large_image ?? "";
     $event_large_date = $event_large_date ?? "No Date";
     $event_large_name = $event_large_name ?? "No Name";

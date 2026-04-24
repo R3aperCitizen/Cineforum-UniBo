@@ -1,4 +1,5 @@
 <?php
+    $event_tall_id = $event_tall_id ?? -1;
     $event_tall_image = $event_tall_image ?? "";
     $event_tall_date = $event_tall_date ?? "No Date";
     $event_tall_name = $event_tall_name ?? "No Name";

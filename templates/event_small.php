@@ -1,4 +1,5 @@
 <?php
+    $event_small_id = $event_small_id ?? -1;
     $event_small_date = $event_small_date ?? "No Date";
     $event_small_name = $event_small_name ?? "No Name";
     $event_small_location = $event_small_location ?? "No Location";

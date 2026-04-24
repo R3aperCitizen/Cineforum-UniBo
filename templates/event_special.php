@@ -1,4 +1,5 @@
 <?php
+    $event_special_id = $event_special_id ?? -1;
     $event_special_name = $event_special_name ?? "No Name";
 ?>
 
