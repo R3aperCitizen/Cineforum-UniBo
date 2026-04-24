@@ -126,6 +126,23 @@
         return $results->fetchArray();
     }
 
+    function getEventsCatalog($page_number, $number_of_events) {
+        global $db;
+        $query = "SELECT * FROM events LIMIT ? OFFSET ?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $number_of_events, SQLITE3_INTEGER);
+        $stmt->bindValue(2, ($page_number * $number_of_events) - $number_of_events, SQLITE3_INTEGER);
+
+        $results = $stmt->execute();
+
+        $events = [];
+        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+            $events[] = $row;
+        }
+
+        return $events;
+    }
+
     function getEventFromId($event_id) {
         global $db;
         $query = "SELECT * FROM events WHERE event_id=?;";
