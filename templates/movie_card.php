@@ -1,5 +1,5 @@
 <?php
-    $movie_card_id = $movie_card_id ?? 0;
+    $movie_card_id = $movie_card_id ?? -1;
     $movie_card_image = $movie_card_image ?? "";
     $movie_card_name = $movie_card_name ?? "No Name";
     $movie_card_year = $movie_card_year ?? "????";
