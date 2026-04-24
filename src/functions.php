@@ -136,7 +136,35 @@
     }
 
     function formatDate($dateString) {
+        $days = [
+            'Monday'    => 'Lunedì',
+            'Tuesday'   => 'Martedì',
+            'Wednesday' => 'Mercoledì',
+            'Thursday'  => 'Giovedì',
+            'Friday'    => 'Venerdì',
+            'Saturday'  => 'Sabato',
+            'Sunday'    => 'Domenica'
+        ];
+
         $date = new DateTime($dateString);
-        return $date->format('l • d M'); // l = full weekday, d = day, M = short month
+        $englishDay = $date->format('l'); // Prende il nome inglese
+        $italianDay = $days[$englishDay];  // Lo traduce usando l'array
+        
+        return $italianDay . ' • ' . $date->format('d M');
+    }
+
+    function formatDate2($dataSql) {
+        $mesi = [
+            1 => 'Gennaio', 2 => 'Febbraio', 3 => 'Marzo', 4 => 'Aprile',
+            5 => 'Maggio', 6 => 'Giugno', 7 => 'Luglio', 8 => 'Agosto',
+            9 => 'Settembre', 10 => 'Ottobre', 11 => 'Novembre', 12 => 'Dicembre'
+        ];
+        
+        $time = strtotime($dataSql);
+        $giorno = date('j', $time);
+        $mese = $mesi[(int)date('n', $time)];
+        $anno = date('Y', $time);
+        
+        return "$giorno $mese $anno";
     }
 ?>
