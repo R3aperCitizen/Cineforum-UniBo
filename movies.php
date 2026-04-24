@@ -27,11 +27,11 @@
         global $genres, $requested_genre;
 
         foreach ($genres as $genre):
-            $filter_uri = "genreId";
-            $filter_id = $genre["genre_id"];
-            $filter_name = $genre["genre_name"];
-            $filter_count = $genre["movie_count"];
-            $filter_isSelected = $filter_id == $requested_genre;
+            $movie_filter_uri = "genreId";
+            $movie_filter_id = $genre["genre_id"];
+            $movie_filter_name = $genre["genre_name"];
+            $movie_filter_count = $genre["movie_count"];
+            $movie_filter_is_selected = $movie_filter_id == $requested_genre;
             include "templates/movie_filter.php";
         endforeach;
     }
@@ -42,11 +42,11 @@
         global $directors, $requested_director;
 
         foreach ($directors as $director):
-            $filter_uri = "directorName";
-            $filter_id = $director["director"];
-            $filter_name = $director["director"];
-            $filter_count = $director["movie_count"];
-            $filter_isSelected = $filter_name == $requested_director;
+            $movie_filter_uri = "directorName";
+            $movie_filter_id = $director["director"];
+            $movie_filter_name = $director["director"];
+            $movie_filter_count = $director["movie_count"];
+            $movie_filter_is_selected = $movie_filter_name == $requested_director;
             include "templates/movie_filter.php";
         endforeach;
     }
@@ -56,9 +56,9 @@
     {
         global $total, $requested_director, $requested_genre;
 
-        $filter_name = "Tutto";
-        $filter_count = $total;
-        $filter_isSelected = is_null($requested_genre) && is_null($requested_director);
+        $movie_filter_name = "Tutto";
+        $movie_filter_count = $total;
+        $movie_filter_is_selected = is_null($requested_genre) && is_null($requested_director);
         include "templates/movie_filter.php";
     }
     
@@ -141,12 +141,12 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
                     <?php
                         foreach ($movies as $movie):
-                            $card_image = $movie["poster_url"];
-                            $card_name = $movie["title"];
-                            $card_year = date("Y", strtotime($movie["release_date"]));
-                            $card_director = $movie["director"];
-                            $card_genre = $movie["genre_name"];
-                            $card_minutes = $movie["duration"];
+                            $movie_card_image = $movie["poster_url"];
+                            $movie_card_name = $movie["title"];
+                            $movie_card_year = date("Y", strtotime($movie["release_date"]));
+                            $movie_card_director = $movie["director"];
+                            $movie_card_genre = $movie["genre_name"];
+                            $movie_card_minutes = $movie["duration"];
                             include "templates/movie_card.php";
                         endforeach;
                     ?>
