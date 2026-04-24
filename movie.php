@@ -23,7 +23,12 @@
         <!-- Hero Section: Movie Identity -->
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
             <div class="lg:col-span-7 flex flex-col justify-end">
-                <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-primary-container"><?= $movie["title"] ?></h1>
+                <nav class="flex items-center space-x-2 text-xs font-['Epilogue'] uppercase tracking-[0.2em] text-[#000000] mb-8">
+                    <span class="">Pellicole</span>
+                    <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                    <span class="text-[#B31E24]"><?= $movie["title"] ?></span>
+                </nav>
+                <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-[#000000]"><?= $movie["title"] ?></h1>
                 <p class="font-['Epilogue'] text-lg leading-relaxed text-[#000000] max-w-2xl mb-12">
                     <?= $movie["description"] ?>
                 </p>
