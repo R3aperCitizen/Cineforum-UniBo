@@ -1,5 +1,5 @@
 <?php
-    $event_id = $event_id ?? 0;
+    $event_id = $event_id ?? -1;
     $event_name = $event_name ?? "";
     $event_description = $event_description ?? "";
     $event_date = $event_date ?? "";

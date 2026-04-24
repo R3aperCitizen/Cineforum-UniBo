@@ -67,14 +67,19 @@
             <h2 class="text-4xl font-medium mb-12 text-[#000000]">Eventi</h2>
             <div class="space-y-0">
                 <?php
-                    foreach($events as $event):
-                        $event_id = $event["event_id"];
-                        $event_name = $event["event_name"];
-                        $event_description = $event["event_description"];
-                        $event_date = formatDate3($event["event_date"]);
+                    if (!$events) {
+                        echo "NESSUN EVENTO IN ARRIVO";
+                    } else {
+                        foreach($events as $event):
+                            $event_id = $event["event_id"];
+                            $event_name = $event["event_name"];
+                            $event_description = $event["event_description"];
+                            $event_date = formatDate3($event["event_date"]);
+    
+                            include 'templates/movie_event_item.php';
+                        endforeach;
+                    }
 
-                        include 'templates/movie_event_item.php';
-                    endforeach;
                 ?>
             </div>
         </section>
