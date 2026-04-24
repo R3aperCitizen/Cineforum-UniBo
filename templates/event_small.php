@@ -5,7 +5,8 @@
     $event_small_location = $event_small_location ?? "No Location";
 ?>
 
-<div class="bg-surface-container-lowest p-8 flex flex-col justify-between group cursor-pointer">
+<div class="bg-surface-container-lowest p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
+    <form class="hidden" action="/event.php"><input type="hidden" name="event_id" value="<?= $event_small_id ?>"></form>
     <div>
         <span class="text-primary-container font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= $event_small_date ?></span>
         <h3 class="text-2xl font-medium"><?= $event_small_name ?></h3>

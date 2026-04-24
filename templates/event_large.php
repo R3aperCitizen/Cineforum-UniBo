@@ -6,7 +6,8 @@
     $event_large_description = $event_large_description ?? "No Description";
 ?>
 
-<div class="md:col-span-2 md:row-span-2 bg-surface-container-lowest group cursor-pointer">
+<div class="md:col-span-2 md:row-span-2 bg-surface-container-lowest group cursor-pointer" onclick="this.querySelector('form').submit()">
+    <form class="hidden" action="/event.php"><input type="hidden" name="event_id" value="<?= $event_large_id ?>"></form>
     <div class="h-80 overflow-hidden">
         <img alt="<?= $event_large_name ?>" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="<?= $event_large_image ?>">
     </div>

@@ -6,7 +6,8 @@
     $event_tall_description = $event_tall_description ?? "No Description";
 ?>
 
-<div class="md:row-span-2 bg-surface-container-lowest group cursor-pointer">
+<div class="md:row-span-2 bg-surface-container-lowest group cursor-pointer" onclick="this.querySelector('form').submit()">
+    <form class="hidden" action="/event.php"><input type="hidden" name="event_id" value="<?= $event_tall_id ?>"></form>
     <div class="h-[450px] overflow-hidden">
         <img alt="<?= $event_tall_name ?>" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="<?= $event_tall_image ?>">
     </div>
