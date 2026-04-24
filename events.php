@@ -2,7 +2,9 @@
 
 <?php 
     include 'src/functions.php';
+    const EVENTS_PER_PAGE = 20;
 
+    $events = getEventsCatalog(1, EVENTS_PER_PAGE);
 ?>
 
 <html class="" lang="en"><head>
@@ -27,16 +29,17 @@
             </div>
         </section>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            
-
-            <!-- Evento 1: Large -->
-            <?php include "templates/event_large.php"; ?>
-            <!-- Evento 2: Tall -->
-            <?php include "templates/event_tall.php"; ?>
-            <!-- Evento 3: Small -->
-            <?php include "templates/event_small.php"; ?>
-            <!-- Evento 4: Special -->
-            <?php include "templates/event_special.php"; ?>
+            <?php
+                foreach ($events as $event):
+                    $event_rand_id = $event['event_id'];
+                    $event_rand_image = $event['event_poster'];
+                    $event_rand_date = formatDate($event['event_date']);
+                    $event_rand_name = $event['event_name'];
+                    $event_rand_description = $event['event_description'];
+                    $event_rand_location = $event['location'];
+                    include "templates/event_rand.php";
+                endforeach;
+            ?>
         </div>
     </main>
     <!-- Footer -->
