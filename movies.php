@@ -15,7 +15,7 @@
     $movies = getMoviesCatalog($page, CARDS_PER_PAGE, $requested_genre, $requested_director) ?? [];
     $genres = getMoviesGenreWithCount() ?? [];
     $directors = getMoviesDirectorWithCount() ?? [];
-    $total = getMoviesCount()["movie_count"] ?? 0;
+    $total = getMoviesCount(null, null)["movie_count"] ?? 0;
     
     // Calcolo pagine totali
     $count = getMoviesCount($requested_genre, $requested_director)["movie_count"] ?? 0;
