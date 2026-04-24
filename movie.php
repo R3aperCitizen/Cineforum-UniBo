@@ -8,6 +8,7 @@
 <html class="" lang="en"><head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>UniBo Cineforum | <?= $movie["title"] ?></title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&amp;family=Epilogue:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -21,66 +22,66 @@
     <main class="max-w-screen-2xl mx-auto px-12 py-12">
         <!-- Hero Section: Movie Identity -->
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
-        <div class="lg:col-span-7 flex flex-col justify-end">
-        <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-primary-container"><?= $movie["title"] ?></h1>
-        <p class="font-['Epilogue'] text-lg leading-relaxed text-[#000000] max-w-2xl mb-12">
-            <?= $movie["description"] ?>
-        </p>
-        <div class="flex items-center space-x-12">
-        <div class="flex flex-col">
-        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Release</span>
-        <span class="font-['EB_Garamond'] text-xl"><?= date("Y", strtotime($movie["release_date"])) ?></span>
-        </div>
-        <div class="flex flex-col">
-        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Regista</span>
-        <span class="font-['EB_Garamond'] text-xl"><?= $movie["director"] ?></span>
-        </div>
-        <div class="flex flex-col">
-        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Durata</span>
-        <span class="font-['EB_Garamond'] text-xl"><?= $movie["duration"] ?>min</span>
-        </div>
-        <div class="flex flex-col">
-        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Genere</span>
-        <span class="font-['EB_Garamond'] text-xl"><?= $movie["genre_name"] ?></span>
-        </div>
-        <div class="flex flex-col">
-        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Rating</span>
-        <span class="font-['EB_Garamond'] text-xl text-primary-container"><?= $movie["rating"] ?></span>
-        </div>
-        </div>
-        </div>
-        <div class="lg:col-span-5">
-        <div class="bg-surface-container-low overflow-hidden">
-        <img class="w-full h-full object-cover" data-alt="stark black and white cinematic still showing dramatic shadows on a geometric concrete staircase in post-war architectural style" src="<?= $movie["poster_url"] ?>"/>
-        </div>
-        </div>
+            <div class="lg:col-span-7 flex flex-col justify-end">
+                <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-primary-container"><?= $movie["title"] ?></h1>
+                <p class="font-['Epilogue'] text-lg leading-relaxed text-[#000000] max-w-2xl mb-12">
+                    <?= $movie["description"] ?>
+                </p>
+                <div class="flex items-center space-x-12">
+                    <div class="flex flex-col">
+                        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Release</span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= date("Y", strtotime($movie["release_date"])) ?></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Regista</span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $movie["director"] ?></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Durata</span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $movie["duration"] ?>min</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Genere</span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $movie["genre_name"] ?></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Rating</span>
+                        <span class="font-['EB_Garamond'] text-xl text-primary-container"><?= $movie["rating"] ?></span>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-5">
+                <div class="bg-surface-container-low overflow-hidden">
+                    <img class="w-full h-full object-cover" data-alt="stark black and white cinematic still showing dramatic shadows on a geometric concrete staircase in post-war architectural style" src="<?= $movie["poster_url"] ?>"/>
+                </div>
+            </div>
         </section>
         <!-- Discussion Schedule -->
         <section class="bg-surface-container-low p-12">
-        <h2 class="text-4xl font-medium mb-12 text-[#000000]">Discussion Schedule</h2>
-        <div class="space-y-0">
-        <div class="grid grid-cols-1 md:grid-cols-4 py-8 border-b border-neutral-800">
-        <span class="font-['Epilogue'] text-sm font-bold text-primary-container uppercase tracking-widest py-1">18:00 — 18:30</span>
-        <div class="md:col-span-3">
-        <h4 class="text-2xl mb-2 text-[#000000]">Introduction: The Void in the Frame</h4>
-        <p class="text-neutral-400 text-sm font-['Epilogue']">Opening remarks on the historical context of the selected films and the evolution of the UniBo film archive.</p>
-        </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 py-8 border-b border-neutral-800">
-        <span class="font-['Epilogue'] text-sm font-bold text-primary-container uppercase tracking-widest py-1">18:30 — 20:15</span>
-        <div class="md:col-span-3">
-        <h4 class="text-2xl mb-2 text-[#000000]">Screening: Selected Fragments</h4>
-        <p class="text-neutral-400 text-sm font-['Epilogue']">A continuous loop of digital restorations from the Cineteca di Bologna, focusing on key sequences of shadow-play.</p>
-        </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 py-8">
-        <span class="font-['Epilogue'] text-sm font-bold text-primary-container uppercase tracking-widest py-1">20:15 — 21:30</span>
-        <div class="md:col-span-3">
-        <h4 class="text-2xl mb-2 text-[#000000]">Panel Debate &amp; Q&amp;A</h4>
-        <p class="text-neutral-400 text-sm font-['Epilogue']">An open forum for students and faculty to debate the intersection of aesthetics and political subtext.</p>
-        </div>
-        </div>
-        </div>
+            <h2 class="text-4xl font-medium mb-12 text-[#000000]">Discussion Schedule</h2>
+            <div class="space-y-0">
+                <div class="grid grid-cols-1 md:grid-cols-4 py-8 border-b border-neutral-800">
+                    <span class="font-['Epilogue'] text-sm font-bold text-primary-container uppercase tracking-widest py-1">18:00 — 18:30</span>
+                    <div class="md:col-span-3">
+                        <h4 class="text-2xl mb-2 text-[#000000]">Introduction: The Void in the Frame</h4>
+                        <p class="text-neutral-400 text-sm font-['Epilogue']">Opening remarks on the historical context of the selected films and the evolution of the UniBo film archive.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 py-8 border-b border-neutral-800">
+                    <span class="font-['Epilogue'] text-sm font-bold text-primary-container uppercase tracking-widest py-1">18:30 — 20:15</span>
+                    <div class="md:col-span-3">
+                        <h4 class="text-2xl mb-2 text-[#000000]">Screening: Selected Fragments</h4>
+                        <p class="text-neutral-400 text-sm font-['Epilogue']">A continuous loop of digital restorations from the Cineteca di Bologna, focusing on key sequences of shadow-play.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 py-8">
+                    <span class="font-['Epilogue'] text-sm font-bold text-primary-container uppercase tracking-widest py-1">20:15 — 21:30</span>
+                    <div class="md:col-span-3">
+                        <h4 class="text-2xl mb-2 text-[#000000]">Panel Debate &amp; Q&amp;A</h4>
+                        <p class="text-neutral-400 text-sm font-['Epilogue']">An open forum for students and faculty to debate the intersection of aesthetics and political subtext.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <!-- Footer -->
