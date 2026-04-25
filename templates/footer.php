@@ -6,8 +6,8 @@
         </div>
         <div class="flex gap-12 mb-8 md:mb-0">
             <a class="font-['Epilogue'] text-xs font-light tracking-wide hover:text-neutral-200 transition-all uppercase text-neutral-100 hover:text-white" href="#">Privacy Policy</a>
-            <a class="font-['Epilogue'] text-xs font-light tracking-wide hover:text-neutral-200 transition-all uppercase text-neutral-100 hover:text-white" href="#">Accessibility</a>
             <a class="font-['Epilogue'] text-xs font-light tracking-wide hover:text-neutral-200 transition-all uppercase text-neutral-100 hover:text-white" href="#">Contact Us</a>
+            <a class="font-['Epilogue'] text-xs font-light tracking-wide hover:text-neutral-200 transition-all uppercase text-neutral-100 hover:text-white" href="admin.php">Admin Page</a>
         </div>
         <div class="text-right">
             <div class="font-['Epilogue'] text-xs font-light tracking-wide text-neutral-100">
