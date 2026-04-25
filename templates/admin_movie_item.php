@@ -9,19 +9,17 @@
     $movie_genre = $movie_genre ?? "";
 ?>
 
-<tbody class="divide-y divide-neutral-800/50">
-    <tr class="hover:bg-surface-container-lowest transition-colors">
-        <td class="px-6 py-4 font-['Epilogue'] text-sm font-medium"><?= $movie_id ?></td>
-        <td class="px-6 py-4 font-['Epilogue'] text-sm font-medium"><?= $movie_name ?></td>
-        <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary"><?= $movie_director ?></td>
-        <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary"><?= $movie_date ?></td>
-        <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary"><?= $movie_genre ?></td>
-        <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary text-center"><?= $movie_rating ?></td>
-        <td class="px-6 py-4 font-['Epilogue'] text-sm">
-            <div class="flex justify-end gap-3">
-                <button class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">Modifica</button>
-                <button class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">Elimina</button>
-            </div>
-        </td>
-    </tr>
-</tbody>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+    <td class="px-6 py-4 font-['Epilogue'] text-sm font-medium"><?= $movie_id ?></td>
+    <td class="px-6 py-4 font-['Epilogue'] text-sm font-medium"><?= $movie_name ?></td>
+    <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary"><?= $movie_director ?></td>
+    <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary"><?= $movie_date ?></td>
+    <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary"><?= $movie_genre ?></td>
+    <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary text-center"><?= $movie_rating ?></td>
+    <td class="px-6 py-4 font-['Epilogue'] text-sm">
+        <div class="flex justify-end gap-3">
+            <button class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">Modifica</button>
+            <button class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">Elimina</button>
+        </div>
+    </td>
+</tr>
