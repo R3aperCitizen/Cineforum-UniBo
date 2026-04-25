@@ -37,7 +37,11 @@
 
         <!-- Sezione Film -->
         <section class="mb-24">
-
+            <div class="grid grid-cols-[80%_20%] mb-12">
+                <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Film</h2>
+                <button class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Aggiungi Film</button>
+            </div>
+            
             <div class="bg-surface-container-low rounded-lg p-8 mb-8">
                 <h3 class="font-['Epilogue'] text-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6">Aggiungi o modifica un film</h3>
                 <form class="space-y-6">
