@@ -3,7 +3,30 @@
     include 'src/functions.php';
 
     session_start();
-    $_SESSION["user"] = "admin"
+
+    if (isset($_SESSION["user"])) {
+        header('Location: admin_menu.php');
+        exit;
+    }
+
+    $error = "";
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        if (empty($username) || empty($password)) {
+            $error = "Inserisci username e password!";
+        } else {
+            if (adminLogin($username, $password)) {
+                $_SESSION["user"] = $username;
+                header('Location: admin_menu.php');
+                exit;
+            } else {
+                $error = "Credenziali non valide";
+            }
+        }
+    }
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8">
@@ -33,7 +56,7 @@
                 </div>
 
                 <!-- Login Form -->
-                <form class="space-y-8" action="admin.php" method="POST">
+                <form class="space-y-8" action="" method="POST">
                     <!-- Username Field -->
                     <div>
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Utente</label>
@@ -52,6 +75,7 @@
                             Accedi
                         </button>
                     </div>
+                    <label><?= $error ?></label>
                 </form>
 
                 <!-- Back Link -->

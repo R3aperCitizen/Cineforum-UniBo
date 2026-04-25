@@ -236,6 +236,17 @@
         return $italianDay . ' • ' . $date->format('d M');
     }
 
+    function adminLogin($user, $pwd) {
+        global $db;
+        $query = "SELECT * FROM admin WHERE username=? AND pwd=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $user, SQLITE3_TEXT);
+        $stmt->bindValue(2, $pwd, SQLITE3_TEXT);
+        $results = $stmt->execute();
+
+        return $results==0 ? false : true;
+    }
+
     function formatDate2($dateString) {
         $mesi = [
             1 => 'Gennaio', 2 => 'Febbraio', 3 => 'Marzo', 4 => 'Aprile',
