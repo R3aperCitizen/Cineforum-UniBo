@@ -206,6 +206,13 @@
         return $events;
     }
 
+    function getEventsCount() {
+        global $db;
+        $query = "SELECT COUNT(*) AS events_count FROM events;";
+        $results = $db->query($query);
+        return $results->fetchArray();
+    }
+
     function formatDate($dateString) {
         $days = [
             'Monday'    => 'Lunedì',
