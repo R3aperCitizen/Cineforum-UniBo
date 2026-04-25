@@ -86,6 +86,19 @@
         return $genres;
     }
 
+    function getAllEvents() {
+        global $db;
+        $query = "SELECT * FROM events;";
+        $results = $db->query($query);
+
+        $events = [];
+        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+            $events[] = $row;
+        }
+
+        return $events;
+    }
+
     function getMoviesGenreWithCount() {
         global $db;
         $query = "SELECT * FROM (
