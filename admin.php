@@ -30,7 +30,7 @@
 
         <!-- Sezione Film -->
         <section class="mb-24">
-            <div class="flex items-end mb-12">
+            <div class="grid grid-cols-[80%_20%] mb-12">
                 <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Film</h2>
                 <button class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Aggiungi Film</button>
             </div>
@@ -123,7 +123,7 @@
 
         <!-- Sezione Generi -->
         <section class="mb-24">
-            <div class="flex items-end mb-12">
+            <div class="grid grid-cols-[80%_20%] mb-12">
                 <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Generi</h2>
                 <button class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Aggiungi Genere</button>
             </div>
@@ -172,7 +172,7 @@
 
         <!-- Sezione Eventi -->
         <section class="mb-24">
-            <div class="flex items-end mb-12">
+            <div class="grid grid-cols-[80%_20%] mb-12">
                 <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Eventi</h2>
                 <button class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Aggiungi Evento</button>
             </div>
