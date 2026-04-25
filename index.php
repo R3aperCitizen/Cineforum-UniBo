@@ -87,13 +87,17 @@
                         $event_small_date = formatDate($thirdEvent['event_date']);
                         $event_small_name = $thirdEvent['event_name'];
                         $event_small_location = $thirdEvent['location'];
+                        $event_small_is_special = $thirdEvent['is_special'];
                         include "templates/event_small.php";
                     ?>
                     <!-- Evento 4: Special -->
                     <?php
-                        $event_special_id = $special['event_id'];
-                        $event_special_name = $special['event_name'];
-                        include "templates/event_special.php";
+                        $event_small_id = $special['event_id'];
+                        $event_small_date = formatDate($special['event_date']);
+                        $event_small_name = $special['event_name'];
+                        $event_small_location = $special['location'];
+                        $event_small_is_special = $special['is_special'];
+                        include "templates/event_small.php";
                     ?>
                 </div>
             </div>
