@@ -61,13 +61,6 @@
         $movie_filter_is_selected = is_null($requested_genre) && is_null($requested_director);
         include "templates/movie_filter.php";
     }
-    
-    // Renderizza la scritta che notifica il numero di film visualizzati e quelli totali
-    function renderPageInfo()
-    {
-        global $page;
-        echo "Pagina " . $page;
-    }
 ?>
 
 <html class="" lang="en"><head>
@@ -122,7 +115,7 @@
             <!-- Catalogo -->
             <div class="flex-grow">
                 <div class="mb-8 flex items-center justify-between">
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500"><?= renderPageInfo(); ?></span>
+                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500">Pagina <?= $page ?></span>
                     <div class="flex gap-4">
                         <form action="">
                             <input type="hidden" name="page" value="<?= $page > 1 ? $page - 1 : $page ?>">

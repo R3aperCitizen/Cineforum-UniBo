@@ -2,9 +2,13 @@
 
 <?php 
     include 'src/functions.php';
-    const EVENTS_PER_PAGE = 30;
+    const EVENTS_PER_PAGE = 12;
 
+    $page = $_GET["page"] ?? 1;
     $events = getEventsCatalog(1, EVENTS_PER_PAGE);
+    $count = getEventsCount()["movie_count"] ?? 0;
+
+    $pages = $count / EVENTS_PER_PAGE;
 ?>
 
 <html class="" lang="en"><head>
@@ -23,17 +27,16 @@
     <?php require "templates/header.php"; ?>
     <main class="max-w-screen-2xl mx-auto px-12 py-16">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="bg-surface-container p-8 flex flex-col justify-between group">
+            <div class="md:col-span-2 bg-surface-container p-8 flex flex-col justify-between group">
                 <h1 class="text-6xl font-medium">Gli Eventi</h1>
             </div>
-            <div class="bg-surface-container p-8 flex flex-col justify-between group"></div>
             <div class="bg-surface-container p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
-                <form class="hidden" action=""><input type="hidden" name="page" value="1"></form>
-                <h3 class="text-2xl font-medium">Previous page</h3>
+                <form class="hidden" action=""><input type="hidden" name="page" value="<?= $page > 1 ? $page - 1 : $page ?>"></form>
+                <h3 class="text-2xl font-medium">Pagina precedente</h3>
             </div>
             <div class="bg-surface-container p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
-                <form class="hidden" action=""><input type="hidden" name="page" value="1"></form>
-                <h3 class="text-2xl font-medium">Next page</h3>
+                <form class="hidden" action=""><input type="hidden" name="page" value="<?= $page < $pages ? $page + 1 : $page ?>"></form>
+                <h3 class="text-2xl font-medium">Pagina successiva</h3>
             </div>
 
             <?php
