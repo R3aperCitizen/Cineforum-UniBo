@@ -2,6 +2,11 @@
 <?php 
     include 'src/functions.php';
 
+    if (!isset($_SESSION["user"])) {
+        header('Location: index.php');
+        die();
+    }
+
     $genres = getAllGenres();
 ?>
 <html class="" lang="en"><head>

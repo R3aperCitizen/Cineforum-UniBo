@@ -2,8 +2,11 @@
 <?php 
     include 'src/functions.php';
 
-    $movies = getAllMovies();
-    $genres = getAllGenres();
+    if (!isset($_SESSION["user"])) {
+        header('Location: index.php');
+        die();
+    }
+
     $events = getAllEvents();
 ?>
 <html class="" lang="en"><head>

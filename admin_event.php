@@ -2,9 +2,10 @@
 <?php 
     include 'src/functions.php';
 
-    $movies = getAllMovies();
-    $genres = getAllGenres();
-    $events = getAllEvents();
+    if (!isset($_SESSION["user"])) {
+        header('Location: index.php');
+        die();
+    }
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8">
