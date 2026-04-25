@@ -2,13 +2,13 @@
 
 <?php 
     include 'src/functions.php';
-    const EVENTS_PER_PAGE = 12;
+    const EVENTS_PER_PAGE = 12; // Deve essere multiplo di 4 per la griglia.
 
     $page = $_GET["page"] ?? 1;
-    $events = getEventsCatalog(1, EVENTS_PER_PAGE);
-    $count = getEventsCount()["movie_count"] ?? 0;
+    $events = getEventsCatalog($page, EVENTS_PER_PAGE);
+    $count = getEventsCount()["events_count"] ?? 0;
 
-    $pages = $count / EVENTS_PER_PAGE;
+    $pages = ceil($count / EVENTS_PER_PAGE);
 ?>
 
 <html class="" lang="en"><head>

@@ -19,7 +19,7 @@
     
     // Calcolo pagine totali
     $count = getMoviesCount($requested_genre, $requested_director)["movie_count"] ?? 0;
-    $pages = $count / CARDS_PER_PAGE;
+    $pages = ceil($count / CARDS_PER_PAGE);
 
     // Renderizza la lista dei filtri per genere
     function renderGenres()
