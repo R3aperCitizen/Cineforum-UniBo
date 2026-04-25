@@ -60,6 +60,19 @@
         return $movies;
     }
 
+    function getAllMovies() {
+        global $db;
+        $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id;";
+        $results = $db->query($query);
+
+        $movies = [];
+        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+            $movies[] = $row;
+        }
+
+        return $movies;
+    }
+
     function getMoviesGenreWithCount() {
         global $db;
         $query = "SELECT * FROM (

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php 
     include 'src/functions.php';
+
+    $movies = getAllMovies();
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8">
@@ -93,6 +95,7 @@
                     <table class="w-full">
                         <thead class="bg-surface-container-high">
                             <tr>
+                                <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-left">ID</th>
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-left">Titolo</th>
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-left">Regista</th>
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-left">Anno</th>
@@ -101,21 +104,24 @@
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-right">Azioni</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-neutral-800/50">
-                            <tr class="hover:bg-surface-container-lowest transition-colors">
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm font-medium">Film di Esempio</td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary">Nome Regista</td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary">2024</td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary">Drammatico</td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary text-center">8.5</td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm">
-                                    <div class="flex justify-end gap-3">
-                                        <button class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">Modifica</button>
-                                        <button class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">Elimina</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <?php
+                            if (!$movies || is_null($movies)) {
+                                echo "NESSUN FILM DISPONIBILE";
+                            } else {
+                                foreach($movies as $movie):
+                                    $movie_id = $movie["movie_id"];
+                                    $movie_name = $movie["title"];
+                                    $movie_description = $movie["description"];
+                                    $movie_date = $movie["release_date"];
+                                    $movie_director = $movie["director"];
+                                    $movie_duration = $movie["duration"];
+                                    $movie_rating = $movie["rating"];
+                                    $movie_genre = $movie["genre_name"];
+            
+                                    include 'templates/admin_movie_item.php';
+                                endforeach;
+                            }
+                        ?>
                     </table>
                 </div>
             </div>
