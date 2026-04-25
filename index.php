@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
     include 'src/functions.php';
 
     $event = getMostRecentEvent();
