@@ -4,6 +4,7 @@
 
     $movies = getAllMovies();
     $genres = getAllGenres();
+    $events = getAllEvents();
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8">
@@ -255,30 +256,35 @@
                     <table class="w-full">
                         <thead class="bg-surface-container-high">
                             <tr>
+                                <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-left">ID</th>
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-left">Nome</th>
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-left">Data</th>
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-left">Luogo</th>
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-center">Prezzo</th>
+                                <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-center">Posti</th>
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-center">Speciale</th>
                                 <th class="px-6 py-4 font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant text-right">Azioni</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-800/50">
-                            <tr class="hover:bg-surface-container-lowest transition-colors">
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm font-medium">Nome Evento Esempio</td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary">15 Mag 2024</td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary">Cesena</td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary text-center">8.00</td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm text-secondary text-center">
-                                    <span class="bg-primary-container text-white px-2 py-1 text-[10px] uppercase tracking-widest rounded">Sì</span>
-                                </td>
-                                <td class="px-6 py-4 font-['Epilogue'] text-sm">
-                                    <div class="flex justify-end gap-3">
-                                        <button class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">Modifica</button>
-                                        <button class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">Elimina</button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php
+                                if (!$events || is_null($events)) {
+                                    echo "NESSUN EVENTO DISPONIBILE";
+                                } else {
+                                    foreach($events as $event):
+                                        $event_id = $event["event_id"];
+                                        $event_name = $event["event_name"];
+                                        $event_description = $event["event_description"];
+                                        $event_date = $event["event_date"];
+                                        $event_location = $event["location"];
+                                        $event_capacity = $event["capacity"];
+                                        $event_price = $event["ticket_price"];
+                                        $event_special = $event["is_special"];
+                
+                                        include 'templates/admin_event_item.php';
+                                    endforeach;
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
