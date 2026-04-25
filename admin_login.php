@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php 
     include 'src/functions.php';
+
+    session_start();
+    $_SESSION["user"] = "admin"
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8">
