@@ -244,7 +244,7 @@
         $stmt->bindValue(2, $pwd, SQLITE3_TEXT);
         $results = $stmt->execute();
 
-        return $results==0 ? false : true;
+        return $results->fetchArray();
     }
 
     function formatDate2($dateString) {

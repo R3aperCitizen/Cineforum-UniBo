@@ -69,13 +69,13 @@
                         <input type="password" name="password" required class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-primary focus:border-2 focus:outline-none px-4 py-3 font-body transition-colors placeholder:text-on-surface-variant/40" placeholder="Inserisci la tua password">
                     </div>
 
+                    <label class="font-['Epilogue'] text-m text-primary-container uppercase tracking-widest text-on-surface-variant mb-2 block"><?= $error ?></label>
                     <!-- Submit Button -->
                     <div class="pt-4">
                         <button type="submit" class="bg-primary-container text-white px-10 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity w-full md:w-auto">
                             Accedi
                         </button>
                     </div>
-                    <label><?= $error ?></label>
                 </form>
 
                 <!-- Back Link -->

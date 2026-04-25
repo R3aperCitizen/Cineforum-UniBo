@@ -60,7 +60,7 @@
                         <h2 class="text-5xl font-medium tracking-tight text-black mb-4">Programmazione</h2>
                         <p class="font-body text-tertiary uppercase tracking-widest text-sm">Stagione 2025/26 • Cesena</p>
                     </div>
-                    <a class="font-body text-primary-container font-bold text-sm uppercase tracking-widest border-b-2 border-primary-container pb-1 hover:opacity-90 transition-opacity" href="#">Calendario Completo</a>
+                    <a class="font-body text-primary-container font-bold text-sm uppercase tracking-widest border-b-2 border-primary-container pb-1 hover:opacity-90 transition-opacity" href="events.php">Calendario Completo</a>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <!-- Evento 1: Large -->
