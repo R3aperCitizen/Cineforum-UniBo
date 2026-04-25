@@ -2,7 +2,7 @@
 
 <?php 
     include 'src/functions.php';
-    const EVENTS_PER_PAGE = 20;
+    const EVENTS_PER_PAGE = 30;
 
     $events = getEventsCatalog(1, EVENTS_PER_PAGE);
 ?>
@@ -22,13 +22,23 @@
     <!-- Header -->
     <?php require "templates/header.php"; ?>
     <main class="max-w-screen-2xl mx-auto px-12 py-16">
-        <!-- Titolo -->
-        <section class="mb-20 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-            <div class="md:col-span-8">
-                <h1 class="font-['EB_Garamond'] text-7xl font-medium tracking-tight text-on-background mb-4">Gli Eventi</h1>
-            </div>
-        </section>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-surface-container p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
+                <form class="hidden" action=""><input type="hidden" name="page" value="1"></form>
+                <h1 class="text-6xl font-medium">Gli Eventi</h1>
+            </div>
+            <div class="bg-surface-container p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
+
+            </div>
+            <div class="bg-surface-container p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
+                <form class="hidden" action=""><input type="hidden" name="page" value="1"></form>
+                <h3 class="text-2xl font-medium">Previous page</h3>
+            </div>
+            <div class="bg-surface-container p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
+                <form class="hidden" action=""><input type="hidden" name="page" value="1"></form>
+                <h3 class="text-2xl font-medium">Next page</h3>
+            </div>
+
             <?php
                 foreach ($events as $event):
                     $event_small_id = $event['event_id'];
@@ -39,18 +49,6 @@
                     include "templates/event_small.php";
                 endforeach;
             ?>
-
-            <div class="bg-surface-container-lowest p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
-                <form class="hidden" action=""><input type="hidden" name="page" value="1"></form>
-                <div>
-                    <span class="<?= $event_small_span_class ?> font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= $event_small_date ?></span>
-                    <h3 class="text-2xl font-medium <?= $event_small_h3_class ?>"><?= $event_small_name ?></h3>
-                </div>
-                <div class="mt-4 flex items-center gap-2 text-tertiary group-hover:text-white transition-colors">
-                    <span class="material-symbols-outlined text-sm <?= $event_small_span2_class ?>">location_on</span>
-                    <span class="font-body text-xs uppercase tracking-widest <?= $event_small_span2_class ?>"><?= $event_small_location ?></span>
-                </div>
-            </div>
         </div>
     </main>
     <!-- Footer -->
