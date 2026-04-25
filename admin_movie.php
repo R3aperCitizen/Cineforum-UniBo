@@ -1,14 +1,26 @@
 <!DOCTYPE html>
+
 <?php 
     include 'src/functions.php';
 
     session_start();
-    if (!isset($_SESSION["user"])) {
-        header('Location: index.php');
-        die();
-    }
+    if (!isset($_SESSION["user"]))
+        throwError(403, "Forbidden.");
 
+    $action = $_GET["action"] ?? null;
+
+    if ($action === "update" && !isset($_GET["movie_id"]))
+        throwError(400, "Bad request.");
+    
+    $movie = match($action) {
+        "update" => getMovieFromId($_GET["movie_id"]),
+        "add"    => [],
+        default  => throwError(400, "Bad request.")
+    };
+
+    $genres = getAllGenres();
 ?>
+
 <html class="" lang="en"><head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -38,13 +50,11 @@
         <!-- Sezione Film -->
         <section class="mb-24">
             <div class="grid grid-cols-[80%_20%] mb-12">
-                <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Film</h2>
-                <button class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Aggiungi Film</button>
+                <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Aggiungi o modifica un film</h2>
             </div>
-            
+
             <div class="bg-surface-container-low rounded-lg p-8 mb-8">
-                <h3 class="font-['Epilogue'] text-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6">Aggiungi o modifica un film</h3>
-                <form class="space-y-6">
+                <form action="" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Titolo</label>
@@ -57,7 +67,7 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
-                            <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Data Release</label>
+                            <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Data di uscita</label>
                             <input type="date" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                         <div>
@@ -95,6 +105,7 @@
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Trailer URL</label>
                         <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors" placeholder="YouTube o Vimeo URL">
                     </div>
+                    <input type="submit" value="conferma" class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">
                 </form>
             </div>
         </section>
