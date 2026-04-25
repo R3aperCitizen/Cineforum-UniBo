@@ -1,5 +1,10 @@
 <?php
     include_once 'db.php';
+
+    function throwError($code, $message) {
+        header('Location: /error.php?code=' . $code . '&message=' . $message);
+        exit;
+    }
     
     function getMostRecentEvent() {
         global $db;
