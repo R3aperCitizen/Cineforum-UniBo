@@ -6,7 +6,7 @@
 
     if (isset($_SESSION["user"])) {
         header('Location: admin_menu.php');
-        exit;
+        die();
     }
 
     $error = "";
@@ -21,7 +21,7 @@
             if (adminLogin($username, $password)) {
                 $_SESSION["user"] = $username;
                 header('Location: admin_menu.php');
-                exit;
+                die();
             } else {
                 $error = "Credenziali non valide";
             }
