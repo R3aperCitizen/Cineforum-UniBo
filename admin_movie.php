@@ -5,17 +5,17 @@
 
     session_start();
     if (!isset($_SESSION["user"]))
-        throwError(403, "Forbidden.");
+        throwError(403, "Accesso non consentito.");
 
     $action = $_GET["action"] ?? null;
 
     if ($action === "update" && !isset($_GET["movie_id"]))
-        throwError(400, "Bad request.");
+        throwError(400, "Richiesta malformata.");
     
     $movie = match($action) {
-        "update" => getMovieFromId($_GET["movie_id"]),
         "add"    => [],
-        default  => throwError(400, "Bad request.")
+        "update" => getMovieFromId($_GET["movie_id"]),
+        default  => throwError(400, "Richiesta malformata.")
     };
 
     $genres = getAllGenres();
@@ -105,7 +105,7 @@
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Trailer URL</label>
                         <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors" placeholder="YouTube o Vimeo URL">
                     </div>
-                    <input type="submit" value="conferma" class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">
+                    <input type="submit" value="conferma" class="bg-primary-container text-white px-6 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">
                 </form>
             </div>
         </section>
