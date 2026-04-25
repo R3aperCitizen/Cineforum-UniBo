@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <?php 
     session_start();
-    if (!isset($_SESSION["user"])) {
-        header('Location: admin_login.php');
-        die();
-    }
+    if (!isset($_SESSION["user"]))
+        throwError(403, "Forbidden.");
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_destroy();

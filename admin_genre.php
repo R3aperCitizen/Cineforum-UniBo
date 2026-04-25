@@ -3,10 +3,8 @@
     include 'src/functions.php';
 
     session_start();
-    if (!isset($_SESSION["user"])) {
-        header('Location: index.php');
-        die();
-    }
+    if (!isset($_SESSION["user"]))
+        throwError(403, "Forbidden.");
 
 ?>
 <html class="" lang="en"><head>
