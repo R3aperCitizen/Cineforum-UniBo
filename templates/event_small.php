@@ -17,7 +17,7 @@
         <span class="<?= $event_small_span_class ?> font-body text-xs font-bold uppercase tracking-tighter mb-2 block"><?= $event_small_date ?></span>
         <h3 class="text-2xl font-medium <?= $event_small_h3_class ?>"><?= $event_small_name ?></h3>
     </div>
-    <div class="mt-4 flex items-center gap-2 text-tertiary group-hover:text-white transition-colors">
+    <div class="mt-4 flex items-center gap-2 text-tertiary transition-colors">
         <span class="material-symbols-outlined text-sm <?= $event_small_span2_class ?>">location_on</span>
         <span class="font-body text-xs uppercase tracking-widest <?= $event_small_span2_class ?>"><?= $event_small_location ?></span>
     </div>
