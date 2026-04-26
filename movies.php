@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php 
-    include 'src/functions.php';
+    include 'functions.php';
 
     // Cards mostrate per pagina
     const CARDS_PER_PAGE = 6;

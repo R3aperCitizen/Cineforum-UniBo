@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    include 'src/functions.php';
+    include 'functions.php';
 
     $error_code = $_GET['code'] ?? '500';
     $error_message = $_GET['message'] ?? 'Si è verificato un errore inaspettato.';
