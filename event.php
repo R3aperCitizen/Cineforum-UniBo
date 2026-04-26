@@ -19,7 +19,7 @@
     $seats_display = "Nessun Posto Disponibile";
     $sub_form = "hidden";
 
-    if ($available_seats > 0) {
+    if ($available_seats > 0 && $event_status=="Programmato") {
         $seats_display = "Posti Disponibili: ".$available_seats."/".$event_capacity;
         $sub_form = "";
     }
