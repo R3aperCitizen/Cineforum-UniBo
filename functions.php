@@ -267,7 +267,7 @@
         $stmt->execute();
     }
 
-    function updateMovieFromId($movie_id) {
+    function updateMovieFromId($movie) {
         global $db;
 
         $query = "UPDATE movies SET title = ?, release_date = ?, director = ?, duration = ?, rating = ?, description = ?, poster_url = ?, trailer_url = ?, genre_id = ? WHERE movie_id = ?;";
