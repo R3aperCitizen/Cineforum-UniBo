@@ -1,5 +1,5 @@
 <?php
-    include_once 'db.php';
+    $db = new SQLite3(__DIR__ . '/database.db');
 
     function throwError($code, $message) {
         header('Location: /error.php?code=' . $code . '&message=' . $message);
