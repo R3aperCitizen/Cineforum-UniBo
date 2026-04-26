@@ -211,6 +211,15 @@
         return $events;
     }
 
+    function getEventOccupiedSeats($event_id) {
+        global $db;
+        $query = "SELECT COUNT(*) AS sub_count FROM events, event_subscriptions WHERE events.event_id=event_subscriptions.event_id AND events.event_id=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $event_id, SQLITE3_INTEGER);
+        $results = $stmt->execute();
+        return $results->fetchArray()["sub_count"];
+    }
+
     function getEventsCount() {
         global $db;
         $query = "SELECT COUNT(*) AS events_count FROM events;";

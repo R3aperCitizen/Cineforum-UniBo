@@ -4,13 +4,25 @@
     include 'src/functions.php';
 
     $event = getEventFromId($_GET["event_id"]);
+    $sub_count = getEventOccupiedSeats($_GET["event_id"]);
     $event_name = $event["event_name"] ?? "Non trovato";
     $event_description = $event["event_description"] ?? "Non trovato";
     $event_date = isset($event["event_date"]) ? formatDate2($event["event_date"]) : "Non trovato";
     $event_location = $event["location"] ?? "Non trovato";
-    $event_price = $event["ticket_price"] ?? "Non trovato";
+    $event_price = $event["ticket_price"] ?? 0;
+    $event_capacity = $event["capacity"] ?? 0;
     $event_poster = $event["event_poster"] ?? "";
     $event_special = $event["is_special"] ?? 0;
+    $event_status = $event["event_status"] ?? "Non trovato";
+    $available_seats = $event_capacity - $sub_count;
+
+    $seats_display = "Nessun Posto Disponibile";
+    $sub_form = "hidden";
+
+    if ($available_seats > 0) {
+        $seats_display = "Posti Disponibili: ".$available_seats."/".$event_capacity;
+        $sub_form = "";
+    }
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8"/>
@@ -35,7 +47,7 @@
                     <span class="material-symbols-outlined text-[10px]">chevron_right</span>
                     <span class="text-[#B31E24]"><?= $event_name ?></span>
                 </nav>
-                <h1 class="text-7xl md:text-8xl font-medium tracking-tight mb-8 leading-none text-[#000000]"><?= $event_name ?></h1>
+                <h1 class="text-7xl md:text-7xl font-medium tracking-tight mb-8 leading-none text-[#000000]"><?= $event_name ?></h1>
                 <div class="flex items-center space-x-12">
                     <div class="flex flex-col">
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Data</span>
@@ -49,19 +61,23 @@
                         <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Costo</span>
                         <span class="font-['EB_Garamond'] text-xl"><?= $event_price ?>€</span>
                     </div>
+                    <div class="flex flex-col">
+                        <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest mb-1">Stato</span>
+                        <span class="font-['EB_Garamond'] text-xl"><?= $event_status ?></span>
+                    </div>
                     <?php if ($event_special == 1) include 'templates/special_event.php'; ?>
                 </div>
             </div>
             <div class="lg:col-span-5">
                 <div class="aspect-[4/5] bg-surface-container-low overflow-hidden">
-                    <img class="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity duration-700" src="<?= $event_poster ?>"/>
+                    <img class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-grayscale duration-700" src="<?= $event_poster ?>"/>
                 </div>
             </div>
         </section>
         <!-- Asymmetric Content Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <!-- Synopsis -->
-            <div class="lg:col-span-8">
+            <div class="lg:col-span-7">
                 <h2 class="text-4xl font-medium mb-10 border-l-4 border-primary-container pl-6 text-[#000000]">Sintesi Curatoriale</h2>
                 <div class="space-y-6 font-['Epilogue'] leading-[1.8] text-lg max-w-3xl text-[#000000]">
                     <p>
@@ -70,17 +86,18 @@
                 </div>
             </div>
             <!-- Right Column: Meta Info & Actions -->
-            <div class="sticky top-32 space-y-12 lg:col-span-4">
+            <div class="sticky top-32 space-y-12 lg:col-span-5">
                 <!-- Registration Card -->
                 <div class="bg-primary-container p-8">
-                    <h3 class="text-white text-3xl mb-6 text-[#000000]">Reserve Attendance</h3>
+                    <h3 class="text-white text-3xl mb-6 text-[#000000]">Riserva un posto</h3>
                     <p class="font-['Epilogue'] text-white/80 text-sm mb-8 leading-relaxed">
-                        Access is limited to UniBo students and faculty members. Pre-registration is mandatory for security protocols and digital credit assignment.
+                        Accesso limitato agli studenti UniBo e ai membri della facoltà. Pre-registrazione obbligatoria con e-mail istituzionale.
                     </p>
-                    <form class="space-y-4">
-                        <input class="w-full bg-black/20 border-none placeholder-white/50 text-white font-['Epilogue'] text-sm focus:ring-1 focus:ring-white py-3" placeholder="Institutional Email" type="text"/>
+                    <h2 class="text-white text-xl mb-6 text-[#000000]"><?= $seats_display ?></h2>
+                    <form class="space-y-4 <?= $sub_form ?>">
+                        <input class="w-full bg-black/20 border-none placeholder-white/50 text-white font-['Epilogue'] text-sm focus:ring-1 focus:ring-white py-3" placeholder="Institutional Email (es. marco.rossi@studio.unibo.it)" type="text"/>
                         <button class="w-full bg-white text-primary-container font-['Epilogue'] font-bold uppercase tracking-widest py-4 text-sm hover:bg-neutral-100 transition-colors" href="booking.php">
-                            Book Seminar Seat
+                            Prenota posto
                         </button>
                     </form>
                 </div>
