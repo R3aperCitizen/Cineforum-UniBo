@@ -1,14 +1,17 @@
 <?php
     $db = new SQLite3(__DIR__ . '/database.db');
 
-    function redirect($page) {
-        header('Location: ' . $page);
+    function redirect($page, $args = []) {
+        $location = $page;
+        if (!empty($args))
+            $location .= '?' . http_build_query($args);
+
+        header('Location: ' . $location);
         exit;
     }
 
     function throwError($code, $message) {
-        header('Location: /error.php?code=' . $code . '&message=' . $message);
-        exit;
+        redirect('/error.php', ['code' => $code, 'message' => $message]);
     }
     
     function getMostRecentEvent() {

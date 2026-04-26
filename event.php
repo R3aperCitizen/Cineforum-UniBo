@@ -38,8 +38,7 @@
         } else {
             if (insertEventSubscription($email, $event_id)) {
                 $registered = 1;
-                header("Location: event.php?event_id=".$event_id."&registered=".$registered);
-                exit;
+                redirect("/event.php", ["event_id" => $event_id, "registered" => $registered]);
             } else {
                 $error = "Email già registrata o invalida";
             }
