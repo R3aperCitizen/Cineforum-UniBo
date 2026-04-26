@@ -1,7 +1,7 @@
 <?php
     include '../functions.php';
-    session_start();
 
+    session_start();
     if (!isset($_SESSION["user"]))
         throwError(403, "Accesso non consentito.");
 
@@ -10,8 +10,7 @@
     if(is_null($_GET["movie_id"]))
         throwError(400, "Richiesta malposta.");
 
-    throwError("???", "Non ancora implementato.");
-
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit;
+    deleteMovieFromId($movie_id);
+    
+    redirect("/admin_movies.php");
 ?>

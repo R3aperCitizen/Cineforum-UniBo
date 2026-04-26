@@ -12,8 +12,21 @@
     if ($action === "update" && !isset($_GET["movie_id"]))
         throwError(400, "Richiesta malformata.");
     
+    $movie = [
+        'movie_id' => null,
+        'title' => null, 
+        'release_date' => null, 
+        'director' => null, 
+        'duration' => null, 
+        'rating' => null, 
+        'description' => null, 
+        'poster_url' => null, 
+        'trailer_url' => null, 
+        'genre_id' => null,
+    ];
+
     $movie = match($action) {
-        "add"    => [],
+        "add"    => $movie,
         "update" => getMovieFromId($_GET["movie_id"]),
         default  => throwError(400, "Richiesta malformata.")
     };
@@ -54,56 +67,61 @@
             </div>
 
             <div class="bg-surface-container-low rounded-lg p-8 mb-8">
-                <form action="" class="space-y-6">
+                <form action="<?= $action === 'add' ? '/actions/admin_movie_add.php' : '/actions/admin_movie_edit.php' ?>" method="POST" class="space-y-6">
+                    <input type="hidden" name="redirect" value="<?= $_SERVER['PHP_SELF'] ?>">
+                    <?= $action === 'update' ? '<input type="hidden" name="movie_id" value="' . $movie["movie_id"] . '">' : '' ?>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Titolo</label>
-                            <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="text" name="title" value="<?= $movie["title"] ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Regista</label>
-                            <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="text" name="director" value="<?= $movie["director"] ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Data di uscita</label>
-                            <input type="date" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="date" name="release_date" value="<?= $movie["release_date"] ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Durata (minuti)</label>
-                            <input type="number" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="number" name="duration" value="<?= $movie["duration"] ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Voto</label>
-                            <input type="number" step="0.1" max="10" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="number" name="rating" value="<?= $movie["rating"] ?>" step="0.1" max="10" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Genere</label>
-                            <select class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <select name="genre_id" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                                 <?php
                                     foreach ($genres as $genre):
                                         $genre_id = $genre["genre_id"];
                                         $genre_name = $genre["genre_name"];
-                                        echo "<option value='$genre_id'>$genre_name</option>";
+                                        if($genre_id === $movie["genre_id"])
+                                            echo "<option selected value='$genre_id'>$genre_name</option>";
+                                        else
+                                            echo "<option value='$genre_id'>$genre_name</option>";
                                     endforeach;
                                 ?>
                             </select>
                         </div>
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Immagine Poster</label>
-                            <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors" placeholder="URL dell'immagine">
+                            <input name="poster_url" value="<?= $movie["poster_url"] ?>" type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors" placeholder="URL dell'immagine">
                         </div>
                     </div>
                     <div>
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Descrizione</label>
-                        <textarea rows="3" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors"></textarea>
+                        <textarea name="description" rows="3" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors"><?= $movie["description"] ?></textarea>
                     </div>
                     <div>
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Trailer URL</label>
-                        <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors" placeholder="YouTube o Vimeo URL">
+                        <input name="trailer_url" value="<?= $movie["trailer_url"] ?>" type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors" placeholder="YouTube o Vimeo URL">
                     </div>
                     <input type="submit" value="conferma" class="bg-primary-container text-white px-6 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">
                 </form>

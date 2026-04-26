@@ -1,6 +1,11 @@
 <?php
     $db = new SQLite3(__DIR__ . '/database.db');
 
+    function redirect($page) {
+        header('Location: ' . $page);
+        exit;
+    }
+
     function throwError($code, $message) {
         header('Location: /error.php?code=' . $code . '&message=' . $message);
         exit;
