@@ -5,7 +5,7 @@
     session_start();
 
     if (isset($_SESSION["user"])) {
-        header('Location: admin_menu.php');
+        redirect('/admin_menu.php');
         die();
     }
 
@@ -20,7 +20,7 @@
         } else {
             if (adminLogin($username, $password)) {
                 $_SESSION["user"] = $username;
-                header('Location: admin_menu.php');
+                redirect('/admin_menu.php');
                 die();
             } else {
                 $error = "Credenziali non valide";
