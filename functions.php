@@ -259,7 +259,7 @@
         $stmt->bindValue(2, $movie["release_date"], SQLITE3_TEXT);
         $stmt->bindValue(3, $movie["director"], SQLITE3_TEXT);
         $stmt->bindValue(4, $movie["duration"], SQLITE3_INTEGER);
-        $stmt->bindValue(5, $movie["rating"], SQLITE3_REAL);
+        $stmt->bindValue(5, (float) $movie["rating"], 2);
         $stmt->bindValue(6, $movie["description"], SQLITE3_TEXT);
         $stmt->bindValue(7, $movie["poster_url"], SQLITE3_TEXT);
         $stmt->bindValue(8, $movie["trailer_url"], SQLITE3_TEXT);
