@@ -267,6 +267,15 @@
         $stmt->execute();
     }
 
+    function deleteMovieFromId($movie_id) {
+        global $db;
+
+        $delete_query = "DELETE FROM movies WHERE movie_id=?;";
+        $stmt = $db->prepare($delete_query);
+        $stmt->bindValue(1, $movie_id, SQLITE3_INTEGER);
+        $stmt->execute();
+    }
+
     function adminLogin($user, $pwd) {
         global $db;
         $query = "SELECT * FROM admin WHERE username=? AND pwd=?;";
