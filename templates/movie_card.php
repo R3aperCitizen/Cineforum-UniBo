@@ -12,8 +12,8 @@
     <div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
         <img alt="<?= $movie_card_name ?>" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" src="<?= $movie_card_image ?>"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-            <form class="hidden" action="movie.php"><input type="hidden" name="movie_id" value="<?= $movie_card_id ?>"></form>
-            <button class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest" onclick="this.closest('div').querySelector('form').submit()">Vedi Dettagli</button>
+            <form id="go_to_movie" class="hidden" action="movie.php"><input type="hidden" name="movie_id" value="<?= $movie_card_id ?>"></form>
+            <button type="submit" form="go_to_movie" class="w-full bg-white text-black py-3 text-xs font-bold uppercase tracking-widest">Vedi Dettagli</button>
         </div>
     </div>
     <div class="space-y-2">
