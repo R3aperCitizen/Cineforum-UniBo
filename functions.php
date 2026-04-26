@@ -253,8 +253,8 @@
     function insertMovie($movie) {
         global $db;
 
-        $insert_query = "INSERT INTO movies(title, release_date, director, duration, rating, description, poster_url, trailer_url, genre_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-        $stmt = $db->prepare($insert_query);
+        $query = "INSERT INTO movies(title, release_date, director, duration, rating, description, poster_url, trailer_url, genre_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        $stmt = $db->prepare($query);
         $stmt->bindValue(1, $movie["title"], SQLITE3_TEXT);
         $stmt->bindValue(2, $movie["release_date"], SQLITE3_TEXT);
         $stmt->bindValue(3, $movie["director"], SQLITE3_TEXT);
@@ -267,11 +267,29 @@
         $stmt->execute();
     }
 
+    function updateMovieFromId($movie_id) {
+        global $db;
+
+        $query = "UPDATE movies SET title = ?, release_date = ?, director = ?, duration = ?, rating = ?, description = ?, poster_url = ?, trailer_url = ?, genre_id = ? WHERE movie_id = ?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $movie["title"], SQLITE3_TEXT);
+        $stmt->bindValue(2, $movie["release_date"], SQLITE3_TEXT);
+        $stmt->bindValue(3, $movie["director"], SQLITE3_TEXT);
+        $stmt->bindValue(4, $movie["duration"], SQLITE3_INTEGER);
+        $stmt->bindValue(5, (float) $movie["rating"], 2);
+        $stmt->bindValue(6, $movie["description"], SQLITE3_TEXT);
+        $stmt->bindValue(7, $movie["poster_url"], SQLITE3_TEXT);
+        $stmt->bindValue(8, $movie["trailer_url"], SQLITE3_TEXT);
+        $stmt->bindValue(9, $movie["genre_id"], SQLITE3_INTEGER);
+        $stmt->bindValue(10, $movie["movie_id"], SQLITE3_INTEGER);
+        $stmt->execute();
+    }
+
     function deleteMovieFromId($movie_id) {
         global $db;
 
-        $delete_query = "DELETE FROM movies WHERE movie_id=?;";
-        $stmt = $db->prepare($delete_query);
+        $query = "DELETE FROM movies WHERE movie_id=?;";
+        $stmt = $db->prepare($query);
         $stmt->bindValue(1, $movie_id, SQLITE3_INTEGER);
         $stmt->execute();
     }
