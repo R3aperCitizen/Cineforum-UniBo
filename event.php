@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php 
-    include 'src/functions.php';
+    include 'functions.php';
 
     $event = getEventFromId($_GET["event_id"]);
     $sub_count = getEventOccupiedSeats($_GET["event_id"]);

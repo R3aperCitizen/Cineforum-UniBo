@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    include 'src/functions.php';
+    include 'functions.php';
 
     $event = getMostRecentEvent();
     $events = getLastThreeEvents();

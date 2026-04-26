@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php 
-    include 'src/functions.php';
+    include 'functions.php';
     const EVENTS_PER_PAGE = 12; // Deve essere multiplo di 4 per la griglia.
 
     $page = $_GET["page"] ?? 1;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php 
-    include 'src/functions.php';
+    include 'functions.php';
 
     $movie = getMovieFromId($_GET["movie_id"]);
     $movie_id = $movie["movie_id"] ?? null;
