@@ -256,7 +256,7 @@
         $insert_query = "INSERT INTO movies(title, release_date, director, duration, rating, description, poster_url, trailer_url, genre_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = $db->prepare($insert_query);
         $stmt->bindValue(1, $movie["title"], SQLITE3_TEXT);
-        $stmt->bindValue(2, $movie["release_date"], SQLITE3_DATE);
+        $stmt->bindValue(2, $movie["release_date"], SQLITE3_TEXT);
         $stmt->bindValue(3, $movie["director"], SQLITE3_TEXT);
         $stmt->bindValue(4, $movie["duration"], SQLITE3_INTEGER);
         $stmt->bindValue(5, $movie["rating"], SQLITE3_REAL);
