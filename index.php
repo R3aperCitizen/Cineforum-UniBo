@@ -41,8 +41,7 @@
                         <?= $event['event_description']; ?>
                     </p>
                     <div class="flex items-center gap-6">
-                        <button class="bg-primary-container text-white px-10 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Riserva Posto</button>
-                        <button class="border border-outline-variant text-on-background px-10 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:bg-surface-container-low transition-colors">Vedi Dettagli</button>
+                        <a class="bg-primary-container text-white px-10 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity" href="event.php?event_id=<?= $event['event_id']; ?>">Vedi Dettagli</a>
                     </div>
                 </div>
                 <div class="hidden md:block md:col-span-5 relative">
@@ -113,9 +112,6 @@
                     <p class="font-body text-lg text-secondary leading-relaxed">
                         Dal 1088, l'Alma Mater Studiorum è un faro di cultura. Il nostro Cineforum porta avanti questa tradizione proponendo una selezione variegata di film che stimolano, ispirano e formano la comunità accademica.
                     </p>
-                    <div class="pt-6">
-                        <button class="bg-primary-container text-white px-12 py-5 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Unisciti al Cineforum</button>
-                    </div>
                 </div>
             </div>
         </section>
