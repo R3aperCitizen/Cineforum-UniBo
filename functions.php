@@ -250,10 +250,14 @@
         return false;
     }
 
-    function insertMovie($movie) {
+    function insertOrUpdateMovie($movie, $action) {
         global $db;
 
-        $query = "INSERT INTO movies(title, release_date, director, duration, rating, description, poster_url, trailer_url, genre_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        if ($action == 0) {
+            $query = "INSERT INTO movies(title, release_date, director, duration, rating, description, poster_url, trailer_url, genre_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        } elseif ($action == 1) {
+            $query = "UPDATE movies SET title = ?, release_date = ?, director = ?, duration = ?, rating = ?, description = ?, poster_url = ?, trailer_url = ?, genre_id = ? WHERE movie_id = ?;";
+        }
         $stmt = $db->prepare($query);
         $stmt->bindValue(1, $movie["title"], SQLITE3_TEXT);
         $stmt->bindValue(2, $movie["release_date"], SQLITE3_TEXT);
@@ -264,24 +268,10 @@
         $stmt->bindValue(7, $movie["poster_url"], SQLITE3_TEXT);
         $stmt->bindValue(8, $movie["trailer_url"], SQLITE3_TEXT);
         $stmt->bindValue(9, $movie["genre_id"], SQLITE3_INTEGER);
-        $stmt->execute();
-    }
 
-    function updateMovieFromId($movie) {
-        global $db;
+        if ($action == 1)
+            $stmt->bindValue(10, $movie["movie_id"], SQLITE3_INTEGER);
 
-        $query = "UPDATE movies SET title = ?, release_date = ?, director = ?, duration = ?, rating = ?, description = ?, poster_url = ?, trailer_url = ?, genre_id = ? WHERE movie_id = ?;";
-        $stmt = $db->prepare($query);
-        $stmt->bindValue(1, $movie["title"], SQLITE3_TEXT);
-        $stmt->bindValue(2, $movie["release_date"], SQLITE3_TEXT);
-        $stmt->bindValue(3, $movie["director"], SQLITE3_TEXT);
-        $stmt->bindValue(4, $movie["duration"], SQLITE3_INTEGER);
-        $stmt->bindValue(5, (float) $movie["rating"], 2);
-        $stmt->bindValue(6, $movie["description"], SQLITE3_TEXT);
-        $stmt->bindValue(7, $movie["poster_url"], SQLITE3_TEXT);
-        $stmt->bindValue(8, $movie["trailer_url"], SQLITE3_TEXT);
-        $stmt->bindValue(9, $movie["genre_id"], SQLITE3_INTEGER);
-        $stmt->bindValue(10, $movie["movie_id"], SQLITE3_INTEGER);
         $stmt->execute();
     }
 
