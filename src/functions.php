@@ -226,6 +226,40 @@
         $results = $db->query($query);
         return $results->fetchArray();
     }
+    
+    function insertEventSubscription($email, $event_id) {
+        global $db;
+
+        if (isValidEmail($email)) {
+            $select_query = "SELECT * FROM event_subscriptions WHERE email=? AND event_id=?;";
+            $stmt = $db->prepare($select_query);
+            $stmt->bindValue(1, $email, SQLITE3_TEXT);
+            $stmt->bindValue(2, $event_id, SQLITE3_INTEGER);
+            $results = $stmt->execute();
+    
+            if (!$results->fetchArray()) {
+                $insert_query = "INSERT INTO event_subscriptions(email, event_id) VALUES (?, ?);";
+                $stmt = $db->prepare($insert_query);
+                $stmt->bindValue(1, $email, SQLITE3_TEXT);
+                $stmt->bindValue(2, $event_id, SQLITE3_INTEGER);
+                $stmt->execute();
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function adminLogin($user, $pwd) {
+        global $db;
+        $query = "SELECT * FROM admin WHERE username=? AND pwd=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $user, SQLITE3_TEXT);
+        $stmt->bindValue(2, $pwd, SQLITE3_TEXT);
+        $results = $stmt->execute();
+
+        return $results->fetchArray();
+    }
 
     function formatDate($dateString) {
         $days = [
@@ -243,17 +277,6 @@
         $italianDay = $days[$englishDay];  // Lo traduce usando l'array
         
         return $italianDay . ' • ' . $date->format('d M');
-    }
-
-    function adminLogin($user, $pwd) {
-        global $db;
-        $query = "SELECT * FROM admin WHERE username=? AND pwd=?;";
-        $stmt = $db->prepare($query);
-        $stmt->bindValue(1, $user, SQLITE3_TEXT);
-        $stmt->bindValue(2, $pwd, SQLITE3_TEXT);
-        $results = $stmt->execute();
-
-        return $results->fetchArray();
     }
 
     function formatDate2($dateString) {
@@ -284,5 +307,10 @@
         $orario = date('H:i', $time);
         
         return "$giorno $mese - $orario";
+    }
+
+    function isValidEmail(string $email): bool {
+        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false
+            && str_ends_with($email, '@studio.unibo.it');
     }
 ?>

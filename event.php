@@ -5,6 +5,7 @@
 
     $event = getEventFromId($_GET["event_id"]);
     $sub_count = getEventOccupiedSeats($_GET["event_id"]);
+    $event_id = $event["event_id"] ?? -1;
     $event_name = $event["event_name"] ?? "Non trovato";
     $event_description = $event["event_description"] ?? "Non trovato";
     $event_date = isset($event["event_date"]) ? formatDate2($event["event_date"]) : "Non trovato";
@@ -16,12 +17,33 @@
     $event_status = $event["event_status"] ?? "Non trovato";
     $available_seats = $event_capacity - $sub_count;
 
-    $seats_display = "Nessun Posto Disponibile";
+    $seats_display = "Iscrizioni Chiuse";
     $sub_form = "hidden";
+    $registered = $_GET["registered"] ?? 0;
 
-    if ($available_seats > 0 && $event_status=="Programmato") {
+    if ($available_seats > 0 && $event_status=="Programmato" && $registered == 0) {
         $seats_display = "Posti Disponibili: ".$available_seats."/".$event_capacity;
         $sub_form = "";
+    } elseif ($registered == 1) {
+        $seats_display = "Registrazione Completata";
+    }
+
+    $error = "";
+    
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $email = $_POST["email"];
+
+        if (empty($email)) {
+            $error = "Inserisci un email!";
+        } else {
+            if (insertEventSubscription($email, $event_id)) {
+                $registered = 1;
+                header("Location: event.php?event_id=".$event_id."&registered=".$registered);
+                exit;
+            } else {
+                $error = "Email già registrata o invalida";
+            }
+        }
     }
 ?>
 <html class="" lang="en"><head>
@@ -94,11 +116,12 @@
                         Accesso limitato agli studenti UniBo e ai membri della facoltà. Pre-registrazione obbligatoria con e-mail istituzionale.
                     </p>
                     <h2 class="text-white text-xl mb-6 text-[#000000]"><?= $seats_display ?></h2>
-                    <form class="space-y-4 <?= $sub_form ?>">
-                        <input class="w-full bg-black/20 border-none placeholder-white/50 text-white font-['Epilogue'] text-sm focus:ring-1 focus:ring-white py-3" placeholder="Institutional Email (es. marco.rossi@studio.unibo.it)" type="text"/>
-                        <button class="w-full bg-white text-primary-container font-['Epilogue'] font-bold uppercase tracking-widest py-4 text-sm hover:bg-neutral-100 transition-colors" href="booking.php">
+                    <form class="space-y-4 <?= $sub_form ?>" action="" method="POST">
+                        <input class="w-full bg-black/20 border-none placeholder-white/50 text-white font-['Epilogue'] text-sm focus:ring-1 focus:ring-white py-3" required placeholder="Institutional Email (es. marco.rossi@studio.unibo.it)" type="text" name="email"/>
+                        <button class="w-full bg-white text-primary-container font-['Epilogue'] font-bold uppercase tracking-widest py-4 text-sm hover:bg-neutral-100 transition-colors">
                             Prenota posto
                         </button>
+                        <label class="font-['Epilogue'] text-m text-white uppercase tracking-widest text-on-surface-variant mb-2 block"><?= $error ?></label>
                     </form>
                 </div>
             </div>
