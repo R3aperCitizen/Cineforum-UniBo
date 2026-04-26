@@ -250,6 +250,23 @@
         return false;
     }
 
+    function insertMovie($title, $release_date, $director, $duration, $rating, $description, $poster_url, $trailer_url, $genre_id) {
+        global $db;
+
+        $insert_query = "INSERT INTO movies(title, release_date, director, duration, rating, description, poster_url, trailer_url, genre_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        $stmt = $db->prepare($insert_query);
+        $stmt->bindValue(1, $title, SQLITE3_TEXT);
+        $stmt->bindValue(2, $release_date, SQLITE3_DATE);
+        $stmt->bindValue(3, $director, SQLITE3_TEXT);
+        $stmt->bindValue(4, $duration, SQLITE3_INTEGER);
+        $stmt->bindValue(5, $rating, SQLITE3_REAL);
+        $stmt->bindValue(6, $description, SQLITE3_TEXT);
+        $stmt->bindValue(7, $poster_url, SQLITE3_TEXT);
+        $stmt->bindValue(8, $trailer_url, SQLITE3_TEXT);
+        $stmt->bindValue(9, $genre_id, SQLITE3_INTEGER);
+        $stmt->execute();
+    }
+
     function adminLogin($user, $pwd) {
         global $db;
         $query = "SELECT * FROM admin WHERE username=? AND pwd=?;";
