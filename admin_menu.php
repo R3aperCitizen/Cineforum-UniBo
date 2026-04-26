@@ -8,8 +8,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_destroy();
-        header('Location: admin_login.php');
-        die();
+        redirect('/admin_login.php');
     }
 ?>
 <html class="" lang="en">
