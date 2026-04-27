@@ -1,6 +1,10 @@
 <?php
     $db = new SQLite3(__DIR__ . '/database.db');
 
+    function validate($str) {
+        return htmlspecialchars($str ?? '', ENT_QUOTES, 'UTF-8');
+    }
+
     function redirect($page, $args = []) {
         $location = $page;
         if (!empty($args))
@@ -12,6 +16,13 @@
 
     function throwError($code, $message) {
         redirect('/error.php', ['code' => $code, 'message' => $message]);
+    }
+
+    function requireParams($params, array $keys) {
+        foreach ($keys as $key)
+            if (empty($params[$key]))
+                throwError(400, "Parametro mancante: '$key'.");
+        return array_intersect_key($params, array_flip($keys));
     }
     
     function getMostRecentEvent() {
