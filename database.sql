@@ -42,15 +42,6 @@ CREATE TABLE events (
     event_status TEXT DEFAULT 'scheduled'
 );
 
--- Event movies table (many-to-many relationship)
-CREATE TABLE event_movies (
-    event_id INTEGER,
-    movie_id INTEGER,
-    PRIMARY KEY (event_id, movie_id),
-    FOREIGN KEY (event_id) REFERENCES events(event_id) ON DELETE CASCADE,
-    FOREIGN KEY (movie_id) REFERENCES movies(movie_id) ON DELETE CASCADE
-);
-
 -- User subscriptions to events
 CREATE TABLE event_subscriptions (
     subscription_id INTEGER PRIMARY KEY AUTOINCREMENT,
