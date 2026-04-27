@@ -46,7 +46,7 @@
                 </div>
                 <div class="hidden md:block md:col-span-5 relative">
                     <div class="aspect-[2/3] w-full bg-surface-container-low overflow-hidden shadow-2xl">
-                        <img class="w-full h-full object-cover" src="<?= $event['event_poster']; ?>">
+                        <img alt="<?= $event['event_name']; ?>" class="w-full h-full object-cover" src="<?= $event['event_poster']; ?>">
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
         <section class="py-32 bg-background border-t border-neutral-800/50">
             <div class="max-w-screen-2xl mx-auto px-12 flex flex-col md:flex-row gap-20 items-center">
                 <div class="flex-1">
-                    <img class="w-full h-[520px] object-cover grayscale opacity-80" src="assets/images/uni.jpg">
+                    <img alt="Università di Bologna" class="w-full h-[520px] object-cover grayscale opacity-80" src="assets/images/uni.jpg">
                 </div>
                 <div class="flex-1 space-y-8">
                     <h2 class="text-6xl font-medium leading-tight">Preservare l'<span class="text-primary-container">eredità</span> del cinema nel cuore di Bologna.</h2>
@@ -121,7 +121,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
                     <div class="md:col-span-12">
                         <div class="relative h-[600px] overflow-hidden group">
-                            <img class="w-full h-full object-cover" src="assets/images/archive.jpg">
+                            <img alt="Archivio Pellicole" class="w-full h-full object-cover" src="assets/images/archive.jpg">
                             <div class="absolute inset-0 bg-neutral-900/40 group-hover:bg-neutral-900/20 transition-all duration-500"></div>
                             <div class="absolute bottom-0 left-0 p-12 max-w-lg">
                                 <h3 class="text-5xl text-white font-medium mb-6">Esplora la nostra collezione</h3>
