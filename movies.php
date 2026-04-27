@@ -115,7 +115,7 @@
             <!-- Catalogo -->
             <div class="flex-grow">
                 <div class="mb-8 flex items-center justify-between">
-                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500">Pagina <?= $page ?></span>
+                    <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500">Pagina <?= $page ?> di <?= $pages ?></span>
                     <div class="flex gap-4">
                         <form action="">
                             <input type="hidden" name="page" value="<?= $page > 1 ? $page - 1 : $page ?>">
