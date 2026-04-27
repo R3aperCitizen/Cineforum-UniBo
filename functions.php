@@ -360,7 +360,16 @@
 
         $query = "DELETE FROM genres WHERE genre_id=?;";
         $stmt = $db->prepare($query);
-        $stmt->bindValue(1, $genre, SQLITE3_INTEGER);
+        $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
+        $stmt->execute();
+    }
+
+    function getGenreFromId($genre_id) {
+        global $db;
+
+        $query = "SELECT * FROM genres WHERE genre_id=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
         $stmt->execute();
     }
 
