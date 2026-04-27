@@ -5,7 +5,19 @@
 
     session_start();
     if (!isset($_SESSION["user"]))
-        throwError(403, "Forbidden.");
+        throwError(403, "Accesso non consentito.");
+
+    $request = requireParams($_GET, ["action"]);
+    if($request["action"] === "update")
+        $request += requireParams($_GET, ["event_id"]);
+
+    $event = match($request["action"]) {
+        "add"    => array_fill_keys(['event_id', 'event_name', 'event_description', 'event_date', 'location', 'event_poster', 'capacity', 'ticket_price', 'is_special', 'event_status', 'movie_id'], null),
+        "update" => getEventFromId($request["event_id"]),
+        default  => throwError(400, "L'azione richiesta non è valida.")
+    };
+
+    $status = ["Programmato", "In Corso", "Annullato", "Completato"];
 
     $movies = getAllMovies();
 ?>
@@ -40,74 +52,77 @@
         <section class="mb-24">
             <div class="grid grid-cols-[80%_20%] mb-12">
                 <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Eventi</h2>
-                <button class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Aggiungi Evento</button>
             </div>
 
             <div class="bg-surface-container-low rounded-lg p-8 mb-8">
                 <h3 class="font-['Epilogue'] text-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6">Aggiungi un nuovo evento</h3>
-                <form class="space-y-6">
+                <form action="<?= $request["action"] === 'add' ? '/actions/admin_event_add.php' : '/actions/admin_event_edit.php' ?>" method="POST" class="space-y-6">                    
+                    <?php if ($request["action"] === 'update'): ?>
+                        <input type="hidden" name="event_id" value="<?= validate($movie["event_id"]) ?>">
+                    <?php endif; ?>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Nome Evento</label>
-                            <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="text" name="event_name" value="<?= validate($event["event_name"]) ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Data e Ora</label>
-                            <input type="datetime-local" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="datetime-local" name="event_date" value="<?= validate($event["event_date"]) ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Luogo</label>
-                            <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="text" name="location" value="<?= validate($event["location"]) ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Prezzo Biglietto (€)</label>
-                            <input type="number" step="0.01" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="number" name="ticket_price" value="<?= validate($event["ticket_price"]) ?>" step="0.01" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Capacità</label>
-                            <input type="number" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="number" name="capacity" value="<?= validate($event["capacity"]) ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
                         <div>
-                            <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Status</label>
-                            <select class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
-                                <option value="scheduled">Programmato</option>
-                                <option value="ongoing">In Corso</option>
-                                <option value="cancelled">Annullato</option>
-                                <option value="completed">Completato</option>
+                            <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Stato</label>
+                            <select name="status" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                                <?php
+                                    foreach ($status as $s):
+                                        echo "<option value='" . validate($s). "'" . ($s === $event["event_status"] ? " selected" : "") . ">$s</option>";
+                                    endforeach;
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div>
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Film</label>
                         <select name="movie_id" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <option value="empty">Nessun Film</option>
                             <?php
                                 foreach ($movies as $movie):
                                     $movie_id = $movie["movie_id"];
                                     $movie_name = $movie["title"];
-                                    if($movie_id === $movie["movie_id"])
-                                        echo "<option selected value='$movie_id'>$movie_name</option>";
-                                    else
-                                        echo "<option value='$movie_id'>$movie_name</option>";
+                                    echo "<option value='" . validate($movie_id). "'" . ($movie_id === $event["movie_id"] ? " selected" : "") . ">$movie_name</option>";
                                 endforeach;
                             ?>
                         </select>
                     </div>
                     <div>
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Descrizione</label>
-                        <textarea rows="3" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors"></textarea>
+                        <textarea name="event_description" rows="3" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors"><?= validate($event["event_description"]) ?></textarea>
                     </div>
                     <div>
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Immagine Poster</label>
-                        <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors" placeholder="URL dell'immagine">
+                        <input type="text" name="event_poster" value="<?= validate($event["event_poster"]) ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors" placeholder="URL dell'immagine">
                     </div>
                     <div class="flex items-center gap-4">
-                        <input type="checkbox" id="special" class="w-5 h-5 accent-primary-container">
+                        <input type="hidden" name="is_special" value="0">
+                        <input type="checkbox" name="is_special" id="special" <?= $event["is_special"] == 1 ? " checked" : "" ?> value="1" class="w-5 h-5 accent-primary-container">
                         <label for="special" class="font-['Epilogue'] text-sm font-medium">Evento Speciale</label>
                     </div>
+                    <input type="submit" value="conferma" class="bg-primary-container text-white px-6 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">
                 </form>
             </div>
         </section>
