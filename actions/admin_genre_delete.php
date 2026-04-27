@@ -8,5 +8,5 @@
     $request = requireParams($_POST, ["genre_id"]);
     deleteGenreFromId($request["genre_id"]);
     
-    redirect("/admin_movies.php");
+    redirect("/admin_genres.php");
 ?>

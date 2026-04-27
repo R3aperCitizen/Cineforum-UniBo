@@ -8,5 +8,5 @@
     $request = requireParams($_POST, ["genre_name"]);
     insertOrUpdateGenre($request, 0);
     
-    redirect("/admin_movies.php");
+    redirect("/admin_genres.php");
 ?>
