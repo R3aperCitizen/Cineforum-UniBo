@@ -206,7 +206,7 @@
 
     function getEventsFromMovieId($movie_id) {
         global $db;
-        $query = "SELECT events.event_id, events.event_name, events.event_description, events.event_date FROM events, event_movies, movies WHERE events.event_id=event_movies.event_id AND event_movies.movie_id=movies.movie_id AND movies.movie_id=?;";
+        $query = "SELECT * FROM events WHERE events.movie_id=?;";
         $stmt = $db->prepare($query);
         $stmt->bindValue(1, $movie_id, SQLITE3_INTEGER);
         $results = $stmt->execute();
@@ -289,6 +289,67 @@
         $query = "DELETE FROM movies WHERE movie_id=?;";
         $stmt = $db->prepare($query);
         $stmt->bindValue(1, $movie_id, SQLITE3_INTEGER);
+        $stmt->execute();
+    }
+
+    function insertOrUpdateEvent($event, $action) {
+        global $db;
+
+        if ($action == 0) {
+            $query = "INSERT INTO events(event_name, event_description, event_date, location, event_poster, capacity, ticket_price, is_special, event_status, movie_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        } elseif ($action == 1) {
+            $query = "UPDATE events SET event_name = ?, event_description = ?, event_date = ?, location = ?, event_poster = ?, capacity = ?, ticket_price = ?, is_special = ?, event_status = ?, movie_id = ? WHERE event_id = ?;";
+        }
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $event["event_name"], SQLITE3_TEXT);
+        $stmt->bindValue(2, $event["event_description"], SQLITE3_TEXT);
+        $stmt->bindValue(3, $event["event_date"], SQLITE3_TEXT);
+        $stmt->bindValue(4, $event["location"], SQLITE3_TEXT);
+        $stmt->bindValue(5, $event["event_poster"], SQLITE3_TEXT);
+        $stmt->bindValue(6, $event["capacity"], SQLITE3_INTEGER);
+        $stmt->bindValue(7, (float) $event["ticket_price"], 2);
+        $stmt->bindValue(8, $event["is_special"], SQLITE3_INTEGER);
+        $stmt->bindValue(9, $event["event_status"], SQLITE3_TEXT);
+        $stmt->bindValue(10, $event["movie_id"], SQLITE3_INTEGER);
+
+        if ($action == 1)
+            $stmt->bindValue(11, $event["event_id"], SQLITE3_INTEGER);
+
+        $stmt->execute();
+    }
+
+    function deleteEventFromId($event_id) {
+        global $db;
+
+        $query = "DELETE FROM events WHERE event_id=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $event_id, SQLITE3_INTEGER);
+        $stmt->execute();
+    }
+
+    function insertOrUpdateGenre($genre, $action) {
+        global $db;
+
+        if ($action == 0) {
+            $query = "INSERT INTO genres(genre_name) VALUES (?);";
+        } elseif ($action == 1) {
+            $query = "UPDATE genres SET genre_name = ? WHERE genre_id = ?;";
+        }
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $event["genre_name"], SQLITE3_TEXT);
+
+        if ($action == 1)
+            $stmt->bindValue(2, $event["genre_id"], SQLITE3_INTEGER);
+
+        $stmt->execute();
+    }
+
+    function deleteGenreFromId($genre_id) {
+        global $db;
+
+        $query = "DELETE FROM genres WHERE genre_id=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $genre, SQLITE3_INTEGER);
         $stmt->execute();
     }
 
