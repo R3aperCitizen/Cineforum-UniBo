@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<?php 
+
+<?php
     include 'functions.php';
 
     session_start();
     if (!isset($_SESSION["user"]))
-        throwError(403, "Forbidden.");
+        throwError(403, "Accesso non consentito.");
 ?>
+
 <html class="" lang="en"><head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">

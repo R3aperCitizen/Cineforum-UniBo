@@ -1,12 +1,23 @@
 <!DOCTYPE html>
+
 <?php 
     include 'functions.php';
 
     session_start();
     if (!isset($_SESSION["user"]))
-        throwError(403, "Forbidden.");
+        throwError(403, "Accesso non consentito.");
 
+    $request = requireParams($_GET, ["action"]);
+    if($request["action"] === "update")
+        $request += requireParams($_GET, ["genre_id"]);
+
+    $genre = match($request["action"]) {
+        "add"    => array_fill_keys(["genre_id", "genre_name"], null),
+        "update" => getMovieFromId($request["genre_id"]),
+        default  => throwError(400, "Richiesta malformata.")
+    };
 ?>
+
 <html class="" lang="en"><head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -36,18 +47,17 @@
         <!-- Sezione Generi -->
         <section class="mb-24">
             <div class="grid grid-cols-[80%_20%] mb-12">
-                <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Generi</h2>
-                <button class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Aggiungi Genere</button>
+                <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Aggiungi o modifica genere</h2>
             </div>
 
             <div class="bg-surface-container-low rounded-lg p-8 mb-8">
-                <h3 class="font-['Epilogue'] text-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6">Aggiungi un nuovo genere</h3>
                 <form class="max-w-md">
-                    <div class="grid grid-cols-1 gap-6">
+                    <div class="grid grid-cols-2 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Nome Genere</label>
-                            <input type="text" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <input type="text" name="genre_name" value="<?= validate($genre["genre_name"]) ?>" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                         </div>
+                        <button class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Conferma</button>
                     </div>
                 </form>
             </div>
