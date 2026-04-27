@@ -89,6 +89,23 @@
         return $movies;
     }
 
+    function getEventsCatalog($page_number, $number_of_events) {
+        global $db;
+        $query = "SELECT * FROM events LIMIT ? OFFSET ?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $number_of_events, SQLITE3_INTEGER);
+        $stmt->bindValue(2, ($page_number * $number_of_events) - $number_of_events, SQLITE3_INTEGER);
+
+        $results = $stmt->execute();
+
+        $events = [];
+        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+            $events[] = $row;
+        }
+
+        return $events;
+    }
+
     function getAllMovies() {
         global $db;
         $query = "SELECT * FROM movies, genres WHERE movies.genre_id=genres.genre_id;";
@@ -194,23 +211,6 @@
         return $results->fetchArray();
     }
 
-    function getEventsCatalog($page_number, $number_of_events) {
-        global $db;
-        $query = "SELECT * FROM events LIMIT ? OFFSET ?;";
-        $stmt = $db->prepare($query);
-        $stmt->bindValue(1, $number_of_events, SQLITE3_INTEGER);
-        $stmt->bindValue(2, ($page_number * $number_of_events) - $number_of_events, SQLITE3_INTEGER);
-
-        $results = $stmt->execute();
-
-        $events = [];
-        while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-            $events[] = $row;
-        }
-
-        return $events;
-    }
-
     function getEventFromId($event_id) {
         global $db;
         $query = "SELECT * FROM events WHERE event_id=?;";
@@ -218,6 +218,17 @@
         $stmt->bindValue(1, $event_id, SQLITE3_INTEGER);
         $results = $stmt->execute();
         return $results->fetchArray();
+    }
+
+    function getGenreFromId($genre_id) {
+        global $db;
+
+        $query = "SELECT * FROM genres WHERE genre_id=?;";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
+        $results = $stmt->execute();
+
+        return $results;
     }
 
     function getEventsFromMovieId($movie_id) {
@@ -352,10 +363,10 @@
             $query = "UPDATE genres SET genre_name = ? WHERE genre_id = ?;";
         }
         $stmt = $db->prepare($query);
-        $stmt->bindValue(1, $event["genre_name"], SQLITE3_TEXT);
+        $stmt->bindValue(1, $genre["genre_name"], SQLITE3_TEXT);
 
         if ($action == 1)
-            $stmt->bindValue(2, $event["genre_id"], SQLITE3_INTEGER);
+            $stmt->bindValue(2, $genre["genre_id"], SQLITE3_INTEGER);
 
         $stmt->execute();
     }
@@ -364,15 +375,6 @@
         global $db;
 
         $query = "DELETE FROM genres WHERE genre_id=?;";
-        $stmt = $db->prepare($query);
-        $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
-        $stmt->execute();
-    }
-
-    function getGenreFromId($genre_id) {
-        global $db;
-
-        $query = "SELECT * FROM genres WHERE genre_id=?;";
         $stmt = $db->prepare($query);
         $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
         $stmt->execute();
