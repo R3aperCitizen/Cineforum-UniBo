@@ -387,7 +387,7 @@
         $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
         $results = $stmt->execute();
 
-        return $result->fetchArray();
+        return $results->fetchArray();
     }
 
     function adminLogin($user, $pwd) {
