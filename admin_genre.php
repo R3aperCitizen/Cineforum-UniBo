@@ -51,6 +51,9 @@
 
             <div class="bg-surface-container-low rounded-lg p-8 mb-8">
                 <form action="<?= $request["action"] === 'add' ? '/actions/admin_genre_add.php' : '/actions/admin_genre_edit.php' ?>" method="POST" class="max-w-md">
+                    <?php if ($request["action"] === 'update'): ?>
+                        <input type="hidden" name="genre_id" value="<?= validate($genre["genre_id"]) ?>">
+                    <?php endif; ?>
                     <div class="grid grid-cols-2 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Nome Genere</label>

@@ -58,7 +58,7 @@
                 <h3 class="font-['Epilogue'] text-sm font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-6">Aggiungi un nuovo evento</h3>
                 <form action="<?= $request["action"] === 'add' ? '/actions/admin_event_add.php' : '/actions/admin_event_edit.php' ?>" method="POST" class="space-y-6">                    
                     <?php if ($request["action"] === 'update'): ?>
-                        <input type="hidden" name="event_id" value="<?= validate($movie["event_id"]) ?>">
+                        <input type="hidden" name="event_id" value="<?= validate($event["event_id"]) ?>">
                     <?php endif; ?>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -87,7 +87,7 @@
                         </div>
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Stato</label>
-                            <select name="status" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <select name="event_status" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
                                 <?php
                                     foreach ($status as $s):
                                         echo "<option value='" . validate($s). "'" . ($s === $event["event_status"] ? " selected" : "") . ">$s</option>";
@@ -99,7 +99,7 @@
                     <div>
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Film</label>
                         <select name="movie_id" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
-                            <option value="empty">Nessun Film</option>
+                            <option value="-1">Nessun Film</option>
                             <?php
                                 foreach ($movies as $movie):
                                     $movie_id = $movie["movie_id"];
@@ -119,7 +119,7 @@
                     </div>
                     <div class="flex items-center gap-4">
                         <input type="hidden" name="is_special" value="0">
-                        <input type="checkbox" name="is_special" id="special" <?= $event["is_special"] == 1 ? " checked" : "" ?> value="1" class="w-5 h-5 accent-primary-container">
+                        <input type="checkbox" name="is_special" <?= $event["is_special"] == 1 ? " checked" : "" ?> value="1" class="w-5 h-5 accent-primary-container">
                         <label for="special" class="font-['Epilogue'] text-sm font-medium">Evento Speciale</label>
                     </div>
                     <input type="submit" value="conferma" class="bg-primary-container text-white px-6 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">

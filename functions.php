@@ -25,7 +25,7 @@
 
     function requireParams($params, array $keys) {
         foreach ($keys as $key)
-            if (empty($params[$key]))
+            if (!isset($params[$key]))
                 throwError(400, "Parametro mancante: '$key'.");
         return array_intersect_key($params, array_flip($keys));
     }
@@ -227,8 +227,7 @@
         $stmt = $db->prepare($query);
         $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
         $results = $stmt->execute();
-
-        return $results;
+        return $results->fetchArray();
     }
 
     function getEventsFromMovieId($movie_id) {
@@ -337,7 +336,7 @@
         $stmt->bindValue(7, (float) $event["ticket_price"], 2);
         $stmt->bindValue(8, $event["is_special"], SQLITE3_INTEGER);
         $stmt->bindValue(9, $event["event_status"], SQLITE3_TEXT);
-        $stmt->bindValue(10, $event["movie_id"], SQLITE3_INTEGER);
+        $stmt->bindValue(10, $event["movie_id"] == -1 ? null : $event["movie_id"], SQLITE3_INTEGER);
 
         if ($action == 1)
             $stmt->bindValue(11, $event["event_id"], SQLITE3_INTEGER);
