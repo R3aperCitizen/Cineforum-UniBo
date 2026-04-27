@@ -119,7 +119,7 @@
                     </div>
                     <div class="flex items-center gap-4">
                         <input type="hidden" name="is_special" value="0">
-                        <input type="checkbox" name="is_special" <?= $event["is_special"] == 1 ? " checked" : "" ?> value="1" class="w-5 h-5 accent-primary-container">
+                        <input type="checkbox" name="is_special" id="special" <?= $event["is_special"] == 1 ? " checked" : "" ?> value="1" class="w-5 h-5 accent-primary-container">
                         <label for="special" class="font-['Epilogue'] text-sm font-medium">Evento Speciale</label>
                     </div>
                     <input type="submit" value="conferma" class="bg-primary-container text-white px-6 py-4 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">
