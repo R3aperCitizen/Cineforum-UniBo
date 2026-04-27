@@ -372,11 +372,22 @@
 
     function deleteGenreFromId($genre_id) {
         global $db;
-
+        
         $query = "DELETE FROM genres WHERE genre_id=?;";
         $stmt = $db->prepare($query);
         $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
         $stmt->execute();
+    }
+
+    function hasGenreLinkedMovies($genre_id) {
+        global $db;
+
+        $query = "SELECT * FROM genres, movies WHERE genres.genre_id=movies.genre_id AND genre_id=?";
+        $stmt = $db->prepare($query);
+        $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
+        $results = $stmt->execute();
+
+        return $result->fetchArray();
     }
 
     function adminLogin($user, $pwd) {
