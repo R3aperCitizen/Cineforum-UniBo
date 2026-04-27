@@ -18,6 +18,11 @@
         redirect('/error.php', ['code' => $code, 'message' => $message]);
     }
 
+    function requireAuthorization() {
+        if (!isset($_SESSION["user"]))
+            throwError(403, "Accesso non consentito.");
+    }
+
     function requireParams($params, array $keys) {
         foreach ($keys as $key)
             if (empty($params[$key]))

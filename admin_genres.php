@@ -4,8 +4,7 @@
     include 'functions.php';
 
     session_start();
-    if (!isset($_SESSION["user"]))
-        throwError(403, "Accesso non consentito.");
+    requireAuthorization();
 
     $genres = getAllGenres();
 ?>

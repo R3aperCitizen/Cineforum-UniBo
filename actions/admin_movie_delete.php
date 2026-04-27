@@ -2,9 +2,7 @@
     include '../functions.php';
 
     session_start();
-    if (!isset($_SESSION["user"]))
-        throwError(403, "Accesso non consentito.");
-
+    requireAuthorization();
     $request = requireParams($_POST, ['movie_id']);
     deleteMovieFromId($request["movie_id"]);
     
