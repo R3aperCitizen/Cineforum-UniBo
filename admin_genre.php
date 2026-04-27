@@ -14,7 +14,7 @@
     $genre = match($request["action"]) {
         "add"    => array_fill_keys(["genre_id", "genre_name"], null),
         "update" => getMovieFromId($request["genre_id"]),
-        default  => throwError(400, "Richiesta malformata.")
+        default  => throwError(400, "L'azione richiesta non è valida.")
     };
 ?>
 
