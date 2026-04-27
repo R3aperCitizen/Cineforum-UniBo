@@ -20,8 +20,8 @@
         </div>
         <p class="font-['Epilogue'] text-xs uppercase tracking-widest text-[#B31E24] font-semibold"><?= $movie_card_director ?></p>
         <div class="pt-2 flex gap-4 text-neutral-500 font-['Epilogue'] text-[10px] uppercase tracking-tighter">
-            <span class=""><?= $movie_card_genre ?></span>
-            <span class=""><?= $movie_card_minutes ?> MIN</span>
+            <span><?= $movie_card_genre ?></span>
+            <span><?= $movie_card_minutes ?> MIN</span>
         </div>
     </div>
 </div>

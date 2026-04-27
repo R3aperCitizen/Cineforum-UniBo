@@ -45,7 +45,7 @@
         }
     }
 ?>
-<html class="" lang="en"><head>
+<html lang="it"><head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>UniBo Cineforum | <?= $event_name ?></title>
@@ -64,7 +64,7 @@
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
             <div class="lg:col-span-7 flex flex-col justify-end">
                 <nav class="flex items-center space-x-2 text-xs font-['Epilogue'] uppercase tracking-[0.2em] text-[#000000] mb-8">
-                    <span class="">Eventi</span>
+                    <span>Eventi</span>
                     <span class="material-symbols-outlined text-[10px]">chevron_right</span>
                     <span class="text-[#B31E24]"><?= $event_name ?></span>
                 </nav>
