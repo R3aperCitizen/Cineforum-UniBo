@@ -382,7 +382,7 @@
     function hasGenreLinkedMovies($genre_id) {
         global $db;
 
-        $query = "SELECT * FROM genres, movies WHERE genres.genre_id=movies.genre_id AND genre_id=?";
+        $query = "SELECT * FROM genres, movies WHERE genres.genre_id=movies.genre_id AND genres.genre_id=?";
         $stmt = $db->prepare($query);
         $stmt->bindValue(1, $genre_id, SQLITE3_INTEGER);
         $results = $stmt->execute();
