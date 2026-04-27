@@ -11,7 +11,7 @@
 ?>
 
 <li class="flex items-center justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
-    <form class="hidden" action=""><input type="hidden" name="<?= $movie_filter_uri ?>" value="<?= $movie_filter_id ?>"></form>
+    <form class="hidden"><input type="hidden" name="<?= $movie_filter_uri ?>" value="<?= $movie_filter_id ?>"></form>
     <span class="<?= $movie_filter_is_selected ? $movie_filter_selected : $movie_filter_unselected ?> transition-colors"><?= $movie_filter_name ?></span>
     <span class="text-neutral-600 text-[10px] font-bold"><?= $movie_filter_count ?></span>
 </li>

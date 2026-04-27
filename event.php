@@ -115,7 +115,7 @@
                         Accesso limitato agli studenti UniBo e ai membri della facoltà. Pre-registrazione obbligatoria con e-mail istituzionale.
                     </p>
                     <h2 class="text-white text-xl mb-6 text-[#000000]"><?= $seats_display ?></h2>
-                    <form class="space-y-4 <?= $sub_form ?>" action="" method="POST">
+                    <form class="space-y-4 <?= $sub_form ?>" method="POST">
                         <input class="w-full bg-black/20 border-none placeholder-white/50 text-white font-['Epilogue'] text-sm focus:ring-1 focus:ring-white py-3" required placeholder="Institutional Email (es. marco.rossi@studio.unibo.it)" type="text" name="email"/>
                         <button class="w-full bg-white text-primary-container font-['Epilogue'] font-bold uppercase tracking-widest py-4 text-sm hover:bg-neutral-100 transition-colors">
                             Prenota posto

@@ -31,11 +31,11 @@
                 <h1 class="text-6xl font-medium">Gli Eventi</h1>
             </div>
             <div class="bg-surface-container p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
-                <form class="hidden" action=""><input type="hidden" name="page" value="<?= $page > 1 ? $page - 1 : $page ?>"></form>
+                <form class="hidden"><input type="hidden" name="page" value="<?= $page > 1 ? $page - 1 : $page ?>"></form>
                 <h3 class="text-2xl font-medium">Pagina precedente</h3>
             </div>
             <div class="bg-surface-container p-8 flex flex-col justify-between group cursor-pointer" onclick="this.querySelector('form').submit()">
-                <form class="hidden" action=""><input type="hidden" name="page" value="<?= $page < $pages ? $page + 1 : $page ?>"></form>
+                <form class="hidden"><input type="hidden" name="page" value="<?= $page < $pages ? $page + 1 : $page ?>"></form>
                 <h3 class="text-2xl font-medium">Pagina successiva</h3>
             </div>
 

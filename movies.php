@@ -117,13 +117,13 @@
                 <div class="mb-8 flex items-center justify-between">
                     <span class="font-['Epilogue'] text-[10px] uppercase tracking-widest text-neutral-500">Pagina <?= $page ?> di <?= $pages ?></span>
                     <div class="flex gap-4">
-                        <form action="">
+                        <form>
                             <input type="hidden" name="page" value="<?= $page > 1 ? $page - 1 : $page ?>">
                             <?php echo is_null($requested_genre) ? null : '<input type="hidden" name="genreId" value="' . $requested_genre . '">'; ?>
                             <?php echo is_null($requested_director) ? null : '<input type="hidden" name="directorName" value="' . $requested_director . '">'; ?>
                             <input type="submit" value="previous" class="px-6 py-2 bg-surface-container-high text-xs font-bold uppercase tracking-widest hover:text-[#B31E24] transition-colors">
                         </form>
-                        <form action="">
+                        <form>
                             <input type="hidden" name="page" value="<?= $page < $pages ? $page + 1 : $page ?>">
                             <?php echo is_null($requested_genre) ? null : '<input type="hidden" name="genreId" value="' . $requested_genre . '">'; ?>
                             <?php echo is_null($requested_director) ? null : '<input type="hidden" name="directorName" value="' . $requested_director . '">'; ?>

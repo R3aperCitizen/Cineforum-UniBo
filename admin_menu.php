@@ -75,7 +75,7 @@
                 </a>
 
                 <!-- Pulsante Logout -->
-                <form method="POST" action="" class="group relative overflow-hidden bg-surface-container-lowest rounded-lg p-12 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-outline-variant/20">
+                <form method="POST" class="group relative overflow-hidden bg-surface-container-lowest rounded-lg p-12 shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 border border-outline-variant/20">
                     <div class="absolute inset-0 bg-surface-container-highest opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="relative z-10">
                         <span class="material-symbols-outlined text-6xl text-on-surface mb-6">logout</span>

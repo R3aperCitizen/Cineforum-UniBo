@@ -53,7 +53,7 @@
                 </div>
 
                 <!-- Login Form -->
-                <form class="space-y-8" action="" method="POST">
+                <form class="space-y-8" method="POST">
                     <!-- Username Field -->
                     <div>
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Utente</label>
