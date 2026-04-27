@@ -4,8 +4,7 @@
     include 'functions.php';
 
     session_start();
-    if (!isset($_SESSION["user"]))
-        throwError(403, "Accesso non consentito.");
+    requireAuthorization();
 
     $request = requireParams($_GET, ["action"]);
     if($request["action"] === "update")
@@ -13,8 +12,8 @@
 
     $genre = match($request["action"]) {
         "add"    => array_fill_keys(["genre_id", "genre_name"], null),
-        "update" => getMovieFromId($request["genre_id"]),
-        default  => throwError(400, "Richiesta malformata.")
+        "update" => getGenreFromId($request["genre_id"]),
+        default  => throwError(400, "L'azione richiesta non è valida.")
     };
 ?>
 
@@ -51,7 +50,7 @@
             </div>
 
             <div class="bg-surface-container-low rounded-lg p-8 mb-8">
-                <form class="max-w-md">
+                <form action="<?= $request["action"] === 'add' ? '/actions/admin_genre_add.php' : '/actions/admin_genre_edit.php' ?>" method="POST" class="max-w-md">
                     <div class="grid grid-cols-2 gap-6">
                         <div>
                             <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Nome Genere</label>

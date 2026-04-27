@@ -23,7 +23,7 @@
                 <input type="hidden" name="movie_id" value="<?= $movie_id ?>">
                 <input type="submit" value="Modifica" class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">
             </form>
-            <form action="/actions/admin_movie_delete.php">
+            <form action="/actions/admin_movie_delete.php" method="POST">
                 <input type="hidden" name="movie_id" value="<?= $movie_id ?>">
                 <input type="submit" value="Elimina" class="text-[#B31E24] hover:opacity-80 transition-opacity font-bold text-xs uppercase tracking-widest">
             </form>

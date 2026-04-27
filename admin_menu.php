@@ -3,8 +3,7 @@
     include 'functions.php';
 
     session_start();
-    if (!isset($_SESSION["user"]))
-        throwError(403, "Forbidden.");
+    requireAuthorization();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_destroy();
