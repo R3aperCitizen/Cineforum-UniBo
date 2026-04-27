@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <?php 
     include 'functions.php';
 
@@ -8,6 +9,7 @@
 
     $events = getAllEvents();
 ?>
+
 <html class="" lang="en"><head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -38,7 +40,8 @@
         <section class="mb-24">
             <div class="grid grid-cols-[80%_20%] mb-12">
                 <h2 class="font-['EB_Garamond'] text-5xl font-medium tracking-tight text-on-background mb-4 mr-8">Eventi</h2>
-                <button class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Aggiungi Evento</button>
+                <form id="add_event" class="hidden" action="/admin_event.php"><input type="hidden" name="action" value="add"></form>
+                <button type="submit" form="add_event" class="bg-primary-container text-white px-6 py-2 font-body text-sm font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">Aggiungi Evento</button>
             </div>
 
             <div class="bg-surface-container-low rounded-lg overflow-hidden">

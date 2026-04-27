@@ -5,6 +5,8 @@
     session_start();
     if (!isset($_SESSION["user"]))
         throwError(403, "Forbidden.");
+
+    $movies = getAllMovies();
 ?>
 <html class="" lang="en"><head>
     <meta charset="utf-8">
@@ -76,6 +78,21 @@
                                 <option value="completed">Completato</option>
                             </select>
                         </div>
+                    </div>
+                    <div>
+                        <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Film</label>
+                        <select name="movie_id" class="w-full bg-surface-container-high border-b-2 border-outline-variant/20 focus:border-outline-variant focus:outline-none px-4 py-3 font-body transition-colors">
+                            <?php
+                                foreach ($movies as $movie):
+                                    $movie_id = $movie["movie_id"];
+                                    $movie_name = $movie["title"];
+                                    if($movie_id === $movie["movie_id"])
+                                        echo "<option selected value='$movie_id'>$movie_name</option>";
+                                    else
+                                        echo "<option value='$movie_id'>$movie_name</option>";
+                                endforeach;
+                            ?>
+                        </select>
                     </div>
                     <div>
                         <label class="font-['Epilogue'] text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">Descrizione</label>
