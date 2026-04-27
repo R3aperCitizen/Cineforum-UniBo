@@ -11,7 +11,7 @@
 <div class="group cursor-pointer" onclick="this.querySelector('form').submit()">
     <form class="hidden" action="movie.php"><input type="hidden" name="movie_id" value="<?= $movie_card_id ?>"></form>
     <div class="relative aspect-[2/3] overflow-hidden bg-surface-container-lowest mb-6">
-        <img alt="<?= $movie_card_name ?>" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" src="<?= $movie_card_image ?>"/>
+        <img alt="<?= $movie_card_name ?>" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" src="<?= $movie_card_image ?>">
     </div>
     <div class="space-y-2">
         <div class="flex justify-between items-start">
