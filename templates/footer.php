@@ -5,8 +5,7 @@
             <div class="font-['Epilogue'] text-xs font-light tracking-wide uppercase text-neutral-100">Università di Bologna • Cineforum di Ateneo</div>
         </div>
         <div class="flex gap-12 mb-8 md:mb-0">
-            <a class="font-['Epilogue'] text-xs font-light tracking-wide hover:text-neutral-200 transition-all uppercase text-neutral-100 hover:text-white" href="#">Privacy Policy</a>
-            <a class="font-['Epilogue'] text-xs font-light tracking-wide hover:text-neutral-200 transition-all uppercase text-neutral-100 hover:text-white" href="#">Contact Us</a>
+            <a class="font-['Epilogue'] text-xs font-light tracking-wide hover:text-neutral-200 transition-all uppercase text-neutral-100 hover:text-white" href="../privacy.php">Privacy Policy</a>
             <a class="font-['Epilogue'] text-xs font-light tracking-wide hover:text-neutral-200 transition-all uppercase text-neutral-100 hover:text-white" href="admin_login.php">Admin Page</a>
         </div>
         <div class="text-right">
