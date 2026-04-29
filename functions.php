@@ -392,13 +392,26 @@
 
     function adminLogin($user, $pwd) {
         global $db;
-        $query = "SELECT * FROM admin WHERE username=? AND pwd=?;";
+        
+        // Cerca solo per username
+        $query = "SELECT * FROM admin WHERE username = ?;";
         $stmt = $db->prepare($query);
         $stmt->bindValue(1, $user, SQLITE3_TEXT);
-        $stmt->bindValue(2, $pwd, SQLITE3_TEXT);
         $results = $stmt->execute();
-
-        return $results->fetchArray();
+        
+        $row = $results->fetchArray(SQLITE3_ASSOC);
+        
+        // Se l'utente non esiste, ritorna false
+        if (!$row) {
+            return false;
+        }
+        
+        // Verifica la password contro l'hash salvato nel DB
+        if (password_verify($pwd, $row['pwd'])) {
+            return $row;
+        }
+        
+        return false;
     }
 
     function formatDate($dateString) {
